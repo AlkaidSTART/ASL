@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main", "myj"]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -41,6 +41,8 @@ jobs:
         run: npm ci
       - name: Build with Next.js & Pagefind
         run: npm run build
+      - name: Disable Jekyll for GitHub Pages
+        run: touch ./out/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
