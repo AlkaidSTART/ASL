@@ -7,7 +7,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-8">
         <div className="flex items-center gap-8">
           <Link href="/" className="text-lg font-bold tracking-tight">
-            AlkaidLight
+            <img src="/logo3.png" alt="AlkaidLight" className="h-8" />
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             <Link href="/blog" className="transition-colors hover:text-gray-600 dark:hover:text-gray-300">

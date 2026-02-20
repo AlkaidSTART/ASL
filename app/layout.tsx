@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
-
+import weblogo from "../public/logo1.png";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AlkaidLight Blog",
   description: "A Vibe Coding Blog",
+  icons: {
+    icon: "/logo3.png",
+  },
 };
 
 export default function RootLayout({
