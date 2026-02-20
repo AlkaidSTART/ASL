@@ -43,6 +43,11 @@ jobs:
         run: npm run build
       - name: Disable Jekyll for GitHub Pages
         run: touch ./out/.nojekyll
+      - name: Deploy to page branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: page
+          folder: out
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
