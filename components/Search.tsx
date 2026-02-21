@@ -9,6 +9,7 @@ declare global {
 }
 
 export default function Search() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
@@ -24,7 +25,7 @@ export default function Search() {
           // We use a script tag injection approach or just dynamic import if supported.
           // For static export, /pagefind/pagefind.js should be available.
           // @ts-ignore
-          const pagefind = await import(/* webpackIgnore: true */ '/pagefind/pagefind.js');
+          const pagefind = await import(/* webpackIgnore: true */ `${basePath}/pagefind/pagefind.js`);
           window.pagefind = pagefind;
         } catch (e) {
           // Silently fail in dev mode if not available
