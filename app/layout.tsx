@@ -3,8 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
-import weblogo from "../public/logo1.png";
-import avatorone from "../public/avatorone.jpg";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
   title: "AlkaidLight Blog",
   description: "A Vibe Coding Blog",
   icons: {
-    icon: "/avatorone.jpg",
+    icon: `${basePath}/avatorone.jpg`,
   },
 };
 
