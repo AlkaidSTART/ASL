@@ -1,38 +1,23 @@
 import { getSortedPostsData } from '@/lib/posts';
-import Link from 'next/link';
+import { PostList } from '@/components/PostList';
 
 export default function BlogIndex() {
   const posts = getSortedPostsData();
 
   return (
     <div className="container mx-auto px-4 py-12 sm:px-8">
-      <h1 className="mb-12 text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-        <span className="lang-en">Latest Posts</span>
-        <span className="lang-zh">最新文章</span>
-      </h1>
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-            <article className="h-full rounded-2xl border border-gray-200 bg-white p-6 transition-all hover:shadow-lg dark:border-gray-800 dark:bg-gray-900">
-              <div className="mb-4 flex items-center gap-2">
-                <time dateTime={post.date} className="text-sm text-gray-500 dark:text-gray-400">
-                  {post.date}
-                </time>
-                <span className="h-1 w-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
-                  {post.tags[0]}
-                </span>
-              </div>
-              <h2 className="mb-2 text-xl font-bold tracking-tight text-gray-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
-                {post.title}
-              </h2>
-              <p className="line-clamp-3 text-gray-600 dark:text-gray-300">
-                {post.description}
-              </p>
-            </article>
-          </Link>
-        ))}
+      <div className="mb-12 text-center">
+        <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-100 dark:to-white sm:text-5xl">
+          <span className="lang-en">Latest Posts</span>
+          <span className="lang-zh">最新文章</span>
+        </h1>
+        <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+          <span className="lang-en">Thoughts, tutorials, and insights on Vibe Coding and AI.</span>
+          <span className="lang-zh">关于 Vibe Coding 和 AI 的思考、教程与见解。</span>
+        </p>
       </div>
+      
+      <PostList posts={posts} />
     </div>
   );
 }
