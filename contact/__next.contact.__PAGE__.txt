@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[97367,["/ASL/_next/static/chunks/ff1a16fafef87110.js","/ASL/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+:HL["/ASL/avatorone.jpg","image"]
+0:{"buildId":"lN-bnsrWH4DFLeELsmI5F","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"flex flex-col items-center justify-center py-24 text-center","children":[["$","h1",null,{"className":"mb-6 text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 sm:text-7xl","children":["$","img",null,{"src":"/ASL/avatorone.jpg","alt":"AlkaidLight","className":"h-16"}]}],["$","p",null,{"className":"mb-10 max-w-2xl text-xl text-gray-600 dark:text-gray-300","children":[["$","span",null,{"className":"lang-en","children":"A personal blog built with Next.js, Vibe Coding, and AI."}],["$","span",null,{"className":"lang-zh","children":"一个使用 Next.js、Vibe Coding 与 AI 构建的个人博客。"}]]}]]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"loading":null,"isPartial":false}
+4:null
