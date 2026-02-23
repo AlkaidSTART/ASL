@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { type Post } from '@/lib/posts';
 import { PostCard } from './PostCard';
-
 export function PostList({ posts }: { posts: Post[] }) {
   return (
     <motion.div

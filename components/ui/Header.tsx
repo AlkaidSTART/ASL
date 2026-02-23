@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Home, BookOpen, User, Mail, Github } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Home, BookOpen, User, Mail, Github, Menu, X } from 'lucide-react';
 import Search from '../Search';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
@@ -19,6 +19,11 @@ const navItems = [
 export function Header() {
   const pathname = usePathname();
   const [lang, setLang] = useState<'en' | 'zh'>('en');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const stored = localStorage.getItem('lang');
@@ -109,8 +114,49 @@ export function Header() {
           >
             <Github className="h-5 w-5" />
           </a>
+          <button
+            type="button"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-black/5 text-gray-600 transition-all hover:bg-black/10 hover:text-gray-900 dark:bg-white/10 dark:text-gray-300 dark:hover:bg-white/20 dark:hover:text-white sm:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </header>
+      
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="absolute left-4 right-4 top-20 flex flex-col gap-2 rounded-2xl border border-white/20 bg-white/60 p-4 shadow-xl backdrop-blur-2xl backdrop-saturate-150 dark:bg-black/60 dark:border-white/10"
+          >
+            {navItems.map((item) => {
+              const isActive = item.path === '/' ? pathname === '/' : pathname?.startsWith(item.path);
+              
+              return (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+                    isActive
+                      ? 'bg-black/5 text-gray-900 dark:bg-white/10 dark:text-white'
+                      : 'text-gray-600 hover:bg-black/5 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-white'
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <item.icon className="h-5 w-5" />
+                  <span className="lang-en">{item.labelEn}</span>
+                  <span className="lang-zh">{item.labelZh}</span>
+                </Link>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

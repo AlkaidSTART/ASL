@@ -3,13 +3,13 @@
 
 
 :root {
-  --background: rgb(248, 240, 224);
+  --background: rgb(240, 228, 212);
   --foreground: #171717;
 
 }
 
 .dark {
-  --background: rgb(248, 240, 224);
+  --background: rgb(240, 228, 212);
   --foreground: #171717;
 }
 
