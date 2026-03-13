@@ -1,0 +1,28 @@
+---
+title: "示例文章"
+date: "2024-03-13"
+description: "这是一个示例文章，用于测试MD到MDX的转换功能"
+tags: ["示例", "测试", "博客"]
+---
+
+# 示例文章
+
+这是一个示例文章，用于测试Markdown到MDX的转换功能。
+
+## 主要功能
+
+- 支持Markdown语法
+- 自动转换为MDX格式
+- 保留前端元数据
+- 支持React组件
+
+## 代码示例
+
+```javascript
+const greeting = "Hello, World!";
+console.log(greeting);
+```
+
+## 结语
+
+这篇文章展示了基本的Markdown功能，转换后将支持更多的交互性。

@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npx pagefind --site out",
+    "build": "node lib/convert-md-to-mdx-enhanced.mjs && next build && npx pagefind --site out",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "convert-md": "node lib/convert-md-to-mdx-enhanced.mjs",
+    "watch-md": "node scripts/watch-md-enhanced.mjs"
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
@@ -32,7 +34,11 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "pagefind": "^1.4.0",
+    "remark": "^15.0.1",
+    "remark-mdx": "^3.1.1",
+    "remark-parse": "^11.0.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "unified": "^11.0.5"
   }
 }
