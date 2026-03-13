@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, BookOpen, User, Mail, Github, Menu, X } from 'lucide-react';
 import Search from '../Search';
@@ -29,7 +29,6 @@ export function Header() {
     const stored = localStorage.getItem('lang');
     const browserLang = navigator.language.startsWith('zh') ? 'zh' : 'en';
     const initial = (stored === 'zh' || stored === 'en') ? stored : browserLang;
-    
     // Only update state if different from default 'en'
     if (initial !== 'en') {
       setLang(initial as 'en' | 'zh');
@@ -49,7 +48,15 @@ export function Header() {
 
   return (
     <div className="fixed top-6 left-1/2 z-50 w-full max-w-5xl -translate-x-1/2 px-4">
-      <header className="flex h-16 items-center justify-between rounded-full border border-white/20 bg-white/30 px-4 shadow-lg shadow-black/5 backdrop-blur-[20px] backdrop-saturate-150 transition-all duration-300 dark:bg-black/30 dark:border-white/10 dark:shadow-white/5 supports-[backdrop-filter]:bg-white/20 dark:supports-[backdrop-filter]:bg-black/20">
+      {/* Ripples */}
+      <div className="header-ripple absolute inset-y-0 left-4 right-4 -z-10 rounded-full border border-blue-400/20 bg-blue-400/5 dark:border-blue-500/20 dark:bg-blue-500/5 pointer-events-none" />
+      <div className="header-ripple absolute inset-y-0 left-4 right-4 -z-10 rounded-full border border-purple-400/20 bg-purple-400/5 dark:border-purple-500/20 dark:bg-purple-500/5 pointer-events-none" />
+      <div className="header-ripple absolute inset-y-0 left-4 right-4 -z-10 rounded-full border border-indigo-400/20 bg-indigo-400/5 dark:border-indigo-500/20 dark:bg-indigo-500/5 pointer-events-none" />
+
+      <header 
+        ref={useRef<HTMLHeadElement>(null)}
+        className="flex h-16 items-center justify-between rounded-full border border-white/20 bg-white/30 px-4 shadow-lg shadow-black/5 backdrop-blur-[20px] backdrop-saturate-150 transition-all duration-300 dark:bg-black/30 dark:border-white/10 dark:shadow-white/5 supports-[backdrop-filter]:bg-white/20 dark:supports-[backdrop-filter]:bg-black/20 cursor-pointer"
+      >
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight">
             <img src={`${basePath}/avatorone.jpg`} alt="AlkaidLight" className="h-9 w-9 rounded-full border border-white/20" />
