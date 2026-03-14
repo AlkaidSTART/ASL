@@ -24,7 +24,7 @@ export function Hero() {
           className="mb-8 flex justify-center"
         >
           <img
-            src={`${basePath}/avatorone.jpg`}
+            src={`${basePath}/me_vectorized.svg`}
             alt="AlkaidLight"
             className="h-32 w-32 rounded-full border-4 border-white shadow-2xl"
           />

@@ -1,11 +1,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-
 :root {
   --background: rgb(240, 228, 212);
   --foreground: #171717;
-
 }
 
 .dark {
@@ -77,4 +75,353 @@ html.dark[data-lang="zh"] .toggle-text-zh {
 html[data-lang="en"] .toggle-text-zh,
 html[data-lang="zh"] .toggle-text-en {
   color: #9ca3af;
+}
+
+/* iOS 26 液态玻璃效果 - Tap栏专用 */
+.ios-26-liquid-glass {
+  /* 基础液态玻璃效果 */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  
+  /* 边框效果 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  
+  /* 阴影效果 */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  
+  /* 过渡动画 */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-26-liquid-glass:hover {
+  /* 悬停时的增强效果 */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+/* 深色模式下的液态玻璃效果 */
+.dark .ios-26-liquid-glass {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.dark .ios-26-liquid-glass:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* 液态玻璃按钮效果 */
+.ios-26-liquid-button {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-26-liquid-button:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  box-shadow: 
+    0 6px 24px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.ios-26-liquid-button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* 深色模式下的液态按钮 */
+.dark .ios-26-liquid-button {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dark .ios-26-liquid-button:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 液态玻璃导航项 */
+.ios-26-liquid-nav-item {
+  position: relative;
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-26-liquid-nav-item:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  backdrop-filter: blur(15px) saturate(120%);
+  -webkit-backdrop-filter: blur(15px) saturate(120%);
+  transform: translateY(-1px);
+}
+
+.ios-26-liquid-nav-item.active {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.dark .ios-26-liquid-nav-item:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.12) 50%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+}
+
+.dark .ios-26-liquid-nav-item.active {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 液态玻璃光效动画 */
+.ios-26-liquid-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  border-radius: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: liquid-shine 3s ease-in-out infinite;
+}
+
+.ios-26-liquid-glass:hover .ios-26-liquid-shine {
+  opacity: 1;
+}
+
+@keyframes liquid-shine {
+  0%, 100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+/* 深色模式下的光效 */
+.dark .ios-26-liquid-shine {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+}
+
+/* 移动端液态玻璃菜单 */
+.ios-26-liquid-mobile-menu {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  backdrop-filter: blur(50px) saturate(200%);
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 24px;
+  box-shadow: 
+    0 16px 64px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dark .ios-26-liquid-mobile-menu {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* 响应式适配 */
+@media (max-width: 640px) {
+  .ios-26-liquid-glass {
+    border-radius: 20px;
+    backdrop-filter: blur(30px) saturate(160%);
+    -webkit-backdrop-filter: blur(30px) saturate(160%);
+  }
+  
+  .ios-26-liquid-button {
+    border-radius: 14px;
+  }
+  
+  .ios-26-liquid-nav-item {
+    border-radius: 18px;
+  }
+}
+
+/* 增强的液态玻璃动画效果 */
+@keyframes liquid-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.ios-26-liquid-glass {
+  animation: liquid-pulse 8s ease-in-out infinite;
+}
+
+.ios-26-liquid-glass:hover {
+  animation: none;
+  transform: translateY(-1px) scale(1.01);
+}
+
+/* 液态玻璃内发光效果 */
+.ios-26-liquid-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.ios-26-liquid-glass:hover .ios-26-liquid-glow {
+  opacity: 1;
+}
+
+/* 深色模式下的内发光 */
+.dark .ios-26-liquid-glow {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 70%
+  );
+}
+
+/* 液态玻璃边缘高光 */
+.ios-26-liquid-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  border-radius: 24px 24px 0 0;
+  opacity: 0.6;
+}
+
+/* 液态玻璃底部阴影 */
+.ios-26-liquid-shadow {
+  position: absolute;
+  bottom: -2px;
+  left: 2px;
+  right: 2px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    transparent 100%
+  );
+  border-radius: 0 0 24px 24px;
+  filter: blur(1px);
 }

@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, BookOpen, User, Mail, Github, Menu, X } from 'lucide-react';
+import Image from 'next/image';
 import Search from '../Search';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
@@ -20,21 +21,35 @@ export function Header() {
   const pathname = usePathname();
   const [lang, setLang] = useState<'en' | 'zh'>('en');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLHeadElement>(null);
 
   useEffect(() => {
-    setMobileMenuOpen(false);
+    // 路由变化时重置移动菜单状态
+    const handleRouteChange = () => {
+      setMobileMenuOpen(false);
+    };
+    
+    handleRouteChange();
   }, [pathname]);
 
   useEffect(() => {
-    const stored = localStorage.getItem('lang');
-    const browserLang = navigator.language.startsWith('zh') ? 'zh' : 'en';
-    const initial = (stored === 'zh' || stored === 'en') ? stored : browserLang;
-    // Only update state if different from default 'en'
-    if (initial !== 'en') {
-      setLang(initial as 'en' | 'zh');
-    }
-    document.documentElement.dataset.lang = initial;
-    localStorage.setItem('lang', initial);
+    // 从localStorage或浏览器语言获取初始语言设置
+    const initializeLanguage = () => {
+      const stored = localStorage.getItem('lang');
+      const browserLang = navigator.language.startsWith('zh') ? 'zh' : 'en';
+      const initial = (stored === 'zh' || stored === 'en') ? stored : browserLang;
+      
+      // 设置文档语言属性
+      document.documentElement.dataset.lang = initial;
+      localStorage.setItem('lang', initial);
+      
+      // 如果与默认语言不同，更新状态
+      if (initial !== 'en') {
+        setLang(initial as 'en' | 'zh');
+      }
+    };
+    
+    initializeLanguage();
   }, []);
 
   const toggleLang = () => {
@@ -48,24 +63,29 @@ export function Header() {
 
   return (
     <div className="fixed top-6 left-1/2 z-50 w-full max-w-5xl -translate-x-1/2 px-4">
-      {/* Ripples */}
-      <div className="header-ripple absolute inset-y-0 left-4 right-4 -z-10 rounded-full border border-blue-400/20 bg-blue-400/5 dark:border-blue-500/20 dark:bg-blue-500/5 pointer-events-none" />
-      <div className="header-ripple absolute inset-y-0 left-4 right-4 -z-10 rounded-full border border-purple-400/20 bg-purple-400/5 dark:border-purple-500/20 dark:bg-purple-500/5 pointer-events-none" />
-      <div className="header-ripple absolute inset-y-0 left-4 right-4 -z-10 rounded-full border border-indigo-400/20 bg-indigo-400/5 dark:border-indigo-500/20 dark:bg-indigo-500/5 pointer-events-none" />
+      {/* iOS 26液态玻璃背景效果 */}
+      <div className="ios-26-liquid-glass-backdrop absolute inset-y-0 left-4 right-4 -z-10 rounded-3xl border border-white/30 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-[60px] backdrop-saturate-200 dark:border-white/15 dark:from-black/30 dark:to-black/10" />
+      
+      {/* 增强的液态玻璃效果 */}
+      <div className="ios-26-liquid-glow absolute inset-y-0 left-4 right-4 -z-10 rounded-3xl" />
+      <div className="ios-26-liquid-highlight absolute inset-y-0 left-4 right-4 -z-10 rounded-3xl" />
+      <div className="ios-26-liquid-shadow absolute inset-y-0 left-4 right-4 -z-10 rounded-3xl" />
+      
+      {/* 动态光效 */}
+      <div className="ios-26-liquid-shine absolute inset-y-0 left-4 right-4 -z-10 rounded-3xl bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
       <header 
-        ref={useRef<HTMLHeadElement>(null)}
-        className="flex h-16 items-center justify-between rounded-full border border-white/20 bg-white/30 px-4 shadow-lg shadow-black/5 backdrop-blur-[20px] backdrop-saturate-150 transition-all duration-300 dark:bg-black/30 dark:border-white/10 dark:shadow-white/5 supports-[backdrop-filter]:bg-white/20 dark:supports-[backdrop-filter]:bg-black/20 cursor-pointer"
+        ref={headerRef}
+        className="ios-26-liquid-glass group flex h-16 items-center justify-between px-6 cursor-pointer"
       >
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight">
-            <img src={`${basePath}/avatorone.jpg`} alt="AlkaidLight" className="h-9 w-9 rounded-full border border-white/20" />
             <span className="hidden font-extrabold sm:block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400">
               AlkaidLight
             </span>
           </Link>
           
-          <nav className="hidden items-center gap-1 sm:flex">
+          <nav className="hidden items-center gap-2 sm:flex">
             {navItems.map((item) => {
               const isActive = item.path === '/' ? pathname === '/' : pathname?.startsWith(item.path);
               
@@ -73,16 +93,14 @@ export function Header() {
                 <Link 
                   key={item.path}
                   href={item.path} 
-                  className={`relative flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                    isActive 
-                      ? 'text-gray-900 dark:text-white' 
-                      : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                  className={`ios-26-liquid-nav-item relative flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all ${
+                    isActive ? 'active text-gray-900 dark:text-white' : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="navbar-indicator"
-                      className="absolute inset-0 rounded-full bg-black/5 dark:bg-white/10"
+                      className="absolute inset-0 rounded-2xl bg-white/20 dark:bg-white/10"
                       transition={{
                         type: "spring",
                         bounce: 0.2,
@@ -106,10 +124,10 @@ export function Header() {
           <button
             type="button"
             onClick={toggleLang}
-            className="relative inline-flex h-8 w-20 items-center rounded-full bg-black/5 p-1 transition-colors dark:bg-white/10"
+            className="ios-26-liquid-button relative inline-flex h-8 w-20 items-center rounded-2xl p-1 transition-all"
             aria-label="Toggle language"
           >
-            <div className="toggle-bg absolute left-1 h-6 w-[calc(50%-4px)] rounded-full bg-white shadow-sm dark:bg-gray-600" />
+            <div className="toggle-bg absolute left-1 h-6 w-[calc(50%-4px)] rounded-2xl bg-white shadow-sm dark:bg-gray-600" />
             <span className="z-10 w-1/2 text-center text-[10px] font-bold toggle-text-en">EN</span>
             <span className="z-10 w-1/2 text-center text-[10px] font-bold toggle-text-zh">中文</span>
           </button>
@@ -117,13 +135,13 @@ export function Header() {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-black/5 text-gray-600 transition-all hover:bg-black/10 hover:text-gray-900 dark:bg-white/10 dark:text-gray-300 dark:hover:bg-white/20 dark:hover:text-white"
+            className="ios-26-liquid-button flex h-9 w-9 items-center justify-center text-gray-600 transition-all hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
           >
             <Github className="h-5 w-5" />
           </a>
           <button
             type="button"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-black/5 text-gray-600 transition-all hover:bg-black/10 hover:text-gray-900 dark:bg-white/10 dark:text-gray-300 dark:hover:bg-white/20 dark:hover:text-white sm:hidden"
+            className="ios-26-liquid-button flex h-9 w-9 items-center justify-center text-gray-600 transition-all hover:text-gray-900 dark:text-gray-300 dark:hover:text-white sm:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -139,7 +157,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute left-4 right-4 top-20 flex flex-col gap-2 rounded-2xl border border-white/20 bg-white/60 p-4 shadow-xl backdrop-blur-2xl backdrop-saturate-150 dark:bg-black/60 dark:border-white/10"
+            className="ios-26-liquid-mobile-menu absolute left-4 right-4 top-20 flex flex-col gap-2 rounded-3xl p-4"
           >
             {navItems.map((item) => {
               const isActive = item.path === '/' ? pathname === '/' : pathname?.startsWith(item.path);
@@ -148,10 +166,10 @@ export function Header() {
                 <Link
                   key={item.path}
                   href={item.path}
-                  className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+                  className={`ios-26-liquid-nav-item flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-black/5 text-gray-900 dark:bg-white/10 dark:text-white'
-                      : 'text-gray-600 hover:bg-black/5 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-white'
+                      ? 'active text-gray-900 dark:text-white'
+                      : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
