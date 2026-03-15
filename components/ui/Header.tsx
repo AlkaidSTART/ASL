@@ -93,6 +93,16 @@ export function Header() {
     };
   }, [pathname, debouncedUpdateIndicator]);
 
+  // 确保指示器在组件挂载时正确显示当前页面
+  useEffect(() => {
+    if (pathname && navRef.current) {
+      // 延迟执行以确保DOM完全渲染
+      setTimeout(() => {
+        debouncedUpdateIndicator(pathname);
+      }, 100);
+    }
+  }, []); // 空依赖数组，只在组件挂载时执行一次
+
   // 路由变化时关闭移动菜单
   useEffect(() => {
     const handleRouteChange = () => {
