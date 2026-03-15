@@ -1,0 +1,608 @@
+/*******************************
+ * Giscus 液态玻璃风格自定义样式
+ * 适配 Next.js + Tailwind CSS 项目
+ *******************************/
+
+/* 基础容器样式 - 液态玻璃效果 */
+.giscus-frame {
+  --giscus-color-primary: #3b82f6 !important;
+  --giscus-color-secondary: #64748b !important;
+  --giscus-color-border: rgba(255, 255, 255, 0.2) !important;
+  --giscus-color-bg-canvas: rgba(255, 255, 255, 0.3) !important;
+  --giscus-color-bg-surface: rgba(255, 255, 255, 0.2) !important;
+  --giscus-color-bg-secondary: rgba(255, 255, 255, 0.1) !important;
+  --giscus-color-text-primary: #1f2937 !important;
+  --giscus-color-text-secondary: #6b7280 !important;
+  --giscus-color-text-tertiary: #9ca3af !important;
+  --giscus-color-btn-primary-bg: #3b82f6 !important;
+  --giscus-color-btn-primary-text: #ffffff !important;
+  --giscus-color-btn-primary-hover-bg: #2563eb !important;
+  --giscus-color-btn-primary-hover-border: #1d4ed8 !important;
+  --giscus-color-btn-primary-selected-bg: #1e40af !important;
+  --giscus-color-btn-primary-selected-border: #1e3a8a !important;
+  --giscus-color-btn-primary-focus-bg: #2563eb !important;
+  --giscus-color-btn-primary-focus-border: #1d4ed8 !important;
+  --giscus-color-btn-primary-focus-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
+  --giscus-color-btn-primary-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+  --giscus-color-btn-primary-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  --giscus-color-btn-primary-hover-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  --giscus-color-btn-primary-hover-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  --giscus-color-btn-secondary-bg: rgba(255, 255, 255, 0.6) !important;
+  --giscus-color-btn-secondary-text: #374151 !important;
+  --giscus-color-btn-secondary-hover-bg: rgba(255, 255, 255, 0.8) !important;
+  --giscus-color-btn-secondary-hover-border: rgba(255, 255, 255, 0.9) !important;
+  --giscus-color-btn-secondary-selected-bg: rgba(255, 255, 255, 0.4) !important;
+  --giscus-color-btn-secondary-selected-border: rgba(255, 255, 255, 0.6) !important;
+  --giscus-color-btn-secondary-focus-bg: rgba(255, 255, 255, 0.6) !important;
+  --giscus-color-btn-secondary-focus-border: rgba(255, 255, 255, 0.8) !important;
+  --giscus-color-btn-secondary-focus-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3) !important;
+  --giscus-color-btn-secondary-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+  --giscus-color-btn-secondary-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  --giscus-color-btn-secondary-hover-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  --giscus-color-btn-secondary-hover-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  --giscus-color-btn-danger-bg: #ef4444 !important;
+  --giscus-color-btn-danger-text: #ffffff !important;
+  --giscus-color-btn-danger-hover-bg: #dc2626 !important;
+  --giscus-color-btn-danger-hover-border: #b91c1c !important;
+  --giscus-color-btn-danger-selected-bg: #991b1b !important;
+  --giscus-color-btn-danger-selected-border: #7f1d1d !important;
+  --giscus-color-btn-danger-focus-bg: #dc2626 !important;
+  --giscus-color-btn-danger-focus-border: #b91c1c !important;
+  --giscus-color-btn-danger-focus-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3) !important;
+  --giscus-color-btn-danger-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+  --giscus-color-btn-danger-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  --giscus-color-btn-danger-hover-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  --giscus-color-btn-danger-hover-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  --giscus-color-btn-outline-bg: transparent !important;
+  --giscus-color-btn-outline-text: #3b82f6 !important;
+  --giscus-color-btn-outline-hover-bg: rgba(59, 130, 246, 0.1) !important;
+  --giscus-color-btn-outline-hover-border: #3b82f6 !important;
+  --giscus-color-btn-outline-selected-bg: rgba(59, 130, 246, 0.2) !important;
+  --giscus-color-btn-outline-selected-border: #3b82f6 !important;
+  --giscus-color-btn-outline-focus-bg: transparent !important;
+  --giscus-color-btn-outline-focus-border: #3b82f6 !important;
+  --giscus-color-btn-outline-focus-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
+  --giscus-color-input-bg: rgba(255, 255, 255, 0.7) !important;
+  --giscus-color-input-contrast-bg: rgba(255, 255, 255, 0.9) !important;
+  --giscus-color-input-border: rgba(255, 255, 255, 0.4) !important;
+  --giscus-color-input-border-focus: #3b82f6 !important;
+  --giscus-color-input-text: #1f2937 !important;
+  --giscus-color-input-placeholder: #9ca3af !important;
+  --giscus-color-input-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  --giscus-color-input-disabled-bg: rgba(243, 244, 246, 0.5) !important;
+  --giscus-color-input-disabled-text: #9ca3af !important;
+  --giscus-color-input-disabled-border: rgba(229, 231, 235, 0.5) !important;
+  --giscus-color-input-disabled-placeholder: #d1d5db !important;
+  --giscus-color-state-hover-primary-bg: #2563eb !important;
+  --giscus-color-state-hover-primary-border: #1d4ed8 !important;
+  --giscus-color-state-hover-primary-text: #ffffff !important;
+  --giscus-color-state-hover-primary-icon: #ffffff !important;
+  --giscus-color-state-hover-secondary-bg: rgba(255, 255, 255, 0.8) !important;
+  --giscus-color-state-hover-secondary-border: rgba(255, 255, 255, 0.9) !important;
+  --giscus-color-state-hover-secondary-text: #111827 !important;
+  --giscus-color-state-hover-secondary-icon: #374151 !important;
+  --giscus-color-state-selected-primary-bg: #1e40af !important;
+  --giscus-color-state-selected-primary-border: #1e3a8a !important;
+  --giscus-color-state-selected-primary-text: #ffffff !important;
+  --giscus-color-state-selected-primary-icon: #ffffff !important;
+  --giscus-color-state-selected-secondary-bg: rgba(255, 255, 255, 0.4) !important;
+  --giscus-color-state-selected-secondary-border: rgba(255, 255, 255, 0.6) !important;
+  --giscus-color-state-selected-secondary-text: #1f2937 !important;
+  --giscus-color-state-selected-secondary-icon: #374151 !important;
+  --giscus-color-state-focus-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
+  --giscus-color-state-focus-border: #3b82f6 !important;
+  --giscus-color-overlay-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  --giscus-color-header-bg: rgba(255, 255, 255, 0.3) !important;
+  --giscus-color-header-text: #1f2937 !important;
+  --giscus-color-header-border: rgba(255, 255, 255, 0.2) !important;
+  --giscus-color-header-logo: #3b82f6 !important;
+  --giscus-color-fg-default: #1f2937 !important;
+  --giscus-color-fg-muted: #6b7280 !important;
+  --giscus-color-fg-subtle: #9ca3af !important;
+  --giscus-color-fg-on-emphasis: #ffffff !important;
+  --giscus-color-canvas-default: transparent !important;
+  --giscus-color-canvas-overlay: rgba(255, 255, 255, 0.8) !important;
+  --giscus-color-canvas-inset: rgba(255, 255, 255, 0.1) !important;
+  --giscus-color-canvas-subtle: rgba(255, 255, 255, 0.05) !important;
+  --giscus-color-border-default: rgba(255, 255, 255, 0.2) !important;
+  --giscus-color-border-muted: rgba(255, 255, 255, 0.1) !important;
+  --giscus-color-border-subtle: rgba(255, 255, 255, 0.05) !important;
+  --giscus-color-shadow-small: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  --giscus-color-shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  --giscus-color-shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  --giscus-color-shadow-extra-large: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  --giscus-color-neutral-emphasis-plus: #374151 !important;
+  --giscus-color-neutral-emphasis: #6b7280 !important;
+  --giscus-color-neutral-muted: rgba(110, 118, 129, 0.4) !important;
+  --giscus-color-neutral-subtle: rgba(234, 238, 242, 0.5) !important;
+  --giscus-color-accent-fg: #3b82f6 !important;
+  --giscus-color-accent-emphasis: #2563eb !important;
+  --giscus-color-accent-muted: rgba(56, 139, 253, 0.4) !important;
+  --giscus-color-accent-subtle: rgba(56, 139, 253, 0.15) !important;
+  --giscus-color-success-fg: #10b981 !important;
+  --giscus-color-success-emphasis: #059669 !important;
+  --giscus-color-success-muted: rgba(46, 160, 67, 0.4) !important;
+  --giscus-color-success-subtle: rgba(46, 160, 67, 0.15) !important;
+  --giscus-color-attention-fg: #f59e0b !important;
+  --giscus-color-attention-emphasis: #d97706 !important;
+  --giscus-color-attention-muted: rgba(212, 168, 44, 0.4) !important;
+  --giscus-color-attention-subtle: rgba(212, 168, 44, 0.15) !important;
+  --giscus-color-severe-fg: #f97316 !important;
+  --giscus-color-severe-emphasis: #ea580c !important;
+  --giscus-color-severe-muted: rgba(230, 92, 0, 0.4) !important;
+  --giscus-color-severe-subtle: rgba(230, 92, 0, 0.15) !important;
+  --giscus-color-danger-fg: #ef4444 !important;
+  --giscus-color-danger-emphasis: #dc2626 !important;
+  --giscus-color-danger-muted: rgba(248, 81, 73, 0.4) !important;
+  --giscus-color-danger-subtle: rgba(248, 81, 73, 0.15) !important;
+  --giscus-color-done-fg: #8b5cf6 !important;
+  --giscus-color-done-emphasis: #7c3aed !important;
+  --giscus-color-done-muted: rgba(163, 113, 247, 0.4) !important;
+  --giscus-color-done-subtle: rgba(163, 113, 247, 0.15) !important;
+  --giscus-color-sponsors-fg: #db2777 !important;
+  --giscus-color-primer-canvas-backdrop: rgba(0, 0, 0, 0.5) !important;
+  --giscus-color-primer-canvas-sticky: rgba(255, 255, 255, 0.95) !important;
+  --giscus-color-primer-border-active: #f78166 !important;
+  --giscus-color-primer-border-contrast: rgba(0, 0, 0, 0.8) !important;
+  --giscus-color-primer-shadow-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  --giscus-color-primer-shadow-inset: inset 0 1px 0 rgba(208, 215, 222, 0.2) !important;
+  --giscus-color-primer-shadow-focus: 0 0 0 3px rgba(9, 105, 218, 0.3) !important;
+  --giscus-color-scale-white: #ffffff !important;
+  --giscus-color-scale-black: #000000 !important;
+  --giscus-color-scale-gray-0: #f9fafb !important;
+  --giscus-color-scale-gray-1: #f3f4f6 !important;
+  --giscus-color-scale-gray-2: #e5e7eb !important;
+  --giscus-color-scale-gray-3: #d1d5db !important;
+  --giscus-color-scale-gray-4: #9ca3af !important;
+  --giscus-color-scale-gray-5: #6b7280 !important;
+  --giscus-color-scale-gray-6: #4b5563 !important;
+  --giscus-color-scale-gray-7: #374151 !important;
+  --giscus-color-scale-gray-8: #1f2937 !important;
+  --giscus-color-scale-gray-9: #111827 !important;
+  --giscus-color-scale-blue-0: #eff6ff !important;
+  --giscus-color-scale-blue-1: #dbeafe !important;
+  --giscus-color-scale-blue-2: #bfdbfe !important;
+  --giscus-color-scale-blue-3: #93c5fd !important;
+  --giscus-color-scale-blue-4: #60a5fa !important;
+  --giscus-color-scale-blue-5: #3b82f6 !important;
+  --giscus-color-scale-blue-6: #2563eb !important;
+  --giscus-color-scale-blue-7: #1d4ed8 !important;
+  --giscus-color-scale-blue-8: #1e40af !important;
+  --giscus-color-scale-blue-9: #1e3a8a !important;
+  --giscus-color-scale-green-0: #f0fdf4 !important;
+  --giscus-color-scale-green-1: #dcfce7 !important;
+  --giscus-color-scale-green-2: #bbf7d0 !important;
+  --giscus-color-scale-green-3: #86efac !important;
+  --giscus-color-scale-green-4: #4ade80 !important;
+  --giscus-color-scale-green-5: #22c55e !important;
+  --giscus-color-scale-green-6: #16a34a !important;
+  --giscus-color-scale-green-7: #15803d !important;
+  --giscus-color-scale-green-8: #166534 !important;
+  --giscus-color-scale-green-9: #14532d !important;
+  --giscus-color-scale-yellow-0: #fefce8 !important;
+  --giscus-color-scale-yellow-1: #fef9c3 !important;
+  --giscus-color-scale-yellow-2: #fef08a !important;
+  --giscus-color-scale-yellow-3: #fde047 !important;
+  --giscus-color-scale-yellow-4: #facc15 !important;
+  --giscus-color-scale-yellow-5: #eab308 !important;
+  --giscus-color-scale-yellow-6: #ca8a04 !important;
+  --giscus-color-scale-yellow-7: #a16207 !important;
+  --giscus-color-scale-yellow-8: #854d0e !important;
+  --giscus-color-scale-yellow-9: #713f12 !important;
+  --giscus-color-scale-orange-0: #fff7ed !important;
+  --giscus-color-scale-orange-1: #ffedd5 !important;
+  --giscus-color-scale-orange-2: #fed7aa !important;
+  --giscus-color-scale-orange-3: #fdba74 !important;
+  --giscus-color-scale-orange-4: #fb923c !important;
+  --giscus-color-scale-orange-5: #f97316 !important;
+  --giscus-color-scale-orange-6: #ea580c !important;
+  --giscus-color-scale-orange-7: #c2410c !important;
+  --giscus-color-scale-orange-8: #9a3412 !important;
+  --giscus-color-scale-orange-9: #7c2d12 !important;
+  --giscus-color-scale-red-0: #fef2f2 !important;
+  --giscus-color-scale-red-1: #fee2e2 !important;
+  --giscus-color-scale-red-2: #fecaca !important;
+  --giscus-color-scale-red-3: #fca5a5 !important;
+  --giscus-color-scale-red-4: #f87171 !important;
+  --giscus-color-scale-red-5: #ef4444 !important;
+  --giscus-color-scale-red-6: #dc2626 !important;
+  --giscus-color-scale-red-7: #b91c1c !important;
+  --giscus-color-scale-red-8: #991b1b !important;
+  --giscus-color-scale-red-9: #7f1d1d !important;
+  --giscus-color-scale-purple-0: #faf5ff !important;
+  --giscus-color-scale-purple-1: #f3e8ff !important;
+  --giscus-color-scale-purple-2: #e9d5ff !important;
+  --giscus-color-scale-purple-3: #d8b4fe !important;
+  --giscus-color-scale-purple-4: #c084fc !important;
+  --giscus-color-scale-purple-5: #a855f7 !important;
+  --giscus-color-scale-purple-6: #9333ea !important;
+  --giscus-color-scale-purple-7: #7e22ce !important;
+  --giscus-color-scale-purple-8: #6b21a8 !important;
+  --giscus-color-scale-purple-9: #581c87 !important;
+  --giscus-color-scale-pink-0: #fdf2f8 !important;
+  --giscus-color-scale-pink-1: #fce7f3 !important;
+  --giscus-color-scale-pink-2: #fbcfe8 !important;
+  --giscus-color-scale-pink-3: #f9a8d4 !important;
+  --giscus-color-scale-pink-4: #f472b6 !important;
+  --giscus-color-scale-pink-5: #ec4899 !important;
+  --giscus-color-scale-pink-6: #db2777 !important;
+  --giscus-color-scale-pink-7: #be185d !important;
+  --giscus-color-scale-pink-8: #9d174d !important;
+  --giscus-color-scale-pink-9: #831843 !important;
+  --giscus-color-scale-coral-0: #fff5f3 !important;
+  --giscus-color-scale-coral-1: #ffece6 !important;
+  --giscus-color-scale-coral-2: #ffd8cc !important;
+  --giscus-color-scale-coral-3: #ffbca5 !important;
+  --giscus-color-scale-coral-4: #ff967d !important;
+  --giscus-color-scale-coral-5: #f78166 !important;
+  --giscus-color-scale-coral-6: #e85b46 !important;
+  --giscus-color-scale-coral-7: #c73c2a !important;
+  --giscus-color-scale-coral-8: #a12a1b !important;
+  --giscus-color-scale-coral-9: #7e2016 !important;
+}
+
+/* 暗黑模式样式 */
+@media (prefers-color-scheme: dark) {
+  .giscus-frame {
+    --giscus-color-primary: #60a5fa !important;
+    --giscus-color-secondary: #94a3b8 !important;
+    --giscus-color-border: rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-bg-canvas: rgba(15, 23, 42, 0.3) !important;
+    --giscus-color-bg-surface: rgba(15, 23, 42, 0.2) !important;
+    --giscus-color-bg-secondary: rgba(15, 23, 42, 0.1) !important;
+    --giscus-color-text-primary: #f9fafb !important;
+    --giscus-color-text-secondary: #d1d5db !important;
+    --giscus-color-text-tertiary: #9ca3af !important;
+    --giscus-color-btn-primary-bg: #3b82f6 !important;
+    --giscus-color-btn-primary-text: #ffffff !important;
+    --giscus-color-btn-primary-hover-bg: #2563eb !important;
+    --giscus-color-btn-primary-hover-border: #1d4ed8 !important;
+    --giscus-color-btn-primary-selected-bg: #1e40af !important;
+    --giscus-color-btn-primary-selected-border: #1e3a8a !important;
+    --giscus-color-btn-primary-focus-bg: #2563eb !important;
+    --giscus-color-btn-primary-focus-border: #1d4ed8 !important;
+    --giscus-color-btn-primary-focus-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
+    --giscus-color-btn-primary-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+    --giscus-color-btn-primary-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-btn-primary-hover-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    --giscus-color-btn-primary-hover-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-btn-secondary-bg: rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-btn-secondary-text: #e5e7eb !important;
+    --giscus-color-btn-secondary-hover-bg: rgba(255, 255, 255, 0.15) !important;
+    --giscus-color-btn-secondary-hover-border: rgba(255, 255, 255, 0.2) !important;
+    --giscus-color-btn-secondary-selected-bg: rgba(255, 255, 255, 0.05) !important;
+    --giscus-color-btn-secondary-selected-border: rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-btn-secondary-focus-bg: rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-btn-secondary-focus-border: rgba(255, 255, 255, 0.15) !important;
+    --giscus-color-btn-secondary-focus-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-btn-secondary-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+    --giscus-color-btn-secondary-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    --giscus-color-btn-secondary-hover-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    --giscus-color-btn-secondary-hover-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    --giscus-color-btn-danger-bg: #ef4444 !important;
+    --giscus-color-btn-danger-text: #ffffff !important;
+    --giscus-color-btn-danger-hover-bg: #dc2626 !important;
+    --giscus-color-btn-danger-hover-border: #b91c1c !important;
+    --giscus-color-btn-danger-selected-bg: #991b1b !important;
+    --giscus-color-btn-danger-selected-border: #7f1d1d !important;
+    --giscus-color-btn-danger-focus-bg: #dc2626 !important;
+    --giscus-color-btn-danger-focus-border: #b91c1c !important;
+    --giscus-color-btn-danger-focus-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3) !important;
+    --giscus-color-btn-danger-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+    --giscus-color-btn-danger-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-btn-danger-hover-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    --giscus-color-btn-danger-hover-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-btn-outline-bg: transparent !important;
+    --giscus-color-btn-outline-text: #60a5fa !important;
+    --giscus-color-btn-outline-hover-bg: rgba(96, 165, 250, 0.1) !important;
+    --giscus-color-btn-outline-hover-border: #60a5fa !important;
+    --giscus-color-btn-outline-selected-bg: rgba(96, 165, 250, 0.2) !important;
+    --giscus-color-btn-outline-selected-border: #60a5fa !important;
+    --giscus-color-btn-outline-focus-bg: transparent !important;
+    --giscus-color-btn-outline-focus-border: #60a5fa !important;
+    --giscus-color-btn-outline-focus-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3) !important;
+    --giscus-color-input-bg: rgba(15, 23, 42, 0.3) !important;
+    --giscus-color-input-contrast-bg: rgba(15, 23, 42, 0.5) !important;
+    --giscus-color-input-border: rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-input-border-focus: #60a5fa !important;
+    --giscus-color-input-text: #f9fafb !important;
+    --giscus-color-input-placeholder: #9ca3af !important;
+    --giscus-color-input-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    --giscus-color-input-disabled-bg: rgba(17, 24, 39, 0.3) !important;
+    --giscus-color-input-disabled-text: #6b7280 !important;
+    --giscus-color-input-disabled-border: rgba(55, 65, 81, 0.3) !important;
+    --giscus-color-input-disabled-placeholder: #4b5563 !important;
+    --giscus-color-state-hover-primary-bg: #2563eb !important;
+    --giscus-color-state-hover-primary-border: #1d4ed8 !important;
+    --giscus-color-state-hover-primary-text: #ffffff !important;
+    --giscus-color-state-hover-primary-icon: #ffffff !important;
+    --giscus-color-state-hover-secondary-bg: rgba(255, 255, 255, 0.15) !important;
+    --giscus-color-state-hover-secondary-border: rgba(255, 255, 255, 0.2) !important;
+    --giscus-color-state-hover-secondary-text: #f3f4f6 !important;
+    --giscus-color-state-hover-secondary-icon: #e5e7eb !important;
+    --giscus-color-state-selected-primary-bg: #1e40af !important;
+    --giscus-color-state-selected-primary-border: #1e3a8a !important;
+    --giscus-color-state-selected-primary-text: #ffffff !important;
+    --giscus-color-state-selected-primary-icon: #ffffff !important;
+    --giscus-color-state-selected-secondary-bg: rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-state-selected-secondary-border: rgba(255, 255, 255, 0.15) !important;
+    --giscus-color-state-selected-secondary-text: #f9fafb !important;
+    --giscus-color-state-selected-secondary-icon: #d1d5db !important;
+    --giscus-color-state-focus-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3) !important;
+    --giscus-color-state-focus-border: #60a5fa !important;
+    --giscus-color-overlay-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+    --giscus-color-header-bg: rgba(15, 23, 42, 0.3) !important;
+    --giscus-color-header-text: #f9fafb !important;
+    --giscus-color-header-border: rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-header-logo: #60a5fa !important;
+    --giscus-color-fg-default: #f9fafb !important;
+    --giscus-color-fg-muted: #d1d5db !important;
+    --giscus-color-fg-subtle: #9ca3af !important;
+    --giscus-color-fg-on-emphasis: #000000 !important;
+    --giscus-color-canvas-default: transparent !important;
+    --giscus-color-canvas-overlay: rgba(15, 23, 42, 0.8) !important;
+    --giscus-color-canvas-inset: rgba(15, 23, 42, 0.1) !important;
+    --giscus-color-canvas-subtle: rgba(15, 23, 42, 0.05) !important;
+    --giscus-color-border-default: rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-border-muted: rgba(255, 255, 255, 0.05) !important;
+    --giscus-color-border-subtle: rgba(255, 255, 255, 0.02) !important;
+    --giscus-color-shadow-small: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    --giscus-color-shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+    --giscus-color-shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
+    --giscus-color-shadow-extra-large: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2) !important;
+    --giscus-color-neutral-emphasis-plus: #e5e7eb !important;
+    --giscus-color-neutral-emphasis: #9ca3af !important;
+    --giscus-color-neutral-muted: rgba(110, 118, 129, 0.4) !important;
+    --giscus-color-neutral-subtle: rgba(55, 65, 81, 0.5) !important;
+    --giscus-color-accent-fg: #60a5fa !important;
+    --giscus-color-accent-emphasis: #3b82f6 !important;
+    --giscus-color-accent-muted: rgba(96, 165, 250, 0.4) !important;
+    --giscus-color-accent-subtle: rgba(96, 165, 250, 0.15) !important;
+    --giscus-color-success-fg: #34d399 !important;
+    --giscus-color-success-emphasis: #10b981 !important;
+    --giscus-color-success-muted: rgba(52, 211, 153, 0.4) !important;
+    --giscus-color-success-subtle: rgba(52, 211, 153, 0.15) !important;
+    --giscus-color-attention-fg: #fbbf24 !important;
+    --giscus-color-attention-emphasis: #f59e0b !important;
+    --giscus-color-attention-muted: rgba(251, 191, 36, 0.4) !important;
+    --giscus-color-attention-subtle: rgba(251, 191, 36, 0.15) !important;
+    --giscus-color-severe-fg: #fb923c !important;
+    --giscus-color-severe-emphasis: #f97316 !important;
+    --giscus-color-severe-muted: rgba(251, 146, 60, 0.4) !important;
+    --giscus-color-severe-subtle: rgba(251, 146, 60, 0.15) !important;
+    --giscus-color-danger-fg: #f87171 !important;
+    --giscus-color-danger-emphasis: #ef4444 !important;
+    --giscus-color-danger-muted: rgba(248, 113, 113, 0.4) !important;
+    --giscus-color-danger-subtle: rgba(248, 113, 113, 0.15) !important;
+    --giscus-color-done-fg: #a78bfa !important;
+    --giscus-color-done-emphasis: #8b5cf6 !important;
+    --giscus-color-done-muted: rgba(167, 139, 250, 0.4) !important;
+    --giscus-color-done-subtle: rgba(167, 139, 250, 0.15) !important;
+    --giscus-color-sponsors-fg: #f472b6 !important;
+    --giscus-color-primer-canvas-backdrop: rgba(0, 0, 0, 0.8) !important;
+    --giscus-color-primer-canvas-sticky: rgba(15, 23, 42, 0.95) !important;
+    --giscus-color-primer-border-active: #f78166 !important;
+    --giscus-color-primer-border-contrast: rgba(255, 255, 255, 0.8) !important;
+    --giscus-color-primer-shadow-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    --giscus-color-primer-shadow-inset: inset 0 1px 0 rgba(0, 0, 0, 0.2) !important;
+    --giscus-color-primer-shadow-focus: 0 0 0 3px rgba(96, 165, 250, 0.3) !important;
+    --giscus-color-scale-white: #000000 !important;
+    --giscus-color-scale-black: #ffffff !important;
+    --giscus-color-scale-gray-0: #111827 !important;
+    --giscus-color-scale-gray-1: #1f2937 !important;
+    --giscus-color-scale-gray-2: #374151 !important;
+    --giscus-color-scale-gray-3: #4b5563 !important;
+    --giscus-color-scale-gray-4: #6b7280 !important;
+    --giscus-color-scale-gray-5: #9ca3af !important;
+    --giscus-color-scale-gray-6: #d1d5db !important;
+    --giscus-color-scale-gray-7: #e5e7eb !important;
+    --giscus-color-scale-gray-8: #f3f4f6 !important;
+    --giscus-color-scale-gray-9: #f9fafb !important;
+    --giscus-color-scale-blue-0: #1e3a8a !important;
+    --giscus-color-scale-blue-1: #1e40af !important;
+    --giscus-color-scale-blue-2: #1d4ed8 !important;
+    --giscus-color-scale-blue-3: #2563eb !important;
+    --giscus-color-scale-blue-4: #3b82f6 !important;
+    --giscus-color-scale-blue-5: #60a5fa !important;
+    --giscus-color-scale-blue-6: #93c5fd !important;
+    --giscus-color-scale-blue-7: #bfdbfe !important;
+    --giscus-color-scale-blue-8: #dbeafe !important;
+    --giscus-color-scale-blue-9: #eff6ff !important;
+    --giscus-color-scale-green-0: #14532d !important;
+    --giscus-color-scale-green-1: #166534 !important;
+    --giscus-color-scale-green-2: #15803d !important;
+    --giscus-color-scale-green-3: #16a34a !important;
+    --giscus-color-scale-green-4: #22c55e !important;
+    --giscus-color-scale-green-5: #34d399 !important;
+    --giscus-color-scale-green-6: #86efac !important;
+    --giscus-color-scale-green-7: #bbf7d0 !important;
+    --giscus-color-scale-green-8: #dcfce7 !important;
+    --giscus-color-scale-green-9: #f0fdf4 !important;
+    --giscus-color-scale-yellow-0: #713f12 !important;
+    --giscus-color-scale-yellow-1: #854d0e !important;
+    --giscus-color-scale-yellow-2: #a16207 !important;
+    --giscus-color-scale-yellow-3: #ca8a04 !important;
+    --giscus-color-scale-yellow-4: #eab308 !important;
+    --giscus-color-scale-yellow-5: #fbbf24 !important;
+    --giscus-color-scale-yellow-6: #fde047 !important;
+    --giscus-color-scale-yellow-7: #fef08a !important;
+    --giscus-color-scale-yellow-8: #fef9c3 !important;
+    --giscus-color-scale-yellow-9: #fefce8 !important;
+    --giscus-color-scale-orange-0: #7c2d12 !important;
+    --giscus-color-scale-orange-1: #9a3412 !important;
+    --giscus-color-scale-orange-2: #c2410c !important;
+    --giscus-color-scale-orange-3: #ea580c !important;
+    --giscus-color-scale-orange-4: #f97316 !important;
+    --giscus-color-scale-orange-5: #fb923c !important;
+    --giscus-color-scale-orange-6: #fdba74 !important;
+    --giscus-color-scale-orange-7: #fed7aa !important;
+    --giscus-color-scale-orange-8: #ffedd5 !important;
+    --giscus-color-scale-orange-9: #fff7ed !important;
+    --giscus-color-scale-red-0: #7f1d1d !important;
+    --giscus-color-scale-red-1: #991b1b !important;
+    --giscus-color-scale-red-2: #b91c1c !important;
+    --giscus-color-scale-red-3: #dc2626 !important;
+    --giscus-color-scale-red-4: #ef4444 !important;
+    --giscus-color-scale-red-5: #f87171 !important;
+    --giscus-color-scale-red-6: #fca5a5 !important;
+    --giscus-color-scale-red-7: #fecaca !important;
+    --giscus-color-scale-red-8: #fee2e2 !important;
+    --giscus-color-scale-red-9: #fef2f2 !important;
+    --giscus-color-scale-purple-0: #581c87 !important;
+    --giscus-color-scale-purple-1: #6b21a8 !important;
+    --giscus-color-scale-purple-2: #7e22ce !important;
+    --giscus-color-scale-purple-3: #9333ea !important;
+    --giscus-color-scale-purple-4: #a855f7 !important;
+    --giscus-color-scale-purple-5: #c084fc !important;
+    --giscus-color-scale-purple-6: #d8b4fe !important;
+    --giscus-color-scale-purple-7: #e9d5ff !important;
+    --giscus-color-scale-purple-8: #f3e8ff !important;
+    --giscus-color-scale-purple-9: #faf5ff !important;
+    --giscus-color-scale-pink-0: #831843 !important;
+    --giscus-color-scale-pink-1: #9d174d !important;
+    --giscus-color-scale-pink-2: #be185d !important;
+    --giscus-color-scale-pink-3: #db2777 !important;
+    --giscus-color-scale-pink-4: #ec4899 !important;
+    --giscus-color-scale-pink-5: #f472b6 !important;
+    --giscus-color-scale-pink-6: #f9a8d4 !important;
+    --giscus-color-scale-pink-7: #fbcfe8 !important;
+    --giscus-color-scale-pink-8: #fce7f3 !important;
+    --giscus-color-scale-pink-9: #fdf2f8 !important;
+    --giscus-color-scale-coral-0: #7e2016 !important;
+    --giscus-color-scale-coral-1: #a12a1b !important;
+    --giscus-color-scale-coral-2: #c73c2a !important;
+    --giscus-color-scale-coral-3: #e85b46 !important;
+    --giscus-color-scale-coral-4: #f78166 !important;
+    --giscus-color-scale-coral-5: #ff967d !important;
+    --giscus-color-scale-coral-6: #ffbca5 !important;
+    --giscus-color-scale-coral-7: #ffd8cc !important;
+    --giscus-color-scale-coral-8: #ffedd5 !important;
+    --giscus-color-scale-coral-9: #fff5f3 !important;
+  }
+}
+
+/* 液态玻璃效果增强 */
+.giscus-frame {
+  border-radius: 12px !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.giscus-frame:hover {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 按钮液态玻璃效果 */
+.giscus-frame .btn {
+  border-radius: 8px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.2s ease !important;
+}
+
+.giscus-frame .btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 输入框液态玻璃效果 */
+.giscus-frame .form-control {
+  border-radius: 8px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.2s ease !important;
+}
+
+.giscus-frame .form-control:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 卡片液态玻璃效果 */
+.giscus-frame .timeline-comment {
+  border-radius: 12px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.giscus-frame .timeline-comment:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 动画效果 */
+.giscus-frame * {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .giscus-frame {
+    border-radius: 8px !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+  }
+  
+  .giscus-frame .btn {
+    border-radius: 6px !important;
+  }
+  
+  .giscus-frame .form-control {
+    border-radius: 6px !important;
+  }
+  
+  .giscus-frame .timeline-comment {
+    border-radius: 8px !important;
+  }
+}
+
+/* 加载动画 */
+.giscus-frame .loading {
+  opacity: 0.8 !important;
+  animation: giscus-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}
+
+@keyframes giscus-pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* 滚动条样式 */
+.giscus-frame ::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.giscus-frame ::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 4px !important;
+}
+
+.giscus-frame ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 4px !important;
+  border: 2px solid transparent !important;
+  background-clip: content-box !important;
+}
+
+.giscus-frame ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+
+.giscus-frame ::-webkit-scrollbar-corner {
+  background: transparent !important;
+}

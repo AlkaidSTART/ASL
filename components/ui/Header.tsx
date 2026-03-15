@@ -159,14 +159,14 @@ export function Header() {
 
   return (
     <div 
-      className="fixed top-4 left-1/2 z-50 w-full max-w-5xl -translate-x-1/2 px-4 sm:top-6"
+      className="fixed top-4 left-1/2 z-50 w-full max-w-6xl -translate-x-1/2 px-4 sm:top-6"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div 
         className="group"
         animate={{ 
-          y: isHovered ? 16 : 0  // 向下偏移16px（约2/5的header高度）
+          y: isHovered ? 25 : 0  // 向下偏移25px（约2/5的header高度）
         }}
         transition={{ 
           type: "spring", 
@@ -197,7 +197,7 @@ export function Header() {
           }}
           transition={{ 
             type: "spring", 
-            stiffness: 120,  // 稍微增加刚性，让内部动画更紧致
+            stiffness: 140,  // 稍微增加刚性，让内部动画更紧致
             damping: 20,     // 增加阻尼，减少震荡
             mass: 0.6        // 减少质量，让内部响应更快
           }}
