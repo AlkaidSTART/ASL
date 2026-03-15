@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
-import { getAllPosts, getAllTags } from '@/lib/blog-index';
+import { getAllPosts, getAllTags, BlogPost } from '@/lib/blog-index';
 
 export default function BlogPage() {
   const posts = getAllPosts();
