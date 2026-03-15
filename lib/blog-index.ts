@@ -1,25 +1,10 @@
 // 自动生成的博客索引文件
-// 生成时间: 2026-03-15T13:30:17.065Z
+// 生成时间: 2026-03-15T13:41:16.967Z
 
-// 直接定义类型，避免循环依赖
-export interface BlogPost {
-  slug: string;
-  title: string;
-  date: string;
-  description: string;
-  tags: string[];
-  content: string;
-  readingTime: number;
-  wordCount: number;
-}
+import type { BlogPost, BlogMetadata } from '@/lib/mdx-processor';
 
-export interface BlogMetadata {
-  posts: BlogPost[];
-  totalPosts: number;
-  latestPost: BlogPost | null;
-  tags: string[];
-  archive: Record<string, BlogPost[]>;
-}
+// 重新导出类型，供其他模块使用
+export type { BlogPost, BlogMetadata };
 
 export const blogMetadata: BlogMetadata = {
   "posts": [
@@ -148,8 +133,8 @@ export const getAllPosts = (): BlogPost[] => blogMetadata.posts;
 export const getLatestPost = (): BlogPost | null => blogMetadata.latestPost;
 export const getAllTags = (): string[] => blogMetadata.tags;
 export const getPostsByTag = (tag: string): BlogPost[] => 
-  blogMetadata.posts.filter((post: BlogPost) => post.tags.includes(tag));
+  blogMetadata.posts.filter(post => post.tags.includes(tag));
 export const getPostsByMonth = (month: string): BlogPost[] => 
   blogMetadata.archive[month] || [];
 export const getPostBySlug = (slug: string): BlogPost | undefined => 
-  blogMetadata.posts.find((post: BlogPost) => post.slug === slug);
+  blogMetadata.posts.find(post => post.slug === slug);

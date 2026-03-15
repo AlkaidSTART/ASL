@@ -141,6 +141,9 @@ export function generateBlogIndex(metadata: BlogMetadata, outputPath: string): v
 
 import type { BlogPost, BlogMetadata } from '@/lib/mdx-processor';
 
+// 重新导出类型，供其他模块使用
+export type { BlogPost, BlogMetadata };
+
 export const blogMetadata: BlogMetadata = ${JSON.stringify(metadata, null, 2)};
 
 // 便捷访问函数
