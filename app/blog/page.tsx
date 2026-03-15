@@ -1,10 +1,42 @@
-import { getSortedPostsData } from '@/lib/posts';
+'use client';
+
 import { PostList } from '@/components/PostList';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { useEffect } from 'react';
+import { usePageStore } from '@/stores/pageStore';
+
+// 模拟数据，避免在客户端组件中使用服务器端函数
+const mockPosts = [
+  {
+    slug: 'sample-article',
+    title: '示例文章',
+    date: '2024-03-13',
+    description: '这是一个示例文章，用于展示博客功能。',
+    tags: ['示例', '测试', '博客'],
+    content: '这是示例文章的内容...'
+  },
+  {
+    slug: 'enhanced-test',
+    title: '增强版测试文章',
+    date: '2024-03-13',
+    description: '这是一个增强版测试文章，展示了MDX转换功能。',
+    tags: ['测试', 'MDX', '增强功能'],
+    content: '这是增强版测试文章的内容...'
+  }
+];
 
 export default function BlogIndex() {
-  const posts = getSortedPostsData();
+  const { setIsBlogPost } = usePageStore();
+
+  useEffect(() => {
+    // 博客列表页面需要显示header，所以设置为false
+    setIsBlogPost(false);
+    return () => {
+      // 清理状态
+      setIsBlogPost(false);
+    };
+  }, [setIsBlogPost]);
 
   return (
     <div className="min-h-screen">
@@ -32,7 +64,7 @@ export default function BlogIndex() {
           </p>
         </div>
         
-        <PostList posts={posts} />
+        <PostList posts={mockPosts} />
       </div>
     </div>
   );

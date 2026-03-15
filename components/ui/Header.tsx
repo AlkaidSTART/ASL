@@ -67,6 +67,7 @@ export function Header() {
     const isBlogArticle = pathname?.startsWith('/blog/') && pathname !== '/blog';
     const isAbout = pathname === '/about';
     const isContact = pathname === '/contact';
+    const isBlogList = pathname === '/blog';
 
     if (isBlogArticle) {
       setIsBlogPost(true);
@@ -74,6 +75,9 @@ export function Header() {
       setIsAboutPage(true);
     } else if (isContact) {
       setIsContactPage(true);
+    } else if (isBlogList) {
+      // 博客列表页面，重置状态以显示header
+      resetPageStates();
     } else {
       // 在主页或其他页面时重置状态
       resetPageStates();
