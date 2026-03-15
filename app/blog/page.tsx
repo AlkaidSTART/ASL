@@ -1,42 +1,10 @@
-'use client';
-
-import { PostList } from '@/components/PostList';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
-import { useEffect } from 'react';
-import { usePageStore } from '@/stores/pageStore';
+import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
+import { getAllPosts, getAllTags } from '@/lib/blog-index';
 
-// 模拟数据，避免在客户端组件中使用服务器端函数
-const mockPosts = [
-  {
-    slug: 'sample-article',
-    title: '示例文章',
-    date: '2024-03-13',
-    description: '这是一个示例文章，用于展示博客功能。',
-    tags: ['示例', '测试', '博客'],
-    content: '这是示例文章的内容...'
-  },
-  {
-    slug: 'enhanced-test',
-    title: '增强版测试文章',
-    date: '2024-03-13',
-    description: '这是一个增强版测试文章，展示了MDX转换功能。',
-    tags: ['测试', 'MDX', '增强功能'],
-    content: '这是增强版测试文章的内容...'
-  }
-];
-
-export default function BlogIndex() {
-  const { setIsBlogPost } = usePageStore();
-
-  useEffect(() => {
-    // 博客列表页面需要显示header，所以设置为false
-    setIsBlogPost(false);
-    return () => {
-      // 清理状态
-      setIsBlogPost(false);
-    };
-  }, [setIsBlogPost]);
+export default function BlogPage() {
+  const posts = getAllPosts();
+  const allTags = getAllTags();
 
   return (
     <div className="min-h-screen">
@@ -47,25 +15,139 @@ export default function BlogIndex() {
           className="ios-26-liquid-button flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span className="lang-en">Back to Home</span>
-          <span className="lang-zh">返回主页</span>
+          返回主页
         </Link>
       </div>
 
-      <div className="container mx-auto px-4 py-12 sm:px-8">
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 mt-20 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-100 dark:to-white sm:text-5xl">
-            <span className="lang-en ">Latest Posts</span>
-            <span className="lang-zh ">最新文章</span>
-          </h1>
-          <p className="mx-auto mt-20 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-            <span className="lang-en">Thoughts, tutorials, and insights on Vibe Coding and AI.</span>
-            <span className="lang-zh">关于 Vibe Coding 和 AI 的思考、教程与见解。</span>
-          </p>
-        </div>
+      <div className="flex flex-col items-center justify-center py-24 text-center">
+        {/* 页面标题 */}
+        <h1 className="mb-6 text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 sm:text-6xl">
+          博客
+        </h1>
         
-        <PostList posts={mockPosts} />
+        <p className="mb-10 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
+          分享技术见解、开发经验和学习心得
+        </p>
+
+        {/* 标签筛选 */}
+        {allTags.length > 0 && (
+          <div className="mb-12 w-full max-w-4xl">
+            <div className="flex flex-wrap justify-center gap-2">
+              <Link
+                href="/blog"
+                className="ios-26-liquid-button px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400"
+              >
+                全部文章
+              </Link>
+              {allTags.map((tag) => (
+                <Link
+                  key={tag}
+                  href={`/blog/tag/${encodeURIComponent(tag)}`}
+                  className="ios-26-liquid-button px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 文章列表 */}
+        <div className="w-full max-w-4xl space-y-6 px-4">
+          {posts.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="text-gray-500 dark:text-gray-400 text-lg mb-4">
+                暂无文章
+              </div>
+              <p className="text-gray-400 dark:text-gray-500">
+                博客文章正在准备中，敬请期待！
+              </p>
+            </div>
+          ) : (
+            posts.map((post) => (
+              <article
+                key={post.slug}
+                className="ios-26-liquid-glass group rounded-xl p-6 text-left transition-all duration-300 hover:scale-[1.02]"
+              >
+                <Link href={`/blog/${post.slug}`} className="block">
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {post.title}
+                  </h2>
+                  
+                  {post.description && (
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
+                      {post.description}
+                    </p>
+                  )}
+                  
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="h-4 w-4" />
+                      <time dateTime={post.date}>
+                        {new Date(post.date).toLocaleDateString('zh-CN', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </time>
+                    </div>
+                    
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-4 w-4" />
+                      <span>{post.readingTime} 分钟阅读</span>
+                    </div>
+                    
+                    {post.tags.length > 0 && (
+                      <div className="flex items-center gap-1">
+                        <Tag className="h-4 w-4" />
+                        <span>{post.tags.length} 个标签</span>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {post.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {post.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {post.tags.length > 3 && (
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          +{post.tags.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </Link>
+              </article>
+            ))
+          )}
+        </div>
+
+        {/* 统计信息 */}
+        {posts.length > 0 && (
+          <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 w-full max-w-4xl">
+            <div className="text-center text-gray-600 dark:text-gray-400">
+              <p className="mb-2">
+                共 {posts.length} 篇文章，{allTags.length} 个标签
+              </p>
+              <p className="text-sm">
+                总字数: {posts.reduce((sum, post) => sum + post.wordCount, 0).toLocaleString()} 字
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 }
+
+export const metadata = {
+  title: '技术博客 - AlkaidLight',
+  description: '分享技术见解、开发经验和学习心得的技术博客',
+  keywords: '技术博客, 前端开发, Next.js, TypeScript, React',
+};
