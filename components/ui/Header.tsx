@@ -102,6 +102,19 @@ export function Header() {
     handleRouteChange();
   }, [pathname]);
 
+  // 移动端菜单打开时禁止背景滚动
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
   // 清理函数
   useEffect(() => {
     return () => {
@@ -132,7 +145,7 @@ export function Header() {
 
   return (
     <div 
-      className="fixed top-6 left-1/2 z-50 w-full max-w-5xl -translate-x-1/2 px-4"
+      className="fixed top-4 left-1/2 z-50 w-full max-w-5xl -translate-x-1/2 px-4 sm:top-6"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -163,7 +176,7 @@ export function Header() {
 
         <motion.header 
           ref={headerRef}
-          className="ios-26-liquid-glass flex h-20 items-center justify-between px-8 cursor-pointer"
+          className="ios-26-liquid-glass flex h-16 items-center justify-between px-4 cursor-pointer sm:h-20 sm:px-8"
           animate={{ 
             scale: isHovered ? 1.01 : 1,  // 减少放大比例到1%，更微妙
             y: isHovered ? -2 : 0         // 轻微向上偏移，与外层向下偏移形成对比
@@ -175,9 +188,9 @@ export function Header() {
             mass: 0.6        // 减少质量，让内部响应更快
           }}
         >
-          <div className="flex items-center gap-8">
-            <Link href="/" className="flex items-center gap-3 text-xl font-bold tracking-tight">
-              <span className="hidden font-extrabold sm:block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400">
+          <div className="flex items-center gap-4 sm:gap-8">
+            <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight sm:text-xl">
+              <span className="font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400">
                 AlkaidLight
               </span>
             </Link>
@@ -257,7 +270,7 @@ export function Header() {
           </div>
           
           <motion.div 
-            className="flex items-center gap-4"
+            className="flex items-center gap-2 sm:gap-4"
             animate={{
               y: isHovered ? -1 : 0  // 右侧元素轻微向上移动
             }}
@@ -273,7 +286,7 @@ export function Header() {
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="ios-26-liquid-button flex h-11 w-11 items-center justify-center text-gray-600 transition-all hover:text-gray-900 dark:text-gray-300 dark:hover:text-white duration-300"
+              className="ios-26-liquid-button flex h-9 w-9 items-center justify-center text-gray-600 transition-all hover:text-gray-900 dark:text-gray-300 dark:hover:text-white duration-300 sm:h-11 sm:w-11"
               animate={{
                 scale: isHovered ? 1.05 : 1
               }}
@@ -283,76 +296,158 @@ export function Header() {
                 damping: 30
               }}
             >
-              <Github className="h-6 w-6" />
+              <Github className="h-5 w-5 sm:h-6 sm:w-6" />
             </motion.a>
             <motion.button
               type="button"
-              className="ios-26-liquid-button flex h-11 w-11 items-center justify-center text-gray-600 transition-all hover:text-gray-900 dark:text-gray-300 dark:hover:text-white duration-300 sm:hidden"
+              className="ios-26-liquid-button flex h-10 w-10 items-center justify-center text-gray-600 transition-all hover:text-gray-900 dark:text-gray-300 dark:hover:text-white duration-300 sm:hidden relative overflow-hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
               animate={{
-                scale: isHovered ? 1.05 : 1
+                scale: isHovered ? 1.05 : 1,
+                rotate: mobileMenuOpen ? 90 : 0
               }}
               transition={{
                 type: "spring",
                 stiffness: 200,
                 damping: 30
               }}
+              whileTap={{ scale: 0.9 }}
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <motion.div
+                animate={{ rotate: mobileMenuOpen ? 180 : 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </motion.div>
             </motion.button>
           </motion.div>
         </motion.header>
         
+        {/* 移动端菜单遮罩层 */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 sm:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence mode="wait">
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="ios-26-liquid-mobile-menu absolute left-4 right-4 top-24 flex flex-col gap-3 rounded-3xl p-6"
+              exit={{ opacity: 0, y: -30, scale: 0.9 }}
+              transition={{ 
+                duration: 0.4,
+                ease: [0.23, 1, 0.32, 1] // 使用更流畅的缓动函数
+              }}
+              className="ios-26-liquid-mobile-menu absolute left-2 right-2 top-20 flex flex-col gap-2 rounded-2xl p-4 z-50 sm:left-4 sm:right-4 sm:top-24 sm:gap-3 sm:rounded-3xl sm:p-6"
+              style={{ transformOrigin: "top center" }}
+              onClick={(e) => e.stopPropagation()} // 防止点击菜单内部关闭菜单
             >
-              {navItems.map((item) => {
+              {navItems.map((item, index) => {
                 const isItemHovered = hoveredPath === item.path;
                 const isCurrentPage = pathname === item.path;
                 
                 return (
-                  <Link
+                  <motion.div
                     key={item.path}
-                    href={item.path}
-                    className={`ios-26-liquid-nav-item relative flex items-center gap-4 px-6 py-4 text-base font-medium transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white ${
-                      isCurrentPage ? 'border-2 border-blue-500 dark:border-blue-400 rounded-2xl' : ''
-                    }`}
-                    onMouseEnter={() => handleMouseEnter(item.path)}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={() => setMobileMenuOpen(false)}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ 
+                      delay: index * 0.1, // 错开动画时间
+                      duration: 0.3,
+                      ease: "easeOut"
+                    }}
                   >
-                    {/* 当前页面指示边框 */}
-                    {isCurrentPage && (
-                      <motion.div
-                        className="absolute inset-0 rounded-2xl border-2 border-blue-500 dark:border-blue-400"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3 }}
+                    <Link
+                      href={item.path}
+                      className={`ios-26-liquid-nav-item relative flex items-center gap-4 px-6 py-4 text-base font-medium transition-all text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white select-none ${
+                        isCurrentPage ? 'border-2 border-blue-500 dark:border-blue-400 rounded-2xl' : ''
+                      }`}
+                      onMouseEnter={() => handleMouseEnter(item.path)}
+                      onMouseLeave={handleMouseLeave}
+                      onClick={() => setMobileMenuOpen(false)}
+                      style={{ minHeight: '56px' }} // 确保最小触摸区域
+                    >
+                      {/* 当前页面指示边框 */}
+                      {isCurrentPage && (
+                        <motion.div
+                          className="absolute inset-0 rounded-2xl border-2 border-blue-500 dark:border-blue-400"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                      )}
+                      
+                      {/* 液态玻璃hover效果 */}
+                      <motion.div 
+                        className={`absolute inset-0 rounded-2xl transition-all duration-300 ${
+                          isItemHovered && !isCurrentPage
+                            ? 'bg-white/30 dark:bg-white/15 shadow-xl scale-105 backdrop-blur-sm border border-white/40 dark:border-white/20' 
+                            : 'bg-transparent scale-100'
+                        }`}
+                        whileTap={{ scale: 0.98 }}
                       />
-                    )}
-                    
-                    {/* 更明显的液态玻璃hover效果 */}
-                    <div className={`absolute inset-0 rounded-2xl transition-all duration-300 ${
-                      isItemHovered && !isCurrentPage
-                        ? 'bg-white/30 dark:bg-white/15 shadow-xl scale-110 backdrop-blur-sm border border-white/40 dark:border-white/20' 
-                        : 'bg-transparent scale-100'
-                    }`} />
-                    
-                    {/* 额外的光效层 */}
-                    {isItemHovered && !isCurrentPage && (
-                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60" />
-                    )}
-                    
-                    <item.icon className="h-6 w-6" />
-                    <span>{item.label}</span>
-                  </Link>
+                      
+                      {/* 光效层 */}
+                      {isItemHovered && !isCurrentPage && (
+                        <motion.div 
+                          className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 0.6 }}
+                          transition={{ duration: 0.2 }}
+                        />
+                      )}
+                      
+                      {/* 图标动画 */}
+                      <motion.div
+                        className="relative z-10"
+                        animate={{
+                          scale: isItemHovered ? 1.15 : 1,
+                          rotate: isItemHovered ? 5 : 0
+                        }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 25
+                        }}
+                      >
+                        <item.icon className="h-6 w-6" />
+                      </motion.div>
+                      
+                      {/* 文字动画 */}
+                      <motion.span 
+                        className="relative z-10"
+                        animate={{
+                          x: isItemHovered ? 4 : 0
+                        }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 25
+                        }}
+                      >
+                        {item.label}
+                      </motion.span>
+                      
+                      {/* 点击波纹效果 */}
+                      <motion.div
+                        className="absolute inset-0 rounded-2xl bg-white/20 dark:bg-white/10"
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileTap={{ scale: 2, opacity: 1 }}
+                        transition={{ duration: 0.4 }}
+                        style={{ pointerEvents: 'none' }}
+                      />
+                    </Link>
+                  </motion.div>
                 );
               })}
             </motion.div>
