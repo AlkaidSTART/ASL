@@ -20,18 +20,20 @@ export default function About() {
   return (
     <div className="min-h-screen">
       {/* 液态玻璃风格的返回主页按钮 */}
-      <div className="fixed top-6 left-6 z-50">
+      <div className="fixed top-4 left-4 z-50 sm:top-6 sm:left-6">
         <Link 
           href="/" 
-          className="ios-26-liquid-button flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
+          className="ios-26-liquid-button flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span className="lang-en">Back to Home</span>
-          <span className="lang-zh">返回主页</span>
+          <span className="hidden sm:inline">
+            <span className="lang-en">Back to Home</span>
+            <span className="lang-zh">返回主页</span>
+          </span>
         </Link>
       </div>
 
-      <div className="flex flex-col items-center justify-center py-24 text-center">
+      <div className="flex flex-col items-center justify-center py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
         <h1 className="mb-6 text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 sm:text-7xl">
           <img src={`${basePath}/avatorone.jpg`} alt="AlkaidLight" className="h-16" />
         </h1>

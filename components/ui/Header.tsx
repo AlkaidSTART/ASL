@@ -159,14 +159,14 @@ export function Header() {
 
   return (
     <div 
-      className="fixed top-4 left-1/2 z-50 w-full max-w-6xl -translate-x-1/2 px-4 sm:top-6"
+      className="fixed top-3 left-1/2 z-50 w-full max-w-6xl -translate-x-1/2 px-3 sm:top-4 sm:px-4"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div 
-        className="group"
+        className="group relative"
         animate={{ 
-          y: isHovered ? 25 : 0  // 向下偏移25px（约2/5的header高度）
+          y: isHovered ? 20 : 0  // 向下偏移20px（约1/3的header高度）
         }}
         transition={{ 
           type: "spring", 
@@ -177,20 +177,20 @@ export function Header() {
       >
         {/* iOS 26液态玻璃背景效果 - 保持静态 */}
         <div 
-          className="ios-26-liquid-glass-backdrop absolute inset-y-0 left-4 right-4 -z-10 rounded-3xl border border-white/30 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-[60px] backdrop-saturate-200 dark:border-white/15 dark:from-black/30 dark:to-black/10"
+          className="ios-26-liquid-glass-backdrop absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl border border-white/30 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-[60px] backdrop-saturate-200 dark:border-white/15 dark:from-black/30 dark:to-black/10"
         />
         
         {/* 增强的液态玻璃效果 - 保持静态 */}
-        <div className="ios-26-liquid-glow absolute inset-y-0 left-4 right-4 -z-10 rounded-3xl" />
-        <div className="ios-26-liquid-highlight absolute inset-y-0 left-4 right-4 -z-10 rounded-3xl" />
-        <div className="ios-26-liquid-shadow absolute inset-y-0 left-4 right-4 -z-10 rounded-3xl" />
+        <div className="ios-26-liquid-glow absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl" />
+        <div className="ios-26-liquid-highlight absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl" />
+        <div className="ios-26-liquid-shadow absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl" />
         
         {/* 动态光效 - 保持静态 */}
-        <div className="ios-26-liquid-shine absolute inset-y-0 left-4 right-4 -z-10 rounded-3xl bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100" />
+        <div className="ios-26-liquid-shine absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100" />
 
         <motion.header 
           ref={headerRef}
-          className="ios-26-liquid-glass flex h-16 items-center justify-between px-4 cursor-pointer sm:h-20 sm:px-8"
+          className="ios-26-liquid-glass flex h-14 items-center justify-between px-3 cursor-pointer sm:h-16 sm:px-6 lg:px-8"
           animate={{ 
             scale: isHovered ? 1.01 : 1,  // 减少放大比例到1%，更微妙
             y: isHovered ? -2 : 0         // 轻微向上偏移，与外层向下偏移形成对比
@@ -202,8 +202,8 @@ export function Header() {
             mass: 0.6        // 减少质量，让内部响应更快
           }}
         >
-          <div className="flex items-center gap-4 sm:gap-8">
-            <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight sm:text-xl">
+          <div className="flex items-center gap-2 sm:gap-4 lg:gap-8">
+            <Link href="/" className="flex items-center gap-1.5 text-base font-bold tracking-tight sm:gap-2 sm:text-lg lg:text-xl">
               <span className="font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400">
                 AlkaidLight
               </span>
@@ -284,7 +284,7 @@ export function Header() {
           </div>
           
           <motion.div 
-            className="flex items-center gap-2 sm:gap-4"
+            className="flex items-center gap-1.5 sm:gap-3"
             animate={{
               y: isHovered ? -1 : 0  // 右侧元素轻微向上移动
             }}
@@ -300,7 +300,7 @@ export function Header() {
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="ios-26-liquid-button flex h-9 w-9 items-center justify-center text-gray-600 transition-all hover:text-gray-900 dark:text-gray-300 dark:hover:text-white duration-300 sm:h-11 sm:w-11"
+              className="ios-26-liquid-button flex h-8 w-8 items-center justify-center text-gray-600 transition-all hover:text-gray-900 dark:text-gray-300 dark:hover:text-white duration-300 sm:h-10 sm:w-10 lg:h-11 lg:w-11"
               animate={{
                 scale: isHovered ? 1.05 : 1
               }}
@@ -310,11 +310,11 @@ export function Header() {
                 damping: 30
               }}
             >
-              <Github className="h-5 w-5 sm:h-6 sm:w-6" />
+              <Github className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
             </motion.a>
             <motion.button
               type="button"
-              className="ios-26-liquid-button flex h-10 w-10 items-center justify-center text-gray-600 transition-all hover:text-gray-900 dark:text-gray-300 dark:hover:text-white duration-300 sm:hidden relative overflow-hidden"
+              className="ios-26-liquid-button flex h-9 w-9 items-center justify-center text-gray-600 transition-all hover:text-gray-900 dark:text-gray-300 dark:hover:text-white duration-300 sm:hidden relative overflow-hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
               animate={{
@@ -355,14 +355,14 @@ export function Header() {
         <AnimatePresence mode="wait">
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -30, scale: 0.9 }}
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -30, scale: 0.9 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
               transition={{ 
-                duration: 0.4,
+                duration: 0.3,
                 ease: [0.23, 1, 0.32, 1] // 使用更流畅的缓动函数
               }}
-              className="ios-26-liquid-mobile-menu absolute left-2 right-2 top-20 flex flex-col gap-2 rounded-2xl p-4 z-50 sm:left-4 sm:right-4 sm:top-24 sm:gap-3 sm:rounded-3xl sm:p-6"
+              className="ios-26-liquid-mobile-menu absolute left-2 right-2 top-16 flex flex-col gap-2 rounded-2xl p-3 z-50 sm:left-4 sm:right-4 sm:top-20 sm:gap-3 sm:rounded-3xl sm:p-6"
               style={{ transformOrigin: "top center" }}
               onClick={(e) => e.stopPropagation()} // 防止点击菜单内部关闭菜单
             >

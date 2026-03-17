@@ -9,17 +9,17 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen">
       {/* 液态玻璃风格的返回主页按钮 */}
-      <div className="fixed top-6 left-6 z-50">
+      <div className="fixed top-4 left-4 z-50 sm:top-6 sm:left-6">
         <Link 
           href="/" 
-          className="ios-26-liquid-button flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
+          className="ios-26-liquid-button flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
         >
           <ArrowLeft className="h-4 w-4" />
-          返回主页
+          <span className="hidden sm:inline">返回主页</span>
         </Link>
       </div>
 
-      <div className="flex flex-col items-center justify-center py-24 text-center">
+      <div className="flex flex-col items-center justify-center py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
         {/* 页面标题 */}
         <h1 className="mb-6 text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 sm:text-6xl">
           博客
@@ -31,11 +31,11 @@ export default function BlogPage() {
 
         {/* 标签筛选 */}
         {allTags.length > 0 && (
-          <div className="mb-12 w-full max-w-4xl">
-            <div className="flex flex-wrap justify-center gap-2">
+          <div className="mb-12 w-full max-w-4xl px-4">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide justify-start sm:justify-center">
               <Link
                 href="/blog"
-                className="ios-26-liquid-button px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400"
+                className="ios-26-liquid-button px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 whitespace-nowrap flex-shrink-0"
               >
                 全部文章
               </Link>
@@ -43,7 +43,7 @@ export default function BlogPage() {
                 <Link
                   key={tag}
                   href={`/blog/tag/${encodeURIComponent(tag)}`}
-                  className="ios-26-liquid-button px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                  className="ios-26-liquid-button px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white whitespace-nowrap flex-shrink-0"
                 >
                   {tag}
                 </Link>
@@ -67,22 +67,22 @@ export default function BlogPage() {
             posts.map((post) => (
               <article
                 key={post.slug}
-                className="ios-26-liquid-glass group rounded-xl p-6 text-left transition-all duration-300 hover:scale-[1.02]"
+                className="ios-26-liquid-glass group rounded-xl p-4 sm:p-6 text-left transition-all duration-300 hover:scale-[1.02]"
               >
                 <Link href={`/blog/${post.slug}`} className="block">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {post.title}
                   </h2>
-                  
+
                   {post.description && (
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 text-sm sm:text-base">
                       {post.description}
                     </p>
                   )}
-                  
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+
+                  <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 sm:gap-4 text-sm text-gray-500 dark:text-gray-400">
                     <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
+                      <Calendar className="h-4 w-4 flex-shrink-0" />
                       <time dateTime={post.date}>
                         {new Date(post.date).toLocaleDateString('zh-CN', {
                           year: 'numeric',
@@ -91,20 +91,20 @@ export default function BlogPage() {
                         })}
                       </time>
                     </div>
-                    
+
                     <div className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
+                      <Clock className="h-4 w-4 flex-shrink-0" />
                       <span>{post.readingTime} 分钟阅读</span>
                     </div>
-                    
+
                     {post.tags.length > 0 && (
                       <div className="flex items-center gap-1">
-                        <Tag className="h-4 w-4" />
+                        <Tag className="h-4 w-4 flex-shrink-0" />
                         <span>{post.tags.length} 个标签</span>
                       </div>
                     )}
                   </div>
-                  
+
                   {post.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-4">
                       {post.tags.slice(0, 3).map((tag) => (
@@ -130,9 +130,9 @@ export default function BlogPage() {
 
         {/* 统计信息 */}
         {posts.length > 0 && (
-          <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 w-full max-w-4xl">
+          <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 w-full max-w-4xl px-4">
             <div className="text-center text-gray-600 dark:text-gray-400">
-              <p className="mb-2">
+              <p className="mb-2 text-sm sm:text-base">
                 共 {posts.length} 篇文章，{allTags.length} 个标签
               </p>
               <p className="text-sm">

@@ -38,27 +38,27 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <div className="min-h-screen">
       {/* 液态玻璃风格的返回按钮 */}
-      <div className="fixed top-6 left-6 z-50">
+      <div className="fixed top-4 left-4 z-50 sm:top-6 sm:left-6">
         <Link
           href="/blog"
-          className="ios-26-liquid-button flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
+          className="ios-26-liquid-button flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
         >
           <ArrowLeft className="h-4 w-4" />
-          返回博客
+          <span className="hidden sm:inline">返回博客</span>
         </Link>
       </div>
 
-      <article className="flex flex-col items-center py-24 px-4">
-        <div className="w-full max-w-4xl">
+      <article className="flex flex-col items-center pt-20 sm:pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-4xl mx-auto">
           {/* 文章头部 */}
-          <header className="mb-12 text-center">
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 mb-6">
+          <header className="mb-8 sm:mb-12 text-center">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-4 sm:mb-6 break-words">
               {post.title}
             </h1>
 
-            <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-6">
+            <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">
               <div className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
+                <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
                 <time dateTime={post.date}>
                   {new Date(post.date).toLocaleDateString('zh-CN', {
                     year: 'numeric',
@@ -68,14 +68,14 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                 </time>
               </div>
 
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
 
               <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
+                <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
                 <span>{post.readingTime} 分钟阅读</span>
               </div>
 
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
 
               <span>{post.wordCount} 字</span>
             </div>
@@ -86,7 +86,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                   <Link
                     key={tag}
                     href={`/blog/tag/${encodeURIComponent(tag)}`}
-                    className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+                    className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                   >
                     <Tag className="h-3 w-3 mr-1" />
                     {tag}
@@ -96,22 +96,22 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             )}
 
             {post.description && (
-              <p className="mt-6 text-lg text-gray-600 dark:text-gray-300 italic max-w-2xl mx-auto">
+              <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-300 italic max-w-2xl mx-auto px-2 sm:px-0">
                 {post.description}
               </p>
             )}
           </header>
 
           {/* 文章内容 - 液态玻璃容器 */}
-          <div className="ios-26-liquid-glass rounded-xl p-8 mb-12">
-            <div className="prose prose-lg dark:prose-invert max-w-none">
+          <div className="ios-26-liquid-glass rounded-xl p-4 sm:p-6 lg:p-8 mb-8 sm:mb-12 overflow-hidden">
+            <div className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert max-w-none overflow-x-auto">
               <MDXRemote source={mdxContent} components={components} />
             </div>
           </div>
 
           {/* 文章底部 */}
-          <footer className="pt-8 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex justify-between items-center">
+          <footer className="pt-6 sm:pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <Link
                 href="/blog"
                 className="ios-26-liquid-button flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
@@ -120,7 +120,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                 返回博客
               </Link>
 
-              <div className="text-sm text-gray-500 dark:text-gray-400">
+              <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                 最后更新: {new Date(post.date).toLocaleDateString('zh-CN')}
               </div>
             </div>
