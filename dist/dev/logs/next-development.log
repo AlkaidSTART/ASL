@@ -1,0 +1,9 @@
+[02:02:06.949] Server  LOG     ✓ Compiled in 70ms
+[02:02:41.619] Server  LOG     ✓ Compiled in 63ms
+[02:02:44.598] Server  ERROR   ⨯ Error: ENOENT: no such file or directory, open '/Users/allure/Desktop/alkaidlight/dist/dev/server/app/page/build-manifest.json'
+[02:02:47.599] Server  LOG     ○ Compiling /_error ...
+[02:02:49.803] Server  ERROR   ⨯ Error: ENOENT: no such file or directory, open '/Users/allure/Desktop/alkaidlight/dist/dev/server/app/blog/page/build-manifest.json'
+[02:02:50.553] Server  ERROR   ⨯ Error: ENOENT: no such file or directory, open '/Users/allure/Desktop/alkaidlight/dist/dev/server/app/about/page/build-manifest.json'
+[02:02:51.123] Server  ERROR   ⨯ Error: ENOENT: no such file or directory, open '/Users/allure/Desktop/alkaidlight/dist/dev/server/app/contact/page/build-manifest.json'
+[02:03:17.000] Server  ERROR   ⨯ Error: ENOENT: no such file or directory, open '/Users/allure/Desktop/alkaidlight/dist/dev/server/app/contact/page/build-manifest.json'
+[02:03:17.670] Server  ERROR   ⨯ Error: ENOENT: no such file or directory, open '/Users/allure/Desktop/alkaidlight/dist/dev/server/app/about/page/build-manifest.json'

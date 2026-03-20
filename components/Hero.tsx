@@ -35,7 +35,7 @@ export function Hero() {
         </motion.div>
 
         <h1 className="mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 bg-clip-text text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-transparent">
-          AlkaidLight
+          AlkaidSTART
         </h1>
 
         <p className="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg lg:text-xl text-gray-600 px-2 sm:px-0">

@@ -205,7 +205,7 @@ export function Header() {
           <div className="flex items-center gap-2 sm:gap-4 lg:gap-8">
             <Link href="/" className="flex items-center gap-1.5 text-base font-bold tracking-tight sm:gap-2 sm:text-lg lg:text-xl">
               <span className="font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400">
-                AlkaidLight
+                AlkaidSTART
               </span>
             </Link>
             
