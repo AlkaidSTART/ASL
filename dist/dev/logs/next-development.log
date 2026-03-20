@@ -32,3 +32,84 @@
 [00:33:17.177] Browser LOG     Pagefind search not available (dev mode?)
 [00:33:18.737] Browser LOG     Pagefind search not available (dev mode?)
 [00:33:18.737] Browser LOG     Pagefind search not available (dev mode?)
+[00:58:49.852] Server  LOG     ✓ Compiled in 626ms
+[00:58:50.470] Browser ERROR   ./app/globals.css:327:25
+Parsing CSS source code failed
+  325 |   }
+  326 |   .top-\[max\(1rem\,env\(P\+�\b area-inset-top\)\)\] {
+> 327 |     top: max(1rem, env(P+�area-inset-top));
+      |                         ^
+  328 |   }
+  329 |   .top-\[max\(1rem\,env\(safe-area-inset-top\)\)\] {
+  330 |     top: max(1rem, env(safe-area-inset-top));
+
+Unexpected token Delim('+')
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+[01:02:02.470] Browser ERROR   ./app/globals.css:327:25
+Parsing CSS source code failed
+  325 |   }
+  326 |   .top-\[max\(1rem\,env\(P\+�\b area-inset-top\)\)\] {
+> 327 |     top: max(1rem, env(P+�area-inset-top));
+      |                         ^
+  328 |   }
+  329 |   .top-\[max\(1rem\,env\(safe-area-inset-top\)\)\] {
+  330 |     top: max(1rem, env(safe-area-inset-top));
+
+Unexpected token Delim('+')
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+[01:02:37.469] Browser ERROR   ./app/globals.css:327:25
+Parsing CSS source code failed
+  325 |   }
+  326 |   .top-\[max\(1rem\,env\(P\+�\b area-inset-top\)\)\] {
+> 327 |     top: max(1rem, env(P+�area-inset-top));
+      |                         ^
+  328 |   }
+  329 |   .top-\[max\(1rem\,env\(safe-area-inset-top\)\)\] {
+  330 |     top: max(1rem, env(safe-area-inset-top));
+
+Unexpected token Delim('+')
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+[01:03:09.469] Browser ERROR   ./app/globals.css:327:25
+Parsing CSS source code failed
+  325 |   }
+  326 |   .top-\[max\(1rem\,env\(P\+�\b area-inset-top\)\)\] {
+> 327 |     top: max(1rem, env(P+�area-inset-top));
+      |                         ^
+  328 |   }
+  329 |   .top-\[max\(1rem\,env\(safe-area-inset-top\)\)\] {
+  330 |     top: max(1rem, env(safe-area-inset-top));
+
+Unexpected token Delim('+')
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+[01:03:13.470] Browser ERROR   ./app/globals.css:327:25
+Parsing CSS source code failed
+  325 |   }
+  326 |   .top-\[max\(1rem\,env\(P\+�\b area-inset-top\)\)\] {
+> 327 |     top: max(1rem, env(P+�area-inset-top));
+      |                         ^
+  328 |   }
+  329 |   .top-\[max\(1rem\,env\(safe-area-inset-top\)\)\] {
+  330 |     top: max(1rem, env(safe-area-inset-top));
+
+Unexpected token Delim('+')
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
