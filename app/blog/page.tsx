@@ -9,7 +9,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen">
       {/* 液态玻璃风格的返回主页按钮 */}
-      <div className="fixed top-4 left-4 z-50 sm:top-6 sm:left-6">
+      <div className="fixed left-4 top-[max(1rem,env(safe-area-inset-top))] z-50 sm:left-6 sm:top-6">
         <Link 
           href="/" 
           className="ios-26-liquid-button flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
@@ -19,19 +19,19 @@ export default function BlogPage() {
         </Link>
       </div>
 
-      <div className="flex flex-col items-center justify-center py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col items-center justify-center px-4 pb-16 pt-28 text-center sm:px-6 sm:pb-20 sm:pt-32 lg:px-8">
         {/* 页面标题 */}
-        <h1 className="mb-6 text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 sm:text-6xl">
+        <h1 className="mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl lg:text-6xl">
           博客
         </h1>
         
-        <p className="mb-10 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
+        <p className="mb-10 max-w-2xl text-base text-gray-600 dark:text-gray-300 sm:text-lg lg:text-xl">
           分享技术见解、开发经验和学习心得
         </p>
 
         {/* 标签筛选 */}
         {allTags.length > 0 && (
-          <div className="mb-12 w-full max-w-4xl px-4">
+          <div className="mb-10 w-full max-w-4xl px-1 sm:mb-12 sm:px-4">
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide justify-start sm:justify-center">
               <Link
                 href="/blog"
@@ -67,7 +67,7 @@ export default function BlogPage() {
             posts.map((post) => (
               <article
                 key={post.slug}
-                className="ios-26-liquid-glass group rounded-xl p-4 sm:p-6 text-left transition-all duration-300 hover:scale-[1.02]"
+                className="ios-26-liquid-glass group rounded-xl p-4 text-left transition-all duration-300 sm:p-6 md:hover:scale-[1.02]"
               >
                 <Link href={`/blog/${post.slug}`} className="block">
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -130,7 +130,7 @@ export default function BlogPage() {
 
         {/* 统计信息 */}
         {posts.length > 0 && (
-          <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 w-full max-w-4xl px-4">
+          <div className="mt-12 w-full max-w-4xl border-t border-gray-200 px-4 pt-8 dark:border-gray-700 sm:mt-16">
             <div className="text-center text-gray-600 dark:text-gray-400">
               <p className="mb-2 text-sm sm:text-base">
                 共 {posts.length} 篇文章，{allTags.length} 个标签

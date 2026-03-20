@@ -38,7 +38,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <div className="min-h-screen">
       {/* 液态玻璃风格的返回按钮 */}
-      <div className="fixed top-4 left-4 z-50 sm:top-6 sm:left-6">
+      <div className="fixed left-4 top-[max(1rem,env(safe-area-inset-top))] z-50 sm:left-6 sm:top-6">
         <Link
           href="/blog"
           className="ios-26-liquid-button flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
@@ -48,7 +48,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         </Link>
       </div>
 
-      <article className="flex flex-col items-center pt-20 sm:pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+      <article className="flex flex-col items-center px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8">
         <div className="w-full max-w-4xl mx-auto">
           {/* 文章头部 */}
           <header className="mb-8 sm:mb-12 text-center">
@@ -56,7 +56,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
               {post.title}
             </h1>
 
-            <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">
+            <div className="mb-4 flex flex-wrap items-center justify-center gap-2 text-xs text-gray-600 dark:text-gray-400 sm:mb-6 sm:gap-4 sm:text-sm">
               <div className="flex items-center gap-1">
                 <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
                 <time dateTime={post.date}>
@@ -110,7 +110,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {/* 文章底部 */}
-          <footer className="pt-6 sm:pt-8 border-t border-gray-200 dark:border-gray-700">
+          <footer className="border-t border-gray-200 pt-6 dark:border-gray-700 sm:pt-8">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <Link
                 href="/blog"
@@ -120,7 +120,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                 返回博客
               </Link>
 
-              <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+              <div className="text-center text-xs text-gray-500 dark:text-gray-400 sm:text-right sm:text-sm">
                 最后更新: {new Date(post.date).toLocaleDateString('zh-CN')}
               </div>
             </div>
