@@ -15,3 +15,5 @@
 [00:00:19.018] Server  WARN    Error: Route "/blog/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
 [00:00:19.036] Server  WARN    Error: Route "/blog/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
 [00:01:10.698] Server  LOG     ✓ Compiled in 943ms
+[00:02:14.867] Server  LOG     ✓ Compiled in 389ms
+[00:02:56.051] Server  LOG     ✓ Compiled in 112ms

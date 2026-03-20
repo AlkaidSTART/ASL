@@ -20,7 +20,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       {/* 液态玻璃风格的返回主页按钮 */}
-      <div className="fixed top-4 left-4 z-50 sm:top-6 sm:left-6">
+      <div className="fixed left-4 top-[max(1rem,env(safe-area-inset-top))] z-50 sm:left-6 sm:top-6">
         <Link 
           href="/" 
           className="ios-26-liquid-button flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
@@ -33,11 +33,11 @@ export default function Contact() {
         </Link>
       </div>
 
-      <div className="flex flex-col items-center justify-center py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
-        <h1 className="mb-6 text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 sm:text-7xl">
-          <img src={`${basePath}/avatorone.jpg`} alt="AlkaidLight" className="h-16" />
+      <div className="flex flex-col items-center justify-center px-4 pb-16 pt-28 text-center sm:px-6 sm:pb-20 sm:pt-32 lg:px-8">
+        <h1 className="mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl lg:text-6xl">
+          <img src={`${basePath}/avatorone.jpg`} alt="AlkaidLight" className="h-14 sm:h-16" />
         </h1>
-        <p className="mb-10 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
+        <p className="mb-10 max-w-2xl text-base text-gray-600 dark:text-gray-300 sm:text-lg lg:text-xl">
           <span className="lang-en">A personal blog built with Next.js, Vibe Coding, and AI.</span>
           <span className="lang-zh">一个使用 Next.js、Vibe Coding 与 AI 构建的个人博客。</span>
         </p>

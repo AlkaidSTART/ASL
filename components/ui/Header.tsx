@@ -159,7 +159,7 @@ export function Header() {
 
   return (
     <div 
-      className="fixed top-3 left-1/2 z-50 w-full max-w-6xl -translate-x-1/2 px-3 sm:top-4 sm:px-4"
+      className="fixed left-1/2 top-[max(0.75rem,env(safe-area-inset-top))] z-50 box-border w-full max-w-6xl -translate-x-1/2 px-2 sm:top-4 sm:px-4"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
