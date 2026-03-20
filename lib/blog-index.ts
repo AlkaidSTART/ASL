@@ -1,5 +1,5 @@
 // 自动生成的博客索引文件
-// 生成时间: 2026-03-17T02:50:29.346Z
+// 生成时间: 2026-03-20T08:41:54.066Z
 
 import type { BlogPost, BlogMetadata } from '@/lib/mdx-processor';
 
@@ -46,7 +46,7 @@ export const blogMetadata: BlogMetadata = {
         "测试",
         "博客"
       ],
-      "content": "# 示例文章\n\n这是一个示例文章，用于测试Markdown到MDX的转换功能。\n\n## 主要功能\n\n- 支持Markdown语法\n- 自动转换为MDX格式\n- 保留前端元数据\n- 支持React组件\n\n## 代码示例\n\n```javascript\nconst greeting = \"Hello, World!\";\nconsole.log(greeting);\n\n```\n\n## 结语\n\n这篇文章展示了基本的Markdown功能，转换后将支持更多的交互性。",
+      "content": "# 示例文章\n\n这是一个示例文章，用于测试Markdown到MDX的转换功能。\n\n## 主要功能\n\n- 支持Markdown语法\n- 自动转换为MDX格式\n- 保留前端元数据\n- 支持React组件\n\n## 代码示例\n\n```javascript\nconst greeting = \"Hello, World!\";\nconsole.log(greeting);\n```\n\n## 结语\n\n这篇文章展示了基本的Markdown功能，转换后将支持更多的交互性。",
       "readingTime": 1,
       "wordCount": 26
     }
@@ -104,7 +104,7 @@ export const blogMetadata: BlogMetadata = {
           "测试",
           "博客"
         ],
-        "content": "# 示例文章\n\n这是一个示例文章，用于测试Markdown到MDX的转换功能。\n\n## 主要功能\n\n- 支持Markdown语法\n- 自动转换为MDX格式\n- 保留前端元数据\n- 支持React组件\n\n## 代码示例\n\n```javascript\nconst greeting = \"Hello, World!\";\nconsole.log(greeting);\n\n```\n\n## 结语\n\n这篇文章展示了基本的Markdown功能，转换后将支持更多的交互性。",
+        "content": "# 示例文章\n\n这是一个示例文章，用于测试Markdown到MDX的转换功能。\n\n## 主要功能\n\n- 支持Markdown语法\n- 自动转换为MDX格式\n- 保留前端元数据\n- 支持React组件\n\n## 代码示例\n\n```javascript\nconst greeting = \"Hello, World!\";\nconsole.log(greeting);\n```\n\n## 结语\n\n这篇文章展示了基本的Markdown功能，转换后将支持更多的交互性。",
         "readingTime": 1,
         "wordCount": 26
       }
