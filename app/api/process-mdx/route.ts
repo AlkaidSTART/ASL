@@ -13,7 +13,9 @@ export const revalidate = 3600; // 1小时重新验证
  */
 export async function POST(_request: NextRequest) {
   try {
-    console.log('🔄 开始处理 MDX 文件...');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔄 开始处理 MDX 文件...');
+    }
     
     // 执行自动处理
     autoProcessMdxFiles();
@@ -29,7 +31,9 @@ export async function POST(_request: NextRequest) {
       { 
         success: false, 
         error: 'MDX 处理失败',
-        details: error instanceof Error ? error.message : '未知错误'
+        details: process.env.NODE_ENV === 'development'
+          ? (error instanceof Error ? error.message : '未知错误')
+          : undefined
       },
       { status: 500 }
     );
@@ -75,7 +79,9 @@ export async function GET(_request: NextRequest) {
       { 
         success: false, 
         error: '获取状态失败',
-        details: error instanceof Error ? error.message : '未知错误'
+        details: process.env.NODE_ENV === 'development'
+          ? (error instanceof Error ? error.message : '未知错误')
+          : undefined
       },
       { status: 500 }
     );

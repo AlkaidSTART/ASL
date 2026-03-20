@@ -1,7 +1,29 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { Search as SearchIcon, X } from 'lucide-react';
+
+/**
+ * Sanitize a Pagefind excerpt so that only <mark> elements (used for
+ * search-term highlighting) survive. All other HTML is escaped as text.
+ * This prevents XSS from arbitrary HTML that might appear in search results.
+ */
+function sanitizeExcerpt(html: string): string {
+  // Split on <mark> / </mark> boundaries (no attributes allowed).
+  // Odd-indexed chunks are inside <mark>…</mark>; even-indexed are outside.
+  const parts = html.split(/<\/?mark>/gi);
+  return parts
+    .map((part, i) => {
+      // Escape every raw text chunk to neutralise any embedded HTML.
+      const escaped = part
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+      return i % 2 === 1 ? `<mark>${escaped}</mark>` : escaped;
+    })
+    .join('');
+}
 
 declare global {
   interface Window {
@@ -53,9 +75,9 @@ export default function Search() {
     loadPagefind();
   }, []);
 
-  async function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
-    setQuery(value);
+  const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const performSearch = useCallback(async (value: string) => {
     if (value && window.pagefind) {
       setLoading(true);
       try {
@@ -71,6 +93,17 @@ export default function Search() {
     } else {
       setResults([]);
     }
+  }, [setLoading, setResults]);
+
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    setQuery(value);
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current);
+    }
+    searchDebounceRef.current = setTimeout(() => {
+      performSearch(value);
+    }, 300);
   }
 
   // 移动端搜索相关函数
@@ -101,6 +134,9 @@ export default function Search() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      if (searchDebounceRef.current) {
+        clearTimeout(searchDebounceRef.current);
+      }
     };
   }, []);
 
@@ -151,7 +187,7 @@ export default function Search() {
                   <h3 className="font-medium text-gray-900 dark:text-white">{result.meta.title}</h3>
                   <p 
                     className="mt-1 text-xs text-gray-600 line-clamp-2 dark:text-gray-400" 
-                    dangerouslySetInnerHTML={{ __html: result.excerpt }} 
+                    dangerouslySetInnerHTML={{ __html: sanitizeExcerpt(result.excerpt) }} 
                   />
                 </a>
               ))}
@@ -231,7 +267,7 @@ export default function Search() {
                         <h3 className="font-medium text-gray-900 dark:text-white text-base">{result.meta.title}</h3>
                         <p 
                           className="mt-2 text-sm text-gray-600 line-clamp-3 dark:text-gray-400" 
-                          dangerouslySetInnerHTML={{ __html: result.excerpt }} 
+                          dangerouslySetInnerHTML={{ __html: sanitizeExcerpt(result.excerpt) }} 
                         />
                       </a>
                     ))}

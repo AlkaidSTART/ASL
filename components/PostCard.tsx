@@ -1,10 +1,11 @@
 'use client';
 
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { type Post } from '@/lib/posts';
 
-export function PostCard({ post }: { post: Post }) {
+export const PostCard = memo(function PostCard({ post }: { post: Post }) {
   return (
     <motion.article
       variants={{
@@ -51,4 +52,4 @@ export function PostCard({ post }: { post: Post }) {
       </div>
     </motion.article>
   );
-}
+});

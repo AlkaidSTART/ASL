@@ -14,6 +14,10 @@ export interface Post {
 }
 
 export function getSortedPostsData(): Post[] {
+  // Return empty list if the posts directory does not exist yet
+  if (!fs.existsSync(postsDirectory)) {
+    return [];
+  }
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {

@@ -174,18 +174,24 @@ export function autoProcessMdxFiles(): void {
   const contentDir = path.join(process.cwd(), 'content', 'posts');
   const outputPath = path.join(process.cwd(), 'lib', 'blog-index.ts');
   
-  console.log('🔄 开始处理 MDX 文件...');
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔄 开始处理 MDX 文件...');
+  }
   
   const metadata = processMdxFiles(contentDir);
   
-  console.log(`📊 处理完成:`);
-  console.log(`   - 文章数量: ${metadata.totalPosts}`);
-  console.log(`   - 标签数量: ${metadata.tags.length}`);
-  console.log(`   - 归档月份: ${Object.keys(metadata.archive).length}`);
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`📊 处理完成:`);
+    console.log(`   - 文章数量: ${metadata.totalPosts}`);
+    console.log(`   - 标签数量: ${metadata.tags.length}`);
+    console.log(`   - 归档月份: ${Object.keys(metadata.archive).length}`);
+  }
   
   generateBlogIndex(metadata, outputPath);
   
-  console.log('✅ MDX 文件处理完成！');
+  if (process.env.NODE_ENV === 'development') {
+    console.log('✅ MDX 文件处理完成！');
+  }
 }
 
 // 如果直接运行此文件，执行自动处理
