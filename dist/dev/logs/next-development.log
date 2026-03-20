@@ -17,3 +17,18 @@
 [00:01:10.698] Server  LOG     ✓ Compiled in 943ms
 [00:02:14.867] Server  LOG     ✓ Compiled in 389ms
 [00:02:56.051] Server  LOG     ✓ Compiled in 112ms
+[00:24:35.404] Server  LOG     ✓ Compiled in 130ms
+[00:25:26.505] Server  LOG     ✓ Compiled in 1553ms
+[00:29:14.700] Server  LOG     ✓ Compiled in 76ms
+[00:32:55.648] Browser LOG     Pagefind search not available (dev mode?)
+[00:32:55.649] Browser LOG     Pagefind search not available (dev mode?)
+[00:33:00.491] Browser LOG     Pagefind search not available (dev mode?)
+[00:33:00.491] Browser LOG     Pagefind search not available (dev mode?)
+[00:33:03.891] Browser LOG     Pagefind search not available (dev mode?)
+[00:33:03.891] Browser LOG     Pagefind search not available (dev mode?)
+[00:33:14.069] Browser LOG     Pagefind search not available (dev mode?)
+[00:33:16.152] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:33:17.177] Browser LOG     Pagefind search not available (dev mode?)
+[00:33:17.177] Browser LOG     Pagefind search not available (dev mode?)
+[00:33:18.737] Browser LOG     Pagefind search not available (dev mode?)
+[00:33:18.737] Browser LOG     Pagefind search not available (dev mode?)

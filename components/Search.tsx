@@ -44,14 +44,14 @@ export default function Search() {
         try {
           const pagefind = await import(/* webpackIgnore: true */ `${basePath}/pagefind/pagefind.js`);
           window.pagefind = pagefind;
-        } catch (e) {
+        } catch {
           // Silently fail in dev mode if not available
           console.log('Pagefind search not available (dev mode?)');
         }
       }
     }
     loadPagefind();
-  }, []);
+  }, [basePath]);
 
   async function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
@@ -107,7 +107,7 @@ export default function Search() {
   return (
     <>
       {/* 桌面端搜索 */}
-      <div ref={searchContainerRef} className="relative hidden sm:block w-64 h-10">
+      <div ref={searchContainerRef} className="relative hidden h-10 w-56 md:block lg:w-64">
         {/* 液态玻璃搜索框 */}
         <div className={`ios-26-liquid-search absolute inset-0 rounded-full transition-all duration-300 overflow-hidden ${
           isFocused 
@@ -140,7 +140,7 @@ export default function Search() {
         </div>
         
         {results.length > 0 && (
-          <div className="absolute right-0 top-full mt-2 w-96 max-h-96 overflow-hidden rounded-2xl border border-white/30 bg-white/80 dark:bg-black/80 backdrop-blur-xl shadow-2xl dark:border-white/15 z-50">
+          <div className="absolute right-0 top-full z-50 mt-2 w-[min(24rem,calc(100vw-1.5rem))] max-h-96 overflow-hidden rounded-2xl border border-white/30 bg-white/80 shadow-2xl backdrop-blur-xl dark:border-white/15 dark:bg-black/80 md:w-[min(26rem,calc(100vw-2rem))]">
             <div className="max-h-96 overflow-y-auto p-2">
               {results.map((result, idx) => (
                 <a
@@ -178,7 +178,7 @@ export default function Search() {
         {isMobileSearchOpen && (
           <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm" onClick={closeMobileSearch}>
             <div 
-              className="absolute inset-x-4 top-20 mx-auto max-w-2xl"
+              className="absolute inset-x-3 top-[max(5rem,calc(env(safe-area-inset-top)+4rem))] mx-auto max-w-2xl sm:inset-x-4 sm:top-20"
               onClick={(e) => e.stopPropagation()}
             >
               {/* 搜索输入框 */}

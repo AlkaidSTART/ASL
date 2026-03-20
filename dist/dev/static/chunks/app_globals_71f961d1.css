@@ -532,6 +532,10 @@
     inset: calc(var(--spacing) * 0);
   }
 
+  .inset-x-3 {
+    inset-inline: calc(var(--spacing) * 3);
+  }
+
   .inset-x-4 {
     inset-inline: calc(var(--spacing) * 4);
   }
@@ -580,6 +584,10 @@
     top: max(1rem, env(safe-area-inset-top));
   }
 
+  .top-\[max\(5rem\,calc\(env\(safe-area-inset-top\)\+4rem\)\)\] {
+    top: max(5rem, calc(env(safe-area-inset-top)  + 4rem));
+  }
+
   .top-full {
     top: 100%;
   }
@@ -598,6 +606,10 @@
 
   .right-4 {
     right: calc(var(--spacing) * 4);
+  }
+
+  .right-9 {
+    right: calc(var(--spacing) * 9);
   }
 
   .right-10 {
@@ -1689,6 +1701,10 @@
     width: calc(var(--spacing) * 24);
   }
 
+  .w-56 {
+    width: calc(var(--spacing) * 56);
+  }
+
   .w-64 {
     width: calc(var(--spacing) * 64);
   }
@@ -1699,6 +1715,10 @@
 
   .w-\[200px\] {
     width: 200px;
+  }
+
+  .w-\[min\(24rem\,calc\(100vw-1\.5rem\)\)\] {
+    width: min(24rem, 100vw - 1.5rem);
   }
 
   .w-full {
@@ -1745,6 +1765,13 @@
   .-translate-x-1\/2 {
     --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+
+  .scale-10 {
+    --tw-scale-x: 10%;
+    --tw-scale-y: 10%;
+    --tw-scale-z: 10%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
   }
 
   .scale-100 {
@@ -1964,6 +1991,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .bg-black\/50 {
       background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
+    }
+  }
+
+  .bg-black\/80 {
+    background-color: #000c;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-black\/80 {
+      background-color: color-mix(in oklab, var(--color-black) 80%, transparent);
     }
   }
 
@@ -2883,6 +2920,12 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:inset-x-4 {
+      inset-inline: calc(var(--spacing) * 4);
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:top-4 {
       top: calc(var(--spacing) * 4);
     }
@@ -3470,6 +3513,18 @@
   }
 
   @media (min-width: 48rem) {
+    .md\:block {
+      display: block;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:w-\[min\(26rem\,calc\(100vw-2rem\)\)\] {
+      width: min(26rem, 100vw - 2rem);
+    }
+  }
+
+  @media (min-width: 48rem) {
     @media (hover: hover) {
       .md\:hover\:scale-\[1\.02\]:hover {
         scale: 1.02;
@@ -3738,6 +3793,12 @@
   @media (min-width: 64rem) {
     .lg\:w-32 {
       width: calc(var(--spacing) * 32);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .lg\:w-64 {
+      width: calc(var(--spacing) * 64);
     }
   }
 

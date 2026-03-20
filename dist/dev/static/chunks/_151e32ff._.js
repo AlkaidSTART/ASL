@@ -34,7 +34,7 @@ function Search() {
                     try {
                         const pagefind = await import(/* webpackIgnore: true */ `${basePath}/pagefind/pagefind.js`);
                         window.pagefind = pagefind;
-                    } catch (e) {
+                    } catch  {
                         // Silently fail in dev mode if not available
                         console.log('Pagefind search not available (dev mode?)');
                     }
@@ -42,7 +42,9 @@ function Search() {
             }
             loadPagefind();
         }
-    }["Search.useEffect"], []);
+    }["Search.useEffect"], [
+        basePath
+    ]);
     async function handleSearch(e) {
         const value = e.target.value;
         setQuery(value);
@@ -97,7 +99,7 @@ function Search() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_$40$babel$2b$core$40$7$2e$29$2e$0_react$2d$dom$40$19$2e$2$2e$3_react$40$19$2e$2$2e$3_$5f$react$40$19$2e$2$2e$3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 ref: searchContainerRef,
-                className: "relative hidden sm:block w-64 h-10",
+                className: "relative hidden h-10 w-56 md:block lg:w-64",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_$40$babel$2b$core$40$7$2e$29$2e$0_react$2d$dom$40$19$2e$2$2e$3_react$40$19$2e$2$2e$3_$5f$react$40$19$2e$2$2e$3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: `ios-26-liquid-search absolute inset-0 rounded-full transition-all duration-300 overflow-hidden ${isFocused ? 'scale-105 shadow-xl' : 'hover:scale-102 hover:shadow-lg'}`,
@@ -160,7 +162,7 @@ function Search() {
                         columnNumber: 9
                     }, this),
                     results.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_$40$babel$2b$core$40$7$2e$29$2e$0_react$2d$dom$40$19$2e$2$2e$3_react$40$19$2e$2$2e$3_$5f$react$40$19$2e$2$2e$3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute right-0 top-full mt-2 w-96 max-h-96 overflow-hidden rounded-2xl border border-white/30 bg-white/80 dark:bg-black/80 backdrop-blur-xl shadow-2xl dark:border-white/15 z-50",
+                        className: "absolute right-0 top-full z-50 mt-2 w-[min(24rem,calc(100vw-1.5rem))] max-h-96 overflow-hidden rounded-2xl border border-white/30 bg-white/80 shadow-2xl backdrop-blur-xl dark:border-white/15 dark:bg-black/80 md:w-[min(26rem,calc(100vw-2rem))]",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_$40$babel$2b$core$40$7$2e$29$2e$0_react$2d$dom$40$19$2e$2$2e$3_react$40$19$2e$2$2e$3_$5f$react$40$19$2e$2$2e$3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "max-h-96 overflow-y-auto p-2",
                             children: results.map((result, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_$40$babel$2b$core$40$7$2e$29$2e$0_react$2d$dom$40$19$2e$2$2e$3_react$40$19$2e$2$2e$3_$5f$react$40$19$2e$2$2e$3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -246,7 +248,7 @@ function Search() {
                         className: "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm",
                         onClick: closeMobileSearch,
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_$40$babel$2b$core$40$7$2e$29$2e$0_react$2d$dom$40$19$2e$2$2e$3_react$40$19$2e$2$2e$3_$5f$react$40$19$2e$2$2e$3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "absolute inset-x-4 top-20 mx-auto max-w-2xl",
+                            className: "absolute inset-x-3 top-[max(5rem,calc(env(safe-area-inset-top)+4rem))] mx-auto max-w-2xl sm:inset-x-4 sm:top-20",
                             onClick: (e)=>e.stopPropagation(),
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_$40$babel$2b$core$40$7$2e$29$2e$0_react$2d$dom$40$19$2e$2$2e$3_react$40$19$2e$2$2e$3_$5f$react$40$19$2e$2$2e$3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {

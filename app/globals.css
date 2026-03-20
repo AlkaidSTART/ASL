@@ -49,6 +49,27 @@ body {
   min-height: 100vh;
 }
 
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 html:not([data-lang]) .lang-zh {
   display: none;
 }
@@ -76,6 +97,19 @@ html[data-lang="en"] .toggle-bg {
 }
 html[data-lang="zh"] .toggle-bg {
   transform: translateX(100%);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.hover\:scale-102:hover {
+  transform: scale(1.02);
 }
 
 /* Active Text Color */
