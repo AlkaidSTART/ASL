@@ -23,12 +23,7 @@ export default function BlogPage() {
       </div>
 
       <div className="flex flex-col items-center justify-center px-4 pb-16 pt-28 text-center sm:px-6 sm:pb-20 sm:pt-32 lg:px-8">
-        {/* 页面标题 */}
-        <h1 className="mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl lg:text-6xl">
-          博客
-        </h1>
-        
-        <p className="mb-10 max-w-2xl text-base text-gray-600 dark:text-gray-300 sm:text-lg lg:text-xl">
+        <p className="mb-10 mx-auto max-w-2xl px-2 font-serif text-lg italic text-stone-500 sm:mt-8 sm:px-0 sm:text-xl dark:text-stone-400">
           分享技术见解、开发经验和学习心得
         </p>
 
