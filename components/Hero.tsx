@@ -6,6 +6,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Smartphone, Laptop, Monitor, Tablet } from 'lucide-react';
+import { usePageStore } from '@/stores/pageStore';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 

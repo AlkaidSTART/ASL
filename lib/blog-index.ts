@@ -1,5 +1,5 @@
 // 自动生成的博客索引文件
-// 生成时间: 2026-03-21T08:58:17.869Z
+// 生成时间: 2026-03-21T09:10:36.873Z
 
 import type { BlogPost, BlogMetadata } from '@/lib/mdx-processor';
 
