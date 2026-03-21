@@ -67,7 +67,7 @@ export function PostCard({ post }: { post: Post }) {
       onMouseLeave={handleMouseLeave}
       className="group relative flex h-full flex-col p-6 sm:p-8 overflow-hidden rounded-[24px] bg-white/40 dark:bg-zinc-900/40 backdrop-blur-md border border-zinc-200/50 dark:border-zinc-800/50 transition-colors duration-500 hover:bg-white/80 dark:hover:bg-zinc-800/80 cursor-pointer shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_12px_48px_rgba(0,0,0,0.4)]"
     >
-      <Link href={`/blog/${post.slug}`} className="absolute inset-0 z-10" />
+      <Link href={`/blog/${post.slug}`} className="absolute inset-0 z-50 rounded-[24px]" prefetch={true} />
       
       {/* Background Gradient Spot on Hover */}
       <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-zinc-200/50 dark:bg-zinc-700/50 blur-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100 z-0"></div>

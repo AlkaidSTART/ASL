@@ -46,13 +46,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="w-full max-w-[65ch] md:max-w-3xl lg:max-w-4xl mx-auto">
           {/* 文章头部 */}
           <header className="mb-12 sm:mb-16 text-center">
-            <h1 className="mb-6 break-words text-3xl font-black leading-tight tracking-tighter text-stone-900 sm:mb-8 sm:text-5xl lg:text-6xl dark:text-stone-100">
+            <h1 className="mb-6 break-words text-3xl font-bold leading-tight tracking-tight text-zinc-900 sm:mb-8 sm:text-5xl lg:text-6xl dark:text-zinc-100">
               {post.title}
             </h1>
 
-            <div className="mb-4 flex flex-wrap items-center justify-center gap-2 text-xs text-stone-600 dark:text-stone-400 sm:mb-6 sm:gap-4 sm:text-sm">
-              <div className="flex items-center gap-1">
-                <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
+            <div className="mb-4 flex flex-wrap items-center justify-center gap-2 text-xs font-medium tracking-wider text-zinc-500 dark:text-zinc-400 sm:mb-6 sm:gap-4 sm:text-sm">
+              <div className="flex items-center gap-1.5">
+                <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <time dateTime={post.date}>
                   {new Date(post.date).toLocaleDateString('zh-CN', {
                     year: 'numeric',
@@ -62,27 +62,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </time>
               </div>
 
-              <span className="hidden sm:inline">•</span>
+              <span className="hidden sm:inline opacity-30">•</span>
 
-              <div className="flex items-center gap-1">
-                <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
+              <div className="flex items-center gap-1.5">
+                <Clock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span>{post.readingTime} 分钟阅读</span>
               </div>
 
-              <span className="hidden sm:inline">•</span>
+              <span className="hidden sm:inline opacity-30">•</span>
 
               <span>{post.wordCount} 字</span>
             </div>
 
             {post.tags.length > 0 && (
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-2 mt-6">
                 {post.tags.map((tag) => (
                   <Link
                     key={tag}
                     href={`/blog/tag/${encodeURIComponent(tag)}`}
-                    className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-2 py-1 text-xs font-medium text-amber-900 transition-colors hover:bg-amber-100 sm:px-3 sm:text-sm dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-200 dark:hover:bg-amber-900/30"
+                    className="inline-flex items-center rounded-full border border-zinc-200/60 bg-zinc-50/50 px-3 py-1 text-xs font-medium tracking-widest uppercase text-zinc-600 transition-all hover:bg-zinc-100/80 hover:shadow-sm sm:px-4 dark:border-zinc-800/60 dark:bg-zinc-800/30 dark:text-zinc-300 dark:hover:bg-zinc-800/60"
                   >
-                    <Tag className="h-3 w-3 mr-1" />
+                    <Tag className="h-3 w-3 mr-1.5 opacity-70" />
                     {tag}
                   </Link>
                 ))}
@@ -90,31 +90,31 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             )}
 
             {post.description && (
-              <p className="mx-auto mt-6 max-w-2xl px-2 font-serif text-lg italic text-stone-500 sm:mt-8 sm:px-0 sm:text-xl dark:text-stone-400">
+              <p className="mx-auto mt-8 sm:mt-10 max-w-2xl px-2 font-light text-lg text-zinc-500 sm:px-0 sm:text-xl dark:text-zinc-400 leading-relaxed">
                 {post.description}
               </p>
             )}
           </header>
 
           {/* 文章内容 - 沉浸式无边框文本主体 */}
-          <div className="mb-12 sm:mb-20 overflow-hidden">
-            <div className="prose prose-zinc prose-base mx-auto max-w-[65ch] overflow-x-auto selection:bg-amber-200/70 selection:text-stone-900 sm:prose-lg lg:prose-xl dark:prose-invert dark:selection:bg-amber-900/40 dark:selection:text-stone-100 prose-p:leading-[1.95] prose-p:text-stone-700 dark:prose-p:text-stone-300 prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-stone-900 dark:prose-headings:text-stone-100 prose-strong:text-stone-900 dark:prose-strong:text-stone-100 prose-a:text-amber-700 prose-a:decoration-amber-400/70 prose-a:underline-offset-4 hover:prose-a:text-amber-600 dark:prose-a:text-amber-300 dark:hover:prose-a:text-amber-200 prose-code:rounded prose-code:bg-black/5 prose-code:px-1 prose-code:py-0.5 prose-code:font-mono prose-code:text-stone-800 prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-white/10 dark:prose-code:text-stone-200 prose-pre:border prose-pre:border-stone-800/10 prose-pre:bg-[#2a2624] prose-pre:text-white dark:prose-pre:text-white dark:prose-pre:border-stone-800 dark:prose-pre:bg-[#161412] [&_pre_code]:text-white prose-blockquote:border-l-amber-500 prose-blockquote:font-serif prose-blockquote:text-stone-600 dark:prose-blockquote:text-stone-400 prose-hr:border-stone-300 dark:prose-hr:border-stone-700 prose-img:rounded-2xl prose-img:shadow-sm dark:prose-img:shadow-none">
+          <div className="mb-12 sm:mb-20 overflow-hidden rounded-3xl bg-white/30 p-6 sm:p-10 backdrop-blur-md border border-zinc-100 dark:border-zinc-800/30 dark:bg-zinc-900/30 shadow-[0_4px_30px_rgba(0,0,0,0.01)]">
+            <div className="prose prose-zinc prose-base mx-auto max-w-[65ch] overflow-x-auto selection:bg-zinc-200/70 selection:text-zinc-900 sm:prose-lg dark:prose-invert dark:selection:bg-zinc-800/80 dark:selection:text-zinc-100 prose-p:leading-loose prose-p:text-zinc-700 dark:prose-p:text-zinc-300 prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-zinc-900 dark:prose-headings:text-zinc-100 prose-strong:text-zinc-900 dark:prose-strong:text-zinc-100 prose-a:font-medium prose-a:text-zinc-800 prose-a:decoration-zinc-300 prose-a:underline-offset-4 hover:prose-a:text-black dark:prose-a:text-zinc-200 dark:prose-a:decoration-zinc-600 dark:hover:prose-a:text-white prose-code:rounded-md prose-code:bg-zinc-100/80 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:text-zinc-800 prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-zinc-800/60 dark:prose-code:text-zinc-200 prose-pre:border prose-pre:border-zinc-200/50 prose-pre:bg-zinc-50 prose-pre:text-zinc-800 prose-pre:shadow-sm dark:prose-pre:text-zinc-200 dark:prose-pre:border-zinc-800/80 dark:prose-pre:bg-zinc-900/80 dark:prose-pre:shadow-none [&_pre_code]:text-inherit prose-blockquote:border-l-zinc-300 prose-blockquote:bg-zinc-50/50 prose-blockquote:px-6 prose-blockquote:py-2 prose-blockquote:rounded-r-xl prose-blockquote:font-normal prose-blockquote:text-zinc-500 dark:prose-blockquote:border-zinc-700 dark:prose-blockquote:bg-zinc-800/30 dark:prose-blockquote:text-zinc-400 prose-hr:border-zinc-200 dark:prose-hr:border-zinc-800 prose-img:rounded-2xl prose-img:shadow-md dark:prose-img:shadow-none">
               <MDXRemote source={mdxContent} components={components} />
             </div>
           </div>
 
           {/* 文章底部 */}
-          <footer className="border-t border-stone-300/80 pt-8 dark:border-stone-800 sm:pt-12">
+          <footer className="border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80 sm:pt-12">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <Link
                 href="/blog"
-                className="ios-26-liquid-button flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
+                className="flex items-center gap-2 rounded-2xl border border-zinc-200/50 bg-white/40 px-5 py-2.5 text-sm font-medium tracking-wide text-zinc-700 backdrop-blur-md transition-all duration-300 hover:-translate-x-1 hover:bg-white/80 dark:border-zinc-800/50 dark:bg-zinc-900/40 dark:text-zinc-300 dark:hover:bg-zinc-800/80"
               >
                 <ArrowLeft className="h-4 w-4" />
-                返回博客
+                <span>返回博客</span>
               </Link>
 
-              <div className="text-center text-xs text-gray-500 dark:text-gray-400 sm:text-right sm:text-sm">
+              <div className="text-center font-mono text-xs text-zinc-400 dark:text-zinc-500 sm:text-right">
                 最后更新: {new Date(post.date).toLocaleDateString('zh-CN')}
               </div>
             </div>
