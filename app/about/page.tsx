@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { usePageStore } from '@/stores/pageStore';
 import { TechStack } from '@/components/about/TechStack';
@@ -61,7 +62,9 @@ export default function About() {
           {/* 1. 全局名片 (Hero Card) - 占据前两列 */}
           <BentoCard className="md:col-span-2 flex flex-col justify-between" delay={0.1}>
             <div className="flex items-start justify-between">
-              <img src={`${basePath}${personalInfo.avatarUrl}`} alt={personalInfo.name} className="h-24 w-24 rounded-full shadow-lg ring-4 ring-white/50 dark:ring-black/50 object-cover" />
+              <div className="relative h-24 w-24 rounded-full shadow-lg ring-4 ring-white/50 dark:ring-black/50 overflow-hidden">
+                <Image src={`${basePath}${personalInfo.avatarUrl}`} alt={personalInfo.name} fill className="object-cover" />
+              </div>
               <div className="flex items-center gap-2 rounded-full border border-black/5 bg-white/50 px-3 py-1 text-sm dark:border-white/5 dark:bg-black/50">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>

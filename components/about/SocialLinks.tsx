@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Twitter, Youtube, MessageCircle, MapPin, Mail } from "lucide-react";
+import { Github, Twitter, Youtube, MessageCircle } from "lucide-react";
 
 import { personalInfo } from "@/lib/about-data";
 

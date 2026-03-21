@@ -11,7 +11,8 @@ export function GithubGraph() {
 
   // 确保水合完成后再渲染，避免主题切换闪烁
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const currentTheme = theme === "system" ? systemTheme : theme;

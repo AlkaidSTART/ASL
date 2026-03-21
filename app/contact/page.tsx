@@ -38,8 +38,8 @@ export default function ContactPage() {
   const { setIsContactPage } = usePageStore();
   const containerRef = useRef<HTMLDivElement>(null);
   const cursorImageRef = useRef<HTMLDivElement>(null);
-  const qToX = useRef<gsap.QuickToFunc>();
-  const qToY = useRef<gsap.QuickToFunc>();
+  const qToX = useRef<((value: number) => void) | null>(null);
+  const qToY = useRef<((value: number) => void) | null>(null);
 
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const [modalImage, setModalImage] = useState<string | null>(null);
@@ -193,7 +193,7 @@ export default function ContactPage() {
         <div className="flex flex-col w-full">
           <div className="w-full h-px bg-border divider-line origin-left" />
           
-          {CONTACTS.map((item, index) => {
+          {CONTACTS.map((item) => {
             const content = (
               <div 
                 className="group py-8 md:py-12 flex items-center justify-between cursor-pointer w-full"
