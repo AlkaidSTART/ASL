@@ -178,7 +178,8 @@ export default function Search() {
         {isMobileSearchOpen && (
           <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm" onClick={closeMobileSearch}>
             <div 
-              className="absolute inset-x-3 top-[max(5rem,calc(env(safe-area-inset-top)+4rem))] mx-auto max-w-2xl sm:inset-x-4 sm:top-20"
+              className="absolute inset-x-3 mx-auto max-w-2xl sm:inset-x-4 sm:top-20"
+              style={{ top: 'calc(env(safe-area-inset-top) + 5rem)' }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* 搜索输入框 */}

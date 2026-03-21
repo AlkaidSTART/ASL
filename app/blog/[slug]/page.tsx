@@ -3,6 +3,7 @@ import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
 import { getAllPosts, getPostBySlug } from '@/lib/blog-index';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import FloatBackButton from '@/components/blog/FloatBackButton';
 
 // 定义 MDX 组件
 const components = {
@@ -38,26 +39,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="min-h-screen">
-      {/* 液态玻璃风格的返回按钮 */}
-      <div className="fixed left-4 top-[max(1rem,env(safe-area-inset-top))] z-50 sm:left-6 sm:top-6">
-        <Link
-          href="/blog"
-          className="ios-26-liquid-button flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span className="hidden sm:inline">返回博客</span>
-        </Link>
-      </div>
+      {/* 沉浸式侧边返回按钮（滚动时隐藏） */}
+      <FloatBackButton />
 
       <article className="flex flex-col items-center px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8">
-        <div className="w-full max-w-4xl mx-auto">
+        <div className="w-full max-w-[65ch] md:max-w-3xl lg:max-w-4xl mx-auto">
           {/* 文章头部 */}
-          <header className="mb-8 sm:mb-12 text-center">
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-4 sm:mb-6 break-words">
+          <header className="mb-12 sm:mb-16 text-center">
+            <h1 className="mb-6 break-words text-3xl font-black leading-tight tracking-tighter text-stone-900 sm:mb-8 sm:text-5xl lg:text-6xl dark:text-stone-100">
               {post.title}
             </h1>
 
-            <div className="mb-4 flex flex-wrap items-center justify-center gap-2 text-xs text-gray-600 dark:text-gray-400 sm:mb-6 sm:gap-4 sm:text-sm">
+            <div className="mb-4 flex flex-wrap items-center justify-center gap-2 text-xs text-stone-600 dark:text-stone-400 sm:mb-6 sm:gap-4 sm:text-sm">
               <div className="flex items-center gap-1">
                 <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
                 <time dateTime={post.date}>
@@ -87,7 +80,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <Link
                     key={tag}
                     href={`/blog/tag/${encodeURIComponent(tag)}`}
-                    className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                    className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-2 py-1 text-xs font-medium text-amber-900 transition-colors hover:bg-amber-100 sm:px-3 sm:text-sm dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-200 dark:hover:bg-amber-900/30"
                   >
                     <Tag className="h-3 w-3 mr-1" />
                     {tag}
@@ -97,21 +90,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             )}
 
             {post.description && (
-              <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-300 italic max-w-2xl mx-auto px-2 sm:px-0">
+              <p className="mx-auto mt-6 max-w-2xl px-2 font-serif text-lg italic text-stone-500 sm:mt-8 sm:px-0 sm:text-xl dark:text-stone-400">
                 {post.description}
               </p>
             )}
           </header>
 
-          {/* 文章内容 - 液态玻璃容器 */}
-          <div className="ios-26-liquid-glass rounded-xl p-4 sm:p-6 lg:p-8 mb-8 sm:mb-12 overflow-hidden">
-            <div className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert max-w-none overflow-x-auto">
+          {/* 文章内容 - 沉浸式无边框文本主体 */}
+          <div className="mb-12 sm:mb-20 overflow-hidden">
+            <div className="prose prose-zinc prose-base mx-auto max-w-[65ch] overflow-x-auto selection:bg-amber-200/70 selection:text-stone-900 sm:prose-lg lg:prose-xl dark:prose-invert dark:selection:bg-amber-900/40 dark:selection:text-stone-100 prose-p:leading-[1.95] prose-p:text-stone-700 dark:prose-p:text-stone-300 prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-stone-900 dark:prose-headings:text-stone-100 prose-strong:text-stone-900 dark:prose-strong:text-stone-100 prose-a:text-amber-700 prose-a:decoration-amber-400/70 prose-a:underline-offset-4 hover:prose-a:text-amber-600 dark:prose-a:text-amber-300 dark:hover:prose-a:text-amber-200 prose-code:rounded prose-code:bg-black/5 prose-code:px-1 prose-code:py-0.5 prose-code:font-mono prose-code:text-stone-800 prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-white/10 dark:prose-code:text-stone-200 prose-pre:border prose-pre:border-stone-800/10 prose-pre:bg-[#2a2624] prose-pre:text-stone-200 dark:prose-pre:border-stone-800 dark:prose-pre:bg-[#161412] prose-blockquote:border-l-amber-500 prose-blockquote:font-serif prose-blockquote:text-stone-600 dark:prose-blockquote:text-stone-400 prose-hr:border-stone-300 dark:prose-hr:border-stone-700 prose-img:rounded-2xl prose-img:shadow-sm dark:prose-img:shadow-none">
               <MDXRemote source={mdxContent} components={components} />
             </div>
           </div>
 
           {/* 文章底部 */}
-          <footer className="border-t border-gray-200 pt-6 dark:border-gray-700 sm:pt-8">
+          <footer className="border-t border-stone-300/80 pt-8 dark:border-stone-800 sm:pt-12">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <Link
                 href="/blog"

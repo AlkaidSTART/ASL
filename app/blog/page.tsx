@@ -9,7 +9,10 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen">
       {/* 液态玻璃风格的返回主页按钮 */}
-      <div className="fixed left-4 top-[max(1rem,env(safe-area-inset-top))] z-50 sm:left-6 sm:top-6">
+      <div
+        className="fixed left-4 z-50 sm:left-6 sm:top-6"
+        style={{ top: 'calc(env(safe-area-inset-top) + 1rem)' }}
+      >
         <Link 
           href="/" 
           className="ios-26-liquid-button flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all"
