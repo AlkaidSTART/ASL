@@ -11,7 +11,8 @@ import { SocialLinks } from '@/components/about/SocialLinks';
 import { Timeline } from '@/components/about/Timeline';
 import { GithubGraph } from '@/components/about/GithubGraph';
 import { Projects } from '@/components/about/Projects';
-import { ArrowLeft, Sparkles, Code2, Gamepad2, Compass, Link as LinkIcon, Milestone, Github, Briefcase } from 'lucide-react';
+import { AITools } from '@/components/about/AITools';
+import { ArrowLeft, Sparkles, Code2, Gamepad2, Compass, Link as LinkIcon, Milestone, Github, Briefcase, Cpu } from 'lucide-react';
 import { personalInfo } from '@/lib/about-data';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
@@ -147,7 +148,24 @@ export default function About() {
             <TechStack />
           </BentoCard>
 
-          {/* 5. 社交媒体矩阵 (占据全部三列) */}
+          {/* 5. AI 工具与生产力流 (全新加入，独占三列宽幅展示，因为内容极其丰富) */}
+          <BentoCard className="md:col-span-3">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="rounded-xl bg-purple-100/50 p-2 dark:bg-purple-900/20">
+                 <Cpu className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  <span className="lang-en">AI Driven Workflow</span>
+                  <span className="lang-zh">AI 驱动工作流</span>
+                </h3>
+                <p className="text-xs text-gray-500 font-mono mt-1">Empowered by Multi-Agent & Copilots</p>
+              </div>
+            </div>
+            <AITools />
+          </BentoCard>
+
+          {/* 6. 社交媒体矩阵 (占据全部三列) */}
           <BentoCard className="md:col-span-3">
             <div className="flex items-center gap-3 mb-6">
               <div className="rounded-xl bg-zinc-100/50 p-2 dark:bg-zinc-800/50">

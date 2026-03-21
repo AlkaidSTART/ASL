@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/allure/Desktop/alkaidlight/app/template.tsx"],"sourcesContent":["'use client';\n\nimport { useRef } from 'react';\nimport gsap from 'gsap';\nimport { useGSAP } from '@gsap/react';\n\nexport default function Template({ children }: { children: React.ReactNode }) {\n  const container = useRef<HTMLDivElement>(null);\n\n  useGSAP(() => {\n    gsap.fromTo(\n      container.current,\n      { opacity: 0, y: 20 },\n      { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', clearProps: 'all' }\n    );\n  }, { scope: container });\n\n  return (\n    <div ref={container}>\n      {children}\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AAEA;AACA;AACA;AAJA;;;;;AAMe,SAAS,SAAS,EAAE,QAAQ,EAAiC;IAC1E,MAAM,YAAY,IAAA,gXAAM,EAAiB;IAEzC,IAAA,iQAAO,EAAC;QACN,0MAAI,CAAC,MAAM,CACT,UAAU,OAAO,EACjB;YAAE,SAAS;YAAG,GAAG;QAAG,GACpB;YAAE,SAAS;YAAG,GAAG;YAAG,UAAU;YAAK,MAAM;YAAc,YAAY;QAAM;IAE7E,GAAG;QAAE,OAAO;IAAU;IAEtB,qBACE,+YAAC;QAAI,KAAK;kBACP;;;;;;AAGP"}}]
+}

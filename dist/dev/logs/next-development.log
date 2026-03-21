@@ -1,0 +1,16 @@
+[00:00:00.630] Server  LOG     ✓ Ready in 456ms
+[00:00:08.164] Server  ERROR   (node:51721) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[00:00:08.283] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:00:08.283] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:08.891] Browser LOG     Pagefind search not available (dev mode?)
+[00:00:09.786] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:11.928] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:00:13.513] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:00:13.513] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:13.513] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:13.513] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:00:13.513] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:13.513] Browser LOG     Pagefind search not available (dev mode?)
+[00:00:13.513] Browser LOG     Pagefind search not available (dev mode?)
+[00:00:14.989] Browser WARN    GSAP target  not found. https://gsap.com

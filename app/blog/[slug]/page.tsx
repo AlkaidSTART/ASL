@@ -4,6 +4,7 @@ import { getAllPosts, getPostBySlug } from '@/lib/blog-index';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import FloatBackButton from '@/components/blog/FloatBackButton';
+import { Suspense } from 'react';
 
 // 定义 MDX 组件
 const components = {
@@ -97,9 +98,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </header>
 
           {/* 文章内容 - 沉浸式无边框文本主体 */}
-          <div className="mb-12 sm:mb-20 overflow-hidden rounded-3xl bg-white/30 p-6 sm:p-10 backdrop-blur-md border border-zinc-100 dark:border-zinc-800/30 dark:bg-zinc-900/30 shadow-[0_4px_30px_rgba(0,0,0,0.01)]">
+          <div className="mb-12 sm:mb-20 overflow-hidden rounded-3xl bg-white/30 p-6 sm:p-10 backdrop-blur-md border border-zinc-100 dark:border-zinc-800/30 dark:bg-zinc-900/30 shadow-[0_4px_30px_rgba(0,0,0,0.01)] relative z-10">
             <div className="prose prose-zinc prose-base mx-auto max-w-[65ch] overflow-x-auto selection:bg-zinc-200/70 selection:text-zinc-900 sm:prose-lg dark:prose-invert dark:selection:bg-zinc-800/80 dark:selection:text-zinc-100 prose-p:leading-loose prose-p:text-zinc-700 dark:prose-p:text-zinc-300 prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-zinc-900 dark:prose-headings:text-zinc-100 prose-strong:text-zinc-900 dark:prose-strong:text-zinc-100 prose-a:font-medium prose-a:text-zinc-800 prose-a:decoration-zinc-300 prose-a:underline-offset-4 hover:prose-a:text-black dark:prose-a:text-zinc-200 dark:prose-a:decoration-zinc-600 dark:hover:prose-a:text-white prose-code:rounded-md prose-code:bg-zinc-100/80 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:text-zinc-800 prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-zinc-800/60 dark:prose-code:text-zinc-200 prose-pre:border prose-pre:border-zinc-200/50 prose-pre:bg-zinc-50 prose-pre:text-zinc-800 prose-pre:shadow-sm dark:prose-pre:text-zinc-200 dark:prose-pre:border-zinc-800/80 dark:prose-pre:bg-zinc-900/80 dark:prose-pre:shadow-none [&_pre_code]:text-inherit prose-blockquote:border-l-zinc-300 prose-blockquote:bg-zinc-50/50 prose-blockquote:px-6 prose-blockquote:py-2 prose-blockquote:rounded-r-xl prose-blockquote:font-normal prose-blockquote:text-zinc-500 dark:prose-blockquote:border-zinc-700 dark:prose-blockquote:bg-zinc-800/30 dark:prose-blockquote:text-zinc-400 prose-hr:border-zinc-200 dark:prose-hr:border-zinc-800 prose-img:rounded-2xl prose-img:shadow-md dark:prose-img:shadow-none">
-              <MDXRemote source={mdxContent} components={components} />
+              <Suspense fallback={<div className="h-40 flex items-center justify-center text-zinc-500 animate-pulse">Loading content...</div>}>
+                <MDXRemote source={mdxContent} components={components} />
+              </Suspense>
             </div>
           </div>
 
