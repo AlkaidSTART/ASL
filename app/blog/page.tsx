@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { getAllPosts, getAllTags } from '@/lib/blog-index';
+import { PostList } from '@/components/PostList';
 
 export default function BlogPage() {
   const posts = getAllPosts();
@@ -51,7 +52,7 @@ export default function BlogPage() {
         )}
 
         {/* 文章列表 */}
-        <div className="w-full max-w-4xl space-y-6 px-4">
+        <div className="w-full max-w-5xl px-0 sm:px-4">
           {posts.length === 0 ? (
             <div className="text-center py-12">
               <div className="text-gray-500 dark:text-gray-400 text-lg mb-4">
@@ -62,67 +63,7 @@ export default function BlogPage() {
               </p>
             </div>
           ) : (
-            posts.map((post) => (
-              <article
-                key={post.slug}
-                className="ios-26-liquid-glass group rounded-xl p-4 text-left transition-all duration-300 sm:p-6 md:hover:scale-[1.02]"
-              >
-                <Link href={`/blog/${post.slug}`} className="block">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {post.title}
-                  </h2>
-
-                  {post.description && (
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 text-sm sm:text-base">
-                      {post.description}
-                    </p>
-                  )}
-
-                  <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 sm:gap-4 text-sm text-gray-500 dark:text-gray-400">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4 flex-shrink-0" />
-                      <time dateTime={post.date}>
-                        {new Date(post.date).toLocaleDateString('zh-CN', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
-                      </time>
-                    </div>
-
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-4 w-4 flex-shrink-0" />
-                      <span>{post.readingTime} 分钟阅读</span>
-                    </div>
-
-                    {post.tags.length > 0 && (
-                      <div className="flex items-center gap-1">
-                        <Tag className="h-4 w-4 flex-shrink-0" />
-                        <span>{post.tags.length} 个标签</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {post.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {post.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                      {post.tags.length > 3 && (
-                        <span className="text-xs text-gray-500 dark:text-gray-400">
-                          +{post.tags.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  )}
-                </Link>
-              </article>
-            ))
+            <PostList posts={posts} />
           )}
         </div>
 

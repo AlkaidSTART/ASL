@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { Smartphone, Laptop, Monitor, Watch, Tablet } from 'lucide-react';
+import { Smartphone, Laptop, Monitor, Tablet } from 'lucide-react';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
@@ -222,8 +222,8 @@ export function Hero() {
         </div>
 
         <div className="overflow-hidden pb-4 mb-4 sm:mb-6 px-2 flex justify-center items-center gap-4">
-          <h1 className="hero-title-word inline-block origin-bottom-left text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 drop-shadow-sm">
-            AlkaidSTART
+          <h1 className="hero-title-word inline-block origin-bottom-left text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-zinc-800 via-zinc-600 to-zinc-800 dark:from-zinc-100 dark:via-zinc-300 dark:to-zinc-100 drop-shadow-sm select-none">
+            Alkaid<span className="font-light tracking-[0.05em] ml-1 bg-gradient-to-r from-zinc-500 to-zinc-400 bg-clip-text text-transparent">START</span>
           </h1>
     
         </div>

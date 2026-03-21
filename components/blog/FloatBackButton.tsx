@@ -35,7 +35,7 @@ export default function FloatBackButton() {
     >
       <Link
         href="/blog"
-        className="ios-26-liquid-button flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all backdrop-blur-md"
+        className="flex items-center gap-2 rounded-2xl border border-zinc-200/50 bg-white/40 px-3 py-2 text-sm font-medium text-gray-700 backdrop-blur-md transition-all duration-300 hover:-translate-x-1 hover:bg-white/80 dark:border-zinc-800/50 dark:bg-zinc-900/40 dark:text-gray-300 dark:hover:bg-zinc-800/80"
       >
         <ArrowLeft className="h-4 w-4" />
         <span className="hidden sm:inline">返回博客</span>

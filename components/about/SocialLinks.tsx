@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Github, Twitter, Youtube, MessageCircle } from "lucide-react";
 
 import { personalInfo } from "@/lib/about-data";
@@ -35,20 +34,16 @@ export function SocialLinks() {
       {socials.map((social, index) => {
         const Icon = social.icon;
         return (
-          <motion.a
+          <a
             key={social.name}
             href={social.link}
             target="_blank"
             rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: index * 0.05 }}
             className={`flex items-center justify-center gap-2 rounded-xl border border-black/5 bg-white/40 px-4 py-3 text-sm font-medium text-gray-700 backdrop-blur-sm transition-all duration-300 dark:border-white/5 dark:bg-black/20 dark:text-gray-300 ${social.color}`}
           >
             <Icon className="h-4 w-4" />
             <span>{social.name}</span>
-          </motion.a>
+          </a>
         );
       })}
     </div>

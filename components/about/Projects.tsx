@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { FolderGit2, ArrowUpRight } from "lucide-react";
 
 const projects = [
@@ -24,14 +23,10 @@ export function Projects() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
       {projects.map((project, index) => (
-        <motion.a
+        <a
           href={project.link}
           key={project.name}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: index * 0.1 }}
-          className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-black/5 bg-white/50 p-6 transition-all hover:shadow-lg dark:border-white/5 dark:bg-black/40"
+          className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-black/5 bg-white/50 p-6 transition-all hover:shadow-lg dark:border-white/5 dark:bg-black/40 hover:-translate-y-1"
         >
           {/* 背景渐变点缀 */}
           <div className={`absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br blur-2xl transition-opacity group-hover:opacity-70 opacity-30 ${project.color}`} />
@@ -54,7 +49,7 @@ export function Projects() {
               </span>
             ))}
           </div>
-        </motion.a>
+        </a>
       ))}
     </div>
   );

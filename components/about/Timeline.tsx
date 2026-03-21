@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Briefcase, GraduationCap, Rocket } from "lucide-react";
 
 const events = [
@@ -36,12 +35,8 @@ export function Timeline() {
       {events.map((event, index) => {
         const Icon = event.icon;
         return (
-          <motion.div 
+          <div 
             key={index}
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: index * 0.15 }}
             className="mb-8 ml-6 last:mb-0"
           >
             <span className={`absolute -left-4 flex h-8 w-8 items-center justify-center rounded-full ring-4 ring-white dark:ring-black/50 ${event.bg}`}>
@@ -52,7 +47,7 @@ export function Timeline() {
               <h4 className="text-base font-semibold text-gray-900 dark:text-white">{event.title}</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{event.description}</p>
             </div>
-          </motion.div>
+          </div>
         );
       })}
     </div>

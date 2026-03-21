@@ -183,22 +183,18 @@ export function Header() {
         onMouseEnter={handleContainerEnter}
         onMouseLeave={handleContainerLeave}
       >
-        {/* 背景样式层 */}
-        <div className="ios-26-liquid-glass-backdrop absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl border border-white/30 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-[60px] backdrop-saturate-200 dark:border-white/15 dark:from-black/30 dark:to-black/10" />
-        <div className="ios-26-liquid-glow absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl" />
-        <div className="ios-26-liquid-highlight absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl" />
-        <div className="ios-26-liquid-shadow absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl" />
-        <div className="ios-26-liquid-shine absolute inset-0 -z-10 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-
+        {/* 背景样式层 - 极简透明质感 */}
+        <div className="absolute inset-0 -z-10 rounded-2xl sm:rounded-[20px] bg-white/20 dark:bg-zinc-950/20 backdrop-blur-md border border-white/30 dark:border-zinc-800/30 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.1)] transition-all duration-700 group-hover:bg-white/40 dark:group-hover:bg-zinc-900/40 group-hover:backdrop-blur-xl group-hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:group-hover:shadow-[0_8px_32px_rgba(0,0,0,0.2)]" />
+        
         {/* 顶部导航 */}
         <header 
           ref={headerRef}
-          className="ios-26-liquid-glass flex h-14 items-center justify-between px-3 cursor-pointer sm:h-16 sm:px-6 lg:px-8"
+          className="flex h-14 items-center justify-between px-3 cursor-pointer sm:h-16 sm:px-6 lg:px-8"
         >
           <div className="flex items-center gap-2 sm:gap-4 lg:gap-8">
-            <Link href="/" className="flex items-center gap-1.5 text-base font-bold tracking-tight sm:gap-2 sm:text-lg lg:text-xl">
-              <span className="font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400">
-                AlkaidSTART
+            <Link href="/" className="group flex items-center relative z-10 transition-transform duration-300 active:scale-95">
+              <span className="text-base sm:text-lg lg:text-xl font-medium tracking-[0.12em] text-zinc-900 dark:text-zinc-100 transition-colors duration-300">
+                Alkaid<span className="font-light text-zinc-500 dark:text-zinc-400 ml-[1px]">START</span>
               </span>
             </Link>
             
@@ -206,8 +202,8 @@ export function Header() {
               {/* GSAP 物理吸附指示器 */}
               <div
                 ref={indicatorRef}
-                className="absolute inset-y-0 left-0 bg-white/20 dark:bg-white/10 backdrop-blur-sm border border-white/40 dark:border-white/20 shadow-lg"
-                style={{ borderRadius: '1rem', opacity: 0 }}
+                className="absolute inset-y-0 left-0 bg-black/5 dark:bg-white/10 border border-black/5 dark:border-white/10"
+                style={{ borderRadius: '0.8rem', opacity: 0 }}
               />
               
               {navItems.map((item) => (

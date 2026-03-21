@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Monitor, Server, Wrench, Rocket, Smartphone } from "lucide-react";
 
 const skillCategories = [
@@ -67,17 +66,12 @@ export function TechStack() {
           {/* 技能标签 */}
           <div className="flex flex-wrap gap-2">
             {category.skills.map((skill, index) => (
-              <motion.div
+              <div
                 key={skill.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.05 + idx * 0.1 }}
-                whileHover={{ y: -2, scale: 1.05 }}
-                className={`flex items-center rounded-lg px-3 py-1.5 text-xs font-semibold tracking-wide transition-shadow hover:shadow-md cursor-default ${skill.bg} ${skill.color}`}
+                className={`flex items-center rounded-lg px-3 py-1.5 text-xs font-semibold tracking-wide transition-all duration-300 hover:-translate-y-[2px] hover:scale-105 hover:shadow-md cursor-default ${skill.bg} ${skill.color}`}
               >
                 {skill.name}
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
