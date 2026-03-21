@@ -1,10 +1,10 @@
 // 关于页面的所有个人资料配置都在这里
 
 export const personalInfo = {
-  name: "AlkaidLight",
-  avatarUrl: "/avatorone.jpg", // 你的头像路径
-  githubUsername: "allure-v", // 请替换为你真实的 GitHub 用户名
-  email: "your.email@example.com", // 你的求职/联系邮箱
+  name: "AlkaidSTART",
+  avatarUrl: "/avator.jpg", // 你的头像路径
+  githubUsername: "AlkaidSTART", // 请替换为你真实的 GitHub 用户名
+  email: "2595006848@qq.com", // 你的求职/联系邮箱
   
   // 个性签名 (支持中英双语)
   bio: {
