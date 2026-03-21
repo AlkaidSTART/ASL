@@ -10,40 +10,69 @@ export function Footer() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 动画路线：从左边缘走到右边缘，再走回来，并且转身
-      const width = globalThis.window ? window.innerWidth : 500;
-      // 预估图标宽度约为 24pxß
-      const distance = width - 40; 
-      
-      const tl = gsap.timeline({ repeat: -1 });
+      const cat = charRef.current;
+      if (!cat) return;
 
-      // 向右走：小猫慢慢走，同时加入非常轻微的上下跳动模拟脚步
-      tl.to(charRef.current, {
-        x: distance,
-        duration: 18, // 小猫走慢一点
-        ease: "none",
-        onStart: () => {
-          if (charRef.current) gsap.set(charRef.current, { scaleX: -1 });
-        }
-      })
-      // 向左走回来
-      .to(charRef.current, {
-        x: 0,
-        duration: 18,
-        ease: "none",
-        onStart: () => {
-          if (charRef.current) gsap.set(charRef.current, { scaleX: 1 });
-        }
-      });
-      
-      // 添加一个独立的心跳/脚步起伏动画
-      gsap.to(charRef.current, {
-        y: -3, // 稍微往上跳3px
-        duration: 0.3,
-        yoyo: true, // 弹回去
-        repeat: -1, // 无限重复
-        ease: "sine.inOut"
-      });
+      // 初始状态：隐藏在下方并隐形
+      gsap.set(cat, { y: 15, opacity: 0, rotation: 0 });
+
+      const peekOut = () => {
+        // 随机在屏幕范围内选一个 X 坐标 (预留 40px 边距)
+        const width = globalThis.window ? window.innerWidth : 800;
+        const randomX = Math.random() * (width - 40) + 10;
+        
+        // 随机朝向：一半概率镜像翻转
+        const faceRight = Math.random() > 0.5;
+        
+        // 重置位置到新的潜伏点
+        gsap.set(cat, { 
+          x: randomX, 
+          scaleX: faceRight ? -1 : 1, 
+          y: 15, 
+          opacity: 0, 
+          rotation: 0 
+        });
+
+        const tl = gsap.timeline({
+          onComplete: () => {
+            // 完全动作结束后，随机等待 4 ~ 10 秒再进行下一次探头，降低突兀感
+            gsap.delayedCall(Math.random() * 6 + 4, peekOut);
+          }
+        });
+
+        // 1. 缓缓探出头
+        tl.to(cat, {
+          y: 0,
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.out"
+        })
+        // 2. 停顿发呆，稍微歪一下头
+        .to(cat, {
+          rotation: faceRight ? 8 : -8,
+          duration: 1,
+          delay: 1.5,
+          ease: "sine.inOut"
+        })
+        // 3. 把头正回来看一下
+        .to(cat, {
+          rotation: 0,
+          duration: 0.8,
+          delay: 0.5,
+          ease: "sine.inOut"
+        })
+        // 4. 悄悄缩回去
+        .to(cat, {
+          y: 15,
+          opacity: 0,
+          duration: 1.5,
+          delay: 1.5,
+          ease: "power2.in"
+        });
+      };
+
+      // 页面加载后 2 秒，第一次出现
+      gsap.delayedCall(2, peekOut);
 
     }, footerRef);
 
@@ -56,10 +85,10 @@ export function Footer() {
       {/* 调整 top 让小猫踩在边框上，pointer-events-none 防止遮挡点击 */}
       <div 
         ref={charRef}
-        className="absolute left-0 text-gray-500/80 dark:text-gray-400/80 pointer-events-none"
-        style={{ top: "-23px", zIndex: 10, willChange: "transform" }}
+        className="absolute left-0 text-gray-500/70 dark:text-gray-400/70 pointer-events-none"
+        style={{ top: "-28px", zIndex: 10, willChange: "transform, opacity" }}
       >
-        <Cat size={22} strokeWidth={1.5} />
+        <Cat size={28} strokeWidth={1.5} />
       </div>
       
       <div className="container mx-auto px-4">
