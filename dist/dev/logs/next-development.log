@@ -193,3 +193,7 @@
 [00:23:44.168] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
 [00:23:44.168] Browser WARN    GSAP target  not found. https://gsap.com
 [00:23:45.670] Browser WARN    GSAP target  not found. https://gsap.com
+[00:31:23.652] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:31:23.652] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:31:23.652] Browser WARN    GSAP target  not found. https://gsap.com
+[00:31:25.249] Browser WARN    GSAP target  not found. https://gsap.com
