@@ -114,7 +114,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 className="flex items-center gap-2 rounded-2xl border border-zinc-200/50 bg-white/40 px-5 py-2.5 text-sm font-medium tracking-wide text-zinc-700 backdrop-blur-md transition-all duration-300 hover:-translate-x-1 hover:bg-white/80 dark:border-zinc-800/50 dark:bg-zinc-900/40 dark:text-zinc-300 dark:hover:bg-zinc-800/80"
               >
                 <ArrowLeft className="h-4 w-4" />
-                <span>返回博客</span>
+                <span className="hidden sm:inline">
+                  <span className="lang-zh">返回博客</span>
+                  <span className="lang-en">Back to Blog</span>
+                </span>
               </Link>
 
               <div className="text-center font-mono text-xs text-zinc-400 dark:text-zinc-500 sm:text-right">

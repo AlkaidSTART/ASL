@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Fuse from 'fuse.js';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 import { blogMetadata } from '@/lib/blog-index';
 
@@ -31,6 +32,13 @@ export default function Search() {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const router = useRouter();
+  
+  const { t } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -211,7 +219,7 @@ export default function Search() {
         
         <div className="flex flex-col items-start pr-2">
            <span className="text-sm font-medium tracking-wide text-zinc-800 dark:text-zinc-200">
-             Explore
+              {mounted ? t('search', 'shortcut') : 'Explore'}
            </span>
            <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
              ⌘ K
@@ -236,7 +244,7 @@ export default function Search() {
               <input
                 ref={inputRef}
                 className="flex-1 bg-transparent text-xl text-black placeholder:text-zinc-400 focus:outline-none dark:text-white appearance-none"
-                placeholder="Search..."
+                placeholder={mounted ? t('search', 'placeholder') : 'Search...'}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 autoComplete="off"
@@ -300,7 +308,7 @@ export default function Search() {
                 </div>
               ) : (
                 <div className="py-12 text-center text-zinc-500">
-                  <p>No results found for <span className="font-bold">"{query}"</span></p>
+                  <p>{mounted ? t('search', 'noResults', { query }) : `No results found for "${query}"`}</p>
                 </div>
               )}
             </div>

@@ -1,16 +1,21 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Smartphone, Laptop, Monitor, Tablet } from 'lucide-react';
 import { usePageStore } from '@/stores/pageStore';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 export function Hero() {
+  const { t } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const container = useRef<HTMLElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const marqueeRef1 = useRef<HTMLDivElement>(null);
@@ -238,7 +243,7 @@ export function Hero() {
             className="hero-btn group relative overflow-hidden inline-flex items-center justify-center rounded-full bg-gray-900 px-8 py-4 text-sm font-medium tracking-wider text-white transition-all duration-500 hover:bg-gray-800 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-1 focus:outline-none w-full sm:w-auto"
           >
             <div className="absolute inset-0 -translate-x-full transition-transform duration-[1.5s] ease-out group-hover:translate-x-[200%] bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"></div>
-            <span className="relative mr-2">Explore Blog</span>
+            <span className="relative mr-2">{mounted ? t('hero', 'explore') : '探索文章'}</span>
             <span className="relative transition-transform duration-500 group-hover:translate-x-1">→</span>
           </Link>
           <a

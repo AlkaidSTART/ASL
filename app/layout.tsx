@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { I18nProvider } from "@/components/I18nProvider";
 import { Preloader } from "@/components/Preloader";
 import Search from "@/components/Search";
 
@@ -55,6 +56,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <I18nProvider />
           <Preloader />
           <Header />
           <main className="flex-1">

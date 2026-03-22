@@ -1,14 +1,18 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Cat } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const charRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const ctx = gsap.context(() => {
       const cat = charRef.current;
       if (!cat) return;
@@ -93,9 +97,9 @@ export function Footer() {
       
       <div className="container mx-auto px-4">
         <p className="font-mono text-[10px] uppercase tracking-widest text-gray-400">
-          &copy; {new Date().getFullYear()} AlkaidLight 
+          &copy; {new Date().getFullYear()} {mounted ? t('footer', 'copyright') : 'All rights reserved.'}
           <span className="mx-2">·</span> 
-           Hosted on GitHub Pages
+           {mounted ? t('footer', 'hostedOn') : 'Hosted on GitHub Pages'}
         </p>
       </div>
     </footer>

@@ -1,12 +1,17 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { type BlogPost as Post } from '@/lib/blog-index';
 import { ArrowUpRight, Calendar, Clock, Tag } from 'lucide-react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export function PostCard({ post }: { post: Post }) {
+  const { t, language } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const cardRef = useRef<HTMLElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -77,7 +82,7 @@ export function PostCard({ post }: { post: Post }) {
           <div className="flex items-center gap-2">
             <Calendar className="w-3.5 h-3.5" />
             <time dateTime={post.date}>
-              {new Date(post.date).toLocaleDateString('zh-CN', {
+              {new Date(post.date).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
@@ -87,7 +92,7 @@ export function PostCard({ post }: { post: Post }) {
           {post.readingTime && (
             <div className="flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5" />
-              <span>{post.readingTime} 分钟阅读</span>
+              <span>{mounted ? t('post', 'readingTime', { time: post.readingTime }) : `${post.readingTime} 分钟阅读`}</span>
             </div>
           )}
           {post.tags && post.tags.length > 0 && (
@@ -115,7 +120,7 @@ export function PostCard({ post }: { post: Post }) {
 
         <div className="mt-auto flex items-center justify-between border-t border-zinc-200/60 dark:border-zinc-800/60 pt-5">
           <span className="text-xs font-semibold tracking-[0.15em] uppercase text-zinc-800 dark:text-zinc-200 transition-colors duration-300 group-hover:text-black dark:group-hover:text-white">
-            Read Article
+            {mounted ? t('post', 'readMore') : '阅读全文'}
           </span>
           <div 
             ref={arrowRef} 

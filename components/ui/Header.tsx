@@ -4,24 +4,57 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
-import { Home, BookOpen, User, Mail, Github, Menu, X, Globe, MapPin } from 'lucide-react';
+import { Home, BookOpen, User, Mail, Github, Menu, X, Languages, MapPin } from 'lucide-react';
 import { usePageStore } from '@/stores/pageStore';
+import { useI18nStore } from '@/stores/i18nStore';
 
-const navItems = [
-  { path: '/', label: '首页', icon: Home },
-  { path: '/blog', label: '博客', icon: BookOpen },
-  { path: '/about', label: '关于', icon: User },
-  { path: '/contact', label: '联系', icon: Mail },
+const navItemsList = [
+  { path: '/', label: { zh: '首页', en: 'Home' }, icon: Home },
+  { path: '/blog', label: { zh: '博客', en: 'Blog' }, icon: BookOpen },
+  { path: '/about', label: { zh: '关于', en: 'About' }, icon: User },
+  { path: '/contact', label: { zh: '联系', en: 'Contact' }, icon: Mail },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
   
   // IP 和距离状态
-  const [distanceInfo, setDistanceInfo] = useState<string | null>(null);
+  const [distanceInfo, setDistanceInfo] = useState<{zh: string, en: string} | null>(null);
   const [isLocationLoading, setIsLocationLoading] = useState(true);
+
+  const { language, setLanguage } = useI18nStore();
+  const [localTime, setLocalTime] = useState<string>('');
+  const pillRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+    
+    // 启动本地时间
+    const timer = setInterval(() => {
+      setLocalTime(new Date().toLocaleTimeString('en-US', { 
+        timeZone: 'Asia/Shanghai', 
+        hour12: false, 
+        hour: '2-digit', 
+        minute: '2-digit',
+        second: '2-digit'
+      }));
+    }, 1000);
+    
+    return () => clearInterval(timer);
+  }, []);
+
+  // i18n 胶囊 GSAP 动画
+  useEffect(() => {
+    if (!pillRef.current || !isMounted) return;
+    gsap.to(pillRef.current, {
+      x: language === 'zh' ? 0 : 44, // 按照 44px 位移（根据按钮宽度测算）
+      duration: 0.6,
+      ease: "elastic.out(1, 0.7)"
+    });
+  }, [language, isMounted]);
 
   const MY_LAT = 30.6310;
   const MY_LON = 104.0868; 
@@ -201,16 +234,16 @@ export function Header() {
           const distance = calculateDistance(MY_LAT, MY_LON, lat, lon);
           
           if (distance < 50) {
-            setDistanceInfo(`SAME CITY`);
+            setDistanceInfo({ zh: '我们在同一城市！', en: 'SAME CITY' });
           } else {
-            setDistanceInfo(`${distance.toLocaleString()} KM AWAY`);
+            setDistanceInfo({ zh: `${distance.toLocaleString()} KM 外`, en: `${distance.toLocaleString()} KM AWAY` });
           }
         } else {
-          setDistanceInfo('HIDDEN');
+          setDistanceInfo({ zh: '位置隐藏', en: 'HIDDEN' });
         }
       } catch (error) {
         console.error('Failed to fetch location:', error);
-        setDistanceInfo('HIDDEN');
+        setDistanceInfo({ zh: '位置未知', en: 'HIDDEN' });
       } finally {
         setIsLocationLoading(false);
       }
@@ -257,7 +290,7 @@ export function Header() {
                 style={{ borderRadius: '0.8rem', opacity: 0 }}
               />
               
-              {navItems.map((item) => (
+              {navItemsList.map((item) => (
                 <div
                   key={item.path}
                   data-path={item.path}
@@ -272,16 +305,63 @@ export function Header() {
                     <span className="relative z-10 flex items-center gap-3">
                       <item.icon className="h-5 w-5 transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/item:scale-110" />
                       <span className="transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/item:-translate-y-0.5">
-                        {item.label}
+                        {isMounted ? item.label[language] : item.label.zh}
                       </span>
                     </span>
                   </Link>
                 </div>
               ))}
+
+              {/* 右侧留白补充：当地时间小组件 */}
+              <div className="ml-2 flex items-center gap-3 pl-5 border-l border-zinc-200 dark:border-zinc-800 h-6">
+                <div className="flex flex-col justify-center">
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+                    {isMounted && language === 'zh' ? '当前状态' : 'LOCAL TIME'}
+                  </span>
+                  <span className="font-mono text-[11px] font-medium tracking-wider text-zinc-700 dark:text-zinc-300">
+                    {localTime || '00:00:00'}
+                  </span>
+                </div>
+              </div>
             </nav>
           </div>
           
-          <div className="flex items-center gap-1.5 sm:gap-3 transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
+          <div className="flex items-center gap-2 sm:gap-3 transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
+            {/* i18n 语言切换组件 (GSAP 物理胶囊 - 加宽版) */}
+            <div className="hidden sm:flex relative items-center rounded-full border border-black/5 bg-black/[0.03] p-1 dark:border-white/5 dark:bg-white/[0.02] hover:bg-black/[0.05] dark:hover:bg-white/[0.04] transition-colors duration-300">
+              {/* 移动选中的背景块 */}
+              <div 
+                ref={pillRef}
+                className="absolute left-[3px] top-[4px] bottom-[4px] w-[42px] rounded-full bg-white shadow-sm dark:bg-zinc-800" 
+              />
+              
+              <button
+                onClick={() => setLanguage('zh')}
+                className={`relative w-[42px] py-1 z-10 flex items-center justify-center rounded-full font-mono text-xs font-bold uppercase tracking-widest transition-colors duration-300 cursor-pointer ${
+                  isMounted && language === 'zh' 
+                    ? 'text-zinc-900 dark:text-white' 
+                    : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'
+                }`}
+                aria-label="Switch to Chinese"
+              >
+                ZH
+              </button>
+              <button
+                onClick={() => setLanguage('en')}
+                className={`relative w-[42px] py-1 z-10 flex items-center justify-center rounded-full font-mono text-xs font-bold uppercase tracking-widest transition-colors duration-300 cursor-pointer ${
+                  isMounted && language === 'en' 
+                    ? 'text-zinc-900 dark:text-white' 
+                    : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'
+                }`}
+                aria-label="Switch to English"
+              >
+                EN
+              </button>
+            </div>
+
+            {/* 分隔点线 */}
+            <div className="hidden sm:block h-3 w-[1px] bg-zinc-200 dark:bg-zinc-800 mx-1 border-r border-dashed" />
+
             {/* 距离小组件 (高级简约 + 呼吸灯点缀 + 等宽字体) */}
             <div className="hidden sm:flex group/dist relative items-center gap-2 rounded-full border border-transparent px-3 py-1.5 transition-all duration-500 hover:border-black/5 hover:bg-black/[0.02] dark:hover:border-white/5 dark:hover:bg-white/[0.02] cursor-default">
               {/* 状态呼吸灯 */}
@@ -296,12 +376,14 @@ export function Header() {
               
               {/* 距离文本 */}
               <span className="font-mono text-[10px] font-medium tracking-widest text-zinc-500 transition-colors duration-500 group-hover/dist:text-zinc-800 dark:text-zinc-400 dark:group-hover/dist:text-zinc-200">
-                 {isLocationLoading ? 'LOCATING...' : distanceInfo}
+                 {isLocationLoading 
+                    ? (isMounted && language === 'zh' ? '定位中...' : 'LOCATING...') 
+                    : (distanceInfo ? (isMounted ? distanceInfo[language] : distanceInfo.zh) : '')}
               </span>
 
               {/* Hover 提示气泡 */}
               <div className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-[4px] border border-black/5 bg-white/90 px-2 py-1 text-[9px] font-medium uppercase tracking-wider text-zinc-500 opacity-0 shadow-sm backdrop-blur-md transition-all duration-300 group-hover/dist:-bottom-9 group-hover/dist:opacity-100 dark:border-white/5 dark:bg-black/90 dark:text-zinc-400">
-                BASED IN {MY_CITY}
+                {isMounted && language === 'zh' ? `以 ${MY_CITY} 为中心` : `BASED IN ${MY_CITY}`}
               </div>
             </div>
 
@@ -343,7 +425,7 @@ export function Header() {
           style={{ display: "none", opacity: 0 }}
           onClick={(e) => e.stopPropagation()}
         >
-          {navItems.map((item) => {
+          {navItemsList.map((item) => {
             const isCurrentPage = pathname === item.path;
             
             return (
@@ -363,7 +445,7 @@ export function Header() {
                   </div>
                   
                   <span className="relative z-10 transition-transform duration-300 ease-out group-hover/mob:translate-x-2">
-                    {item.label}
+                    {isMounted ? item.label[language] : item.label.zh}
                   </span>
                 </Link>
               </div>
