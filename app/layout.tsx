@@ -4,6 +4,7 @@ import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Preloader } from "@/components/Preloader";
+import Search from "@/components/Search";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -59,6 +60,7 @@ export default function RootLayout({
           <main className="flex-1">
             {children}
           </main>
+          <Search />
           <Footer />
         </ThemeProvider>
       </body>

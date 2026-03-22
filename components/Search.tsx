@@ -1,255 +1,312 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
-import { Search as SearchIcon, X } from 'lucide-react';
+import { useEffect, useState, useRef, useMemo } from 'react';
+import { Search as SearchIcon, X, FileText, Layout, Hash, ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import Fuse from 'fuse.js';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
-declare global {
-  interface Window {
-    pagefind: {
-      search: (query: string) => Promise<{
-        results: Array<{
-          data: () => Promise<{
-            url: string;
-            meta: {
-              title: string;
-            };
-            excerpt: string;
-          }>;
-        }>;
-      }>;
-    };
-  }
-}
+import { blogMetadata } from '@/lib/blog-index';
+
+type SearchItem = {
+  id: string;
+  type: 'module' | 'post' | 'tag';
+  title: string;
+  url: string;
+  description: string;
+  tags?: string[];
+};
+
+const SITE_MODULES: SearchItem[] = [
+  { id: 'm1', type: 'module', title: 'Home 首页', url: '/', description: '前沿探索与博客首屏' },
+  { id: 'm2', type: 'module', title: 'About 关于', url: '/about', description: 'AI驱动工作流, 技术栈与历程' },
+  { id: 'm3', type: 'module', title: 'Blog 博客文章', url: '/blog', description: '所有技术文章与随笔' },
+  { id: 'm4', type: 'module', title: 'Contact 联系', url: '/contact', description: '发送邮件或者直接联系我' },
+  { id: 'm5', type: 'module', title: 'Github', url: 'https://github.com/alkaidlight', description: 'Alkaid 的开源仓库' }
+];
 
 export default function Search() {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+  const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<Array<{
-    url: string;
-    meta: {
-      title: string;
-    };
-    excerpt: string;
-  }>>([]);
-  const [loading, setLoading] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
-  const searchContainerRef = useRef<HTMLDivElement>(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const router = useRouter();
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const inputContainerRef = useRef<HTMLDivElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    async function loadPagefind() {
-      // Only load in production or if file exists
-      if (typeof window !== 'undefined' && typeof window.pagefind === 'undefined') {
-        try {
-          const pagefind = await import(/* webpackIgnore: true */ `${basePath}/pagefind/pagefind.js`);
-          window.pagefind = pagefind;
-        } catch {
-          // Silently fail in dev mode if not available
-          console.log('Pagefind search not available (dev mode?)');
-        }
-      }
-    }
-    loadPagefind();
-  }, [basePath]);
+  const fuse = useMemo(() => {
+    const posts: SearchItem[] = blogMetadata.posts.map((post) => ({
+      id: post.slug,
+      type: 'post',
+      title: post.title,
+      url: `/blog/${post.slug}`,
+      description: post.description || '阅读全文',
+      tags: post.tags,
+    }));
+    
+    const tags: SearchItem[] = blogMetadata.tags.map((tag) => ({
+      id: `tag-${tag}`,
+      type: 'tag',
+      title: `${tag}`,
+      url: `/blog/tag/${encodeURIComponent(tag)}`,
+      description: `查看有关 [${tag}] 标签的所有文章`,
+      tags: [tag]
+    }));
 
-  async function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
-    setQuery(value);
-    if (value && window.pagefind) {
-      setLoading(true);
-      try {
-        const search = await window.pagefind.search(value);
-        const data = await Promise.all(search.results.map((r) => r.data()));
-        setResults(data);
-      } catch (error) {
-        console.error('Search error:', error);
-        setResults([]);
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      setResults([]);
-    }
-  }
+    const allData: SearchItem[] = [...SITE_MODULES, ...posts, ...tags];
 
-  // 移动端搜索相关函数
-  const openMobileSearch = () => {
-    setIsMobileSearchOpen(true);
-    setTimeout(() => {
-      inputRef.current?.focus();
-    }, 100);
-  };
-
-  const closeMobileSearch = () => {
-    setIsMobileSearchOpen(false);
-    setQuery('');
-    setResults([]);
-    setIsFocused(false);
-  };
-
-  // 点击外部关闭搜索结果
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
-        if (window.innerWidth >= 640) {
-          setIsFocused(false);
-        }
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return new Fuse(allData, {
+      keys: [
+        { name: 'title', weight: 2 },
+        { name: 'description', weight: 1 },
+        { name: 'tags', weight: 1.5 }
+      ],
+      threshold: 0.4,
+      includeMatches: true,
+      ignoreLocation: true,
+    });
   }, []);
+
+  const searchResults = useMemo<SearchItem[]>(() => {
+    if (!query.trim()) {
+      return [];
+    }
+    return fuse.search(query).map(result => result.item);
+  }, [query, fuse]);
+
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [searchResults]);
+
+  const closeModal = () => {
+    if (!containerRef.current) return;
+    
+    const ctx = gsap.context(() => {
+      gsap.to(overlayRef.current, { opacity: 0, duration: 0.2, ease: 'power2.inOut' });
+      gsap.to(inputContainerRef.current, { 
+        opacity: 0, 
+        scale: 0.95, 
+        duration: 0.2, 
+        ease: 'power2.in',
+      });
+      gsap.to(resultsRef.current, {
+        opacity: 0,
+        duration: 0.1,
+        onComplete: () => {
+          setIsOpen(false);
+          setQuery('');
+          document.body.style.overflow = '';
+        }
+      })
+    }, containerRef);
+  };
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsOpen((prev) => !prev);
+      }
+
+      if (!isOpen) return;
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeModal();
+      }
+
+      if (searchResults.length > 0) {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          setSelectedIndex((prev) => (prev + 1) % searchResults.length);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          setSelectedIndex((prev) => (prev - 1 + searchResults.length) % searchResults.length);
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          const item = searchResults[selectedIndex];
+          if (item) handleNavigate(item.url);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, searchResults, selectedIndex]);
+
+  useGSAP(() => {
+    if (isOpen && containerRef.current) {
+      document.body.style.overflow = 'hidden';
+      
+      const ctx = gsap.context(() => { 
+        gsap.set(overlayRef.current, { opacity: 0 });
+        gsap.set(inputContainerRef.current, { opacity: 0, scale: 0.97, y: -10 });
+        gsap.set(resultsRef.current, { opacity: 0, height: 0 });
+
+        gsap.to(overlayRef.current, { opacity: 1, duration: 0.2, ease: 'power2.out' });
+        gsap.to(inputContainerRef.current, { 
+          opacity: 1, 
+          scale: 1, 
+          y: 0,
+          duration: 0.25, 
+          ease: 'expo.out' 
+        });
+      }, containerRef);
+      
+      setTimeout(() => inputRef.current?.focus(), 50);
+      
+      return () => ctx.revert();
+    }
+  }, [isOpen]);
+
+  useGSAP(() => {
+    if (isOpen) {
+      if (searchResults.length > 0) {
+        gsap.to(resultsRef.current, {
+          opacity: 1,
+          height: 'auto',
+          duration: 0.3,
+          ease: 'expo.out',
+          delay: 0.1
+        });
+      } else {
+        gsap.to(resultsRef.current, {
+          opacity: 0,
+          height: 0,
+          duration: 0.2,
+          ease: 'expo.in'
+        });
+      }
+    }
+  }, [searchResults, isOpen]);
+
+  const handleNavigate = (url: string) => {
+    closeModal();
+    if (url.startsWith('http')) {
+      window.open(url, '_blank');
+    } else {
+      router.push(url);
+    }
+  };
 
   return (
     <>
-      {/* 桌面端搜索 */}
-      <div ref={searchContainerRef} className="relative hidden h-10 w-56 md:block lg:w-64">
-        {/* 液态玻璃搜索框 */}
-        <div className={`ios-26-liquid-search absolute inset-0 rounded-full transition-all duration-300 overflow-hidden ${
-          isFocused 
-            ? 'scale-105 shadow-xl' 
-            : 'hover:scale-102 hover:shadow-lg'
-        }`}>
-          <div className="absolute inset-0 bg-white/30 dark:bg-white/15 backdrop-blur-sm border border-white/40 dark:border-white/20 transition-all duration-300" />
-          
-          {/* 光效层 */}
-          {isFocused && (
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60" />
-          )}
-          
-          <div className="relative flex items-center w-full h-full">
-            <SearchIcon className="absolute left-3 h-4 w-4 text-gray-500 dark:text-gray-400" />
-            <input
-              ref={inputRef}
-              type="text"
-              placeholder="搜索..."
-              value={query}
-              onChange={handleSearch}
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
-              className="w-full h-full rounded-full bg-transparent pl-10 pr-10 text-sm text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
-            />
-            {loading && (
-              <div className="absolute right-3 h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-gray-600 dark:border-gray-600 dark:border-t-gray-300" />
-            )}
-          </div>
+      {/* 极简、高级的全局搜索悬浮入口 */}
+      <button 
+        onClick={handleOpen}
+        className="group fixed left-6 bottom-12 z-[90] flex items-center gap-3 rounded-full bg-white/70 px-4 py-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] backdrop-blur-xl ring-1 ring-black/5 transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-white hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)] focus:outline-none dark:bg-zinc-900/70 dark:ring-white/10 dark:hover:bg-zinc-900/90 dark:hover:shadow-[0_8px_32px_rgba(255,255,255,0.06)] sm:bottom-16 sm:left-8"
+        aria-label="Search or Ask"
+      >
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-black/5 dark:bg-white/10 group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black transition-colors duration-300">
+          <SearchIcon className="h-4 w-4 text-zinc-600 dark:text-zinc-300 group-hover:text-white dark:group-hover:text-black transition-colors" />
         </div>
         
-        {results.length > 0 && (
-          <div className="absolute right-0 top-full z-50 mt-2 w-[min(24rem,calc(100vw-1.5rem))] max-h-96 overflow-hidden rounded-2xl border border-white/30 bg-white/80 shadow-2xl backdrop-blur-xl dark:border-white/15 dark:bg-black/80 md:w-[min(26rem,calc(100vw-2rem))]">
-            <div className="max-h-96 overflow-y-auto p-2">
-              {results.map((result, idx) => (
-                <a
-                  key={idx}
-                  href={result.url}
-                  className="block rounded-xl px-4 py-3 hover:bg-white/40 dark:hover:bg-white/10 transition-colors duration-200"
-                >
-                  <h3 className="font-medium text-gray-900 dark:text-white">{result.meta.title}</h3>
-                  <p 
-                    className="mt-1 text-xs text-gray-600 line-clamp-2 dark:text-gray-400" 
-                    dangerouslySetInnerHTML={{ __html: result.excerpt }} 
-                  />
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
+        <div className="flex flex-col items-start pr-2">
+           <span className="text-sm font-medium tracking-wide text-zinc-800 dark:text-zinc-200">
+             Explore
+           </span>
+           <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+             ⌘ K
+           </span>
+        </div>
+      </button>
 
-      {/* 移动端搜索 */}
-      <div className="sm:hidden">
-        {/* 移动端搜索按钮 */}
-        <button
-          onClick={openMobileSearch}
-          className="ios-26-liquid-search relative h-10 w-10 rounded-full transition-all duration-300 overflow-hidden hover:scale-105 hover:shadow-lg active:scale-95"
-          aria-label="搜索"
-        >
-          <div className="absolute inset-0 bg-white/30 dark:bg-white/15 backdrop-blur-sm border border-white/40 dark:border-white/20" />
-          <div className="relative flex items-center justify-center w-full h-full">
-            <SearchIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-          </div>
-        </button>
-
-        {/* 移动端搜索模态框 */}
-        {isMobileSearchOpen && (
-          <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm" onClick={closeMobileSearch}>
-            <div 
-              className="absolute inset-x-3 mx-auto max-w-2xl sm:inset-x-4 sm:top-20"
-              style={{ top: 'calc(env(safe-area-inset-top) + 5rem)' }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* 搜索输入框 */}
-              <div className={`ios-26-liquid-search relative rounded-2xl transition-all duration-300 overflow-hidden ${
-                isFocused ? 'scale-105 shadow-xl' : 'hover:scale-102 hover:shadow-lg'
-              }`}>
-                <div className="absolute inset-0 bg-white/30 dark:bg-white/15 backdrop-blur-sm border border-white/40 dark:border-white/20" />
-                
-                {/* 光效层 */}
-                {isFocused && (
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60" />
-                )}
-                
-                <div className="relative flex items-center w-full h-14">
-                  <SearchIcon className="absolute left-4 h-5 w-5 text-gray-500 dark:text-gray-400" />
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    placeholder="搜索文章..."
-                    value={query}
-                    onChange={handleSearch}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
-                    className="w-full h-full rounded-2xl bg-transparent pl-12 pr-12 text-base text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
-                  />
-                  <button
-                    onClick={closeMobileSearch}
-                    className="absolute right-4 h-6 w-6 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
-                    aria-label="关闭搜索"
-                  >
-                    <X className="h-5 w-5" />
-                  </button>
-                  {loading && (
-                    <div className="absolute right-10 h-5 w-5 animate-spin rounded-full border-2 border-gray-300 border-t-gray-600 dark:border-gray-600 dark:border-t-gray-300" />
-                  )}
-                </div>
+      {isOpen && (
+        <div ref={containerRef} className="fixed inset-0 z-[100] flex flex-col items-center px-4 pt-[20vh]">
+          <div 
+            ref={overlayRef}
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            onClick={closeModal}
+          />
+          
+          <div 
+            ref={inputContainerRef}
+            className="relative w-full max-w-2xl rounded-2xl bg-white/90 shadow-2xl ring-1 ring-black/5 backdrop-blur-xl dark:bg-zinc-900/90 dark:ring-white/10 flex flex-col"
+          >
+            <div className="flex h-16 shrink-0 items-center px-4 bg-transparent">
+              <SearchIcon className="mr-3 h-6 w-6 text-zinc-400" />
+              <input
+                ref={inputRef}
+                className="flex-1 bg-transparent text-xl text-black placeholder:text-zinc-400 focus:outline-none dark:text-white appearance-none"
+                placeholder="Search..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                autoComplete="off"
+                spellCheck="false"
+              />
+              <div className="flex items-center gap-2">
+                 {query && (
+                    <button onClick={() => setQuery('')} className="text-zinc-400 hover:text-black dark:hover:text-white p-1">
+                        <X className="h-4 w-4" />
+                    </button>
+                 )}
+                 <div className="hidden sm:flex items-center gap-1 opacity-50">
+                   <kbd className="rounded border border-zinc-200 bg-zinc-100 px-1.5 py-0.5 text-xs font-medium text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">Esc</kbd>
+                 </div>
               </div>
+            </div>
+          </div>
 
-              {/* 搜索结果 */}
-              {results.length > 0 && (
-                <div className="mt-3 max-h-[60vh] overflow-hidden rounded-2xl border border-white/30 bg-white/80 dark:bg-black/80 backdrop-blur-xl shadow-2xl dark:border-white/15">
-                  <div className="max-h-[60vh] overflow-y-auto p-3">
-                    {results.map((result, idx) => (
-                      <a
-                        key={idx}
-                        href={result.url}
-                        onClick={closeMobileSearch}
-                        className="block rounded-xl px-4 py-4 hover:bg-white/40 dark:hover:bg-white/10 transition-colors duration-200 mb-2 last:mb-0"
+          <div 
+            ref={resultsRef}
+            className="relative w-full max-w-2xl mt-4 overflow-hidden rounded-2xl bg-white/90 shadow-2xl ring-1 ring-black/5 backdrop-blur-xl dark:bg-zinc-900/90 dark:ring-white/10"
+            style={{ maxHeight: 'calc(80vh - 5rem)' }}
+          >
+            <div className="overflow-y-auto p-2 scrollbar-hide">
+              {searchResults.length > 0 ? (
+                <div className="space-y-1">
+                  {searchResults.map((item, index) => {
+                    const isActive = selectedIndex === index;
+                    const Icon = item.type === 'module' ? Layout : item.type === 'tag' ? Hash : FileText;
+                    
+                    return (
+                      <div
+                        key={`${item.id}-${index}`}
+                        onClick={() => handleNavigate(item.url)}
+                        onMouseEnter={() => setSelectedIndex(index)}
+                        className={`flex cursor-pointer items-center gap-4 rounded-xl px-4 py-3 transition-colors ${
+                          isActive 
+                            ? 'bg-blue-500 text-white shadow-md' 
+                            : 'text-zinc-700 hover:bg-black/5 dark:text-zinc-300 dark:hover:bg-white/5'
+                        }`}
                       >
-                        <h3 className="font-medium text-gray-900 dark:text-white text-base">{result.meta.title}</h3>
-                        <p 
-                          className="mt-2 text-sm text-gray-600 line-clamp-3 dark:text-gray-400" 
-                          dangerouslySetInnerHTML={{ __html: result.excerpt }} 
-                        />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
+                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
+                          isActive ? 'bg-white/20 text-white' : 'bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400'
+                        }`}>
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        
+                        <div className="flex-1 overflow-hidden">
+                          <div className="truncate text-base font-medium">
+                            {item.title}
+                          </div>
+                          <div className={`truncate text-xs ${isActive ? 'text-blue-100' : 'text-zinc-400'}`}>
+                            {item.description}
+                          </div>
+                        </div>
 
-              {/* 无结果提示 */}
-              {query && results.length === 0 && !loading && (
-                <div className="mt-3 rounded-2xl border border-white/30 bg-white/80 dark:bg-black/80 backdrop-blur-xl shadow-2xl dark:border-white/15 p-6 text-center">
-                  <p className="text-gray-600 dark:text-gray-400">未找到相关结果</p>
+                        {isActive && <ArrowRight className="h-5 w-5 text-white animate-pulse" />}
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="py-12 text-center text-zinc-500">
+                  <p>No results found for <span className="font-bold">"{query}"</span></p>
                 </div>
               )}
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 }

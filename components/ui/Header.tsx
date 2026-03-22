@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
-import { Home, BookOpen, User, Mail, Github, Menu, X } from 'lucide-react';
-import Search from '../Search';
+import { Home, BookOpen, User, Mail, Github, Menu, X, Globe, MapPin } from 'lucide-react';
 import { usePageStore } from '@/stores/pageStore';
 
 const navItems = [
@@ -19,6 +18,14 @@ export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
+  
+  // IP 和距离状态
+  const [distanceInfo, setDistanceInfo] = useState<string | null>(null);
+  const [isLocationLoading, setIsLocationLoading] = useState(true);
+
+  const MY_LAT = 30.6310;
+  const MY_LON = 104.0868; 
+  const MY_CITY = "成都";
 
   const containerRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLHeadElement>(null);
@@ -167,6 +174,50 @@ export function Header() {
     }
   }, [mobileMenuOpen]);
 
+  // 计算地球上两点之间距离的函数 (Haversine formula)
+  const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+    const R = 6371; // 地球半径，单位公里
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const distanceResponse = R * c;
+    return Math.round(distanceResponse);
+  };
+
+  // Fetch IP and calculate distance
+  useEffect(() => {
+    const fetchLocation = async () => {
+      try {
+        const response = await fetch('https://api.ip.sb/geoip/');
+        const data = await response.json();
+        
+        if (data && data.latitude && data.longitude) {
+          const lat = parseFloat(data.latitude);
+          const lon = parseFloat(data.longitude);
+          const distance = calculateDistance(MY_LAT, MY_LON, lat, lon);
+          
+          if (distance < 50) {
+            setDistanceInfo(`SAME CITY`);
+          } else {
+            setDistanceInfo(`${distance.toLocaleString()} KM AWAY`);
+          }
+        } else {
+          setDistanceInfo('HIDDEN');
+        }
+      } catch (error) {
+        console.error('Failed to fetch location:', error);
+        setDistanceInfo('HIDDEN');
+      } finally {
+        setIsLocationLoading(false);
+      }
+    };
+    fetchLocation();
+  }, [MY_LAT, MY_LON]);
+
   if (isBlogPost || isAboutPage || isContactPage) {
     return null;
   }
@@ -231,9 +282,31 @@ export function Header() {
           </div>
           
           <div className="flex items-center gap-1.5 sm:gap-3 transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
-            <Search />
+            {/* 距离小组件 (高级简约 + 呼吸灯点缀 + 等宽字体) */}
+            <div className="hidden sm:flex group/dist relative items-center gap-2 rounded-full border border-transparent px-3 py-1.5 transition-all duration-500 hover:border-black/5 hover:bg-black/[0.02] dark:hover:border-white/5 dark:hover:bg-white/[0.02] cursor-default">
+              {/* 状态呼吸灯 */}
+              <div className="relative flex h-2 w-2 items-center justify-center">
+                {isLocationLoading ? (
+                  <span className="absolute h-full w-full animate-ping rounded-full bg-zinc-400 opacity-50"></span>
+                ) : (
+                  <span className="absolute h-full w-full animate-ping rounded-full bg-emerald-400 opacity-20 duration-1000 group-hover/dist:opacity-50"></span>
+                )}
+                <span className={`relative h-1.5 w-1.5 rounded-full transition-colors duration-500 ${isLocationLoading ? 'bg-zinc-400' : 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]'}`}></span>
+              </div>
+              
+              {/* 距离文本 */}
+              <span className="font-mono text-[10px] font-medium tracking-widest text-zinc-500 transition-colors duration-500 group-hover/dist:text-zinc-800 dark:text-zinc-400 dark:group-hover/dist:text-zinc-200">
+                 {isLocationLoading ? 'LOCATING...' : distanceInfo}
+              </span>
+
+              {/* Hover 提示气泡 */}
+              <div className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-[4px] border border-black/5 bg-white/90 px-2 py-1 text-[9px] font-medium uppercase tracking-wider text-zinc-500 opacity-0 shadow-sm backdrop-blur-md transition-all duration-300 group-hover/dist:-bottom-9 group-hover/dist:opacity-100 dark:border-white/5 dark:bg-black/90 dark:text-zinc-400">
+                BASED IN {MY_CITY}
+              </div>
+            </div>
+
             <a
-              href="https://github.com"
+              href="https://github.com/alkaidlight"
               target="_blank"
               rel="noopener noreferrer"
               className="ios-26-liquid-button flex h-8 w-8 items-center justify-center text-gray-600 transition-all hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:scale-110 duration-300 sm:h-10 sm:w-10 lg:h-11 lg:w-11"
