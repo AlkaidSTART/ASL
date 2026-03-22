@@ -7,6 +7,7 @@ import Fuse from 'fuse.js';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useSearchStore } from '@/stores/searchStore';
 
 import { blogMetadata } from '@/lib/blog-index';
 
@@ -28,8 +29,7 @@ const SITE_MODULES: SearchItem[] = [
 ];
 
 export default function Search() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [query, setQuery] = useState('');
+  const { isOpen, setIsOpen, query, setQuery } = useSearchStore();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const router = useRouter();
   
@@ -121,7 +121,11 @@ export default function Search() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
-        setIsOpen((prev) => !prev);
+        if (isOpen) {
+          closeModal();
+        } else {
+          setIsOpen(true);
+        }
       }
 
       if (!isOpen) return;

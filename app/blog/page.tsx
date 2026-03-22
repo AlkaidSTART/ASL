@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { getAllPosts, getAllTags } from '@/lib/blog-index';
 import { PostList } from '@/components/PostList';
+import { BlogTags } from '@/components/blog/BlogTags';
 
 export default function BlogPage() {
   const posts = getAllPosts();
@@ -33,28 +34,7 @@ export default function BlogPage() {
         </p>
 
         {/* 标签筛选 */}
-        {allTags.length > 0 && (
-          <div className="mb-10 w-full max-w-4xl px-1 sm:mb-12 sm:px-4">
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide justify-start sm:justify-center">
-              <Link
-                href="/blog"
-                className="ios-26-liquid-button px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 whitespace-nowrap flex-shrink-0"
-              >
-                <span className="lang-zh">全部文章</span>
-                <span className="lang-en">All Posts</span>
-              </Link>
-              {allTags.map((tag) => (
-                <Link
-                  key={tag}
-                  href={`/blog/tag/${encodeURIComponent(tag)}`}
-                  className="ios-26-liquid-button px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white whitespace-nowrap flex-shrink-0"
-                >
-                  {tag}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+        {allTags.length > 0 && <BlogTags tags={allTags} />}
 
         {/* 文章列表 */}
         <div className="w-full max-w-5xl px-0 sm:px-4">

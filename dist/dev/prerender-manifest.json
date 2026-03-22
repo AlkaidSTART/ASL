@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "544f80090d1d289557801846f3ac93fb",
-    "previewModeSigningKey": "2a1afbe201125b9f288c6eb67d6454f06a62eeddfa92aff581f14cf89f486ba3",
-    "previewModeEncryptionKey": "7eb780a6dbdd8dfebff11ff9c07536cd9d864d851f52bd75054bbdcc755daf8f"
-  }
-}
+{"version":4,"routes":{"/blog/test-auto-convert":{},"/blog/hello-world":{},"/blog/sample-article":{}},"dynamicRoutes":{"/blog/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/blog/[slug]","routeRegex":"^\\/blog\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"7d3849c1537c894092f845c2a4f08a1f","previewModeSigningKey":"654dd023283e6133941a28d64dd71ba5e3dd28608c053e87dac1bf6468bc0cdc","previewModeEncryptionKey":"c489a4d0db8b670f71bf85c62b9619ada6b77975941422055abf8913c91b2a3c"}}

@@ -1,199 +1,118 @@
-[00:00:00.793] Server  LOG     ✓ Ready in 563ms
-[00:00:05.221] Server  ERROR   (node:44313) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+[00:00:01.206] Server  LOG     ✓ Ready in 925ms
+[00:00:04.066] Server  ERROR   (node:64538) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
 (Use `node --trace-warnings ...` to show where the warning was created)
-[00:00:05.365] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:00:05.365] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:06.863] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:09.478] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:00:19.003] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:00:19.003] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:19.003] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:19.003] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:00:19.003] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:20.495] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:29.341] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:00:29.341] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:29.341] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:29.341] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:00:29.341] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:30.242] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:31.230] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:00:31.230] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:31.230] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:31.230] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:00:31.230] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:32.727] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:44.246] Server  LOG     ✓ Compiled in 1363ms
-[00:00:45.731] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:00:45.731] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:45.731] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:45.731] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:00:45.731] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:47.228] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:49.999] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:00:49.999] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:49.999] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:49.999] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:00:49.999] Browser WARN    GSAP target  not found. https://gsap.com
-[00:00:51.494] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:34.637] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:01:34.637] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:34.637] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:34.637] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:01:34.637] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:35.505] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:37.004] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:01:37.004] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:37.004] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:37.004] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:01:37.004] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:38.511] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:40.609] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:01:40.610] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:40.610] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:40.610] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:01:40.610] Browser WARN    GSAP target  not found. https://gsap.com
-[00:01:42.111] Browser WARN    GSAP target  not found. https://gsap.com
-[00:04:57.890] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:04:57.890] Browser WARN    GSAP target  not found. https://gsap.com
-[00:04:57.890] Browser WARN    GSAP target  not found. https://gsap.com
-[00:04:57.890] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:04:57.890] Browser WARN    GSAP target  not found. https://gsap.com
-[00:04:59.393] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:01.464] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:05:01.464] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:01.464] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:01.464] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:05:01.464] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:02.759] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:03.581] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:05:03.581] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:03.581] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:03.581] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:05:03.581] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:05.077] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:50.926] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:05:50.926] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:50.926] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:50.926] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:05:50.926] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:52.426] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:53.707] Server  LOG     ✓ Compiled in 4ms
-[00:05:53.795] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:05:53.795] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:55.293] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:57.822] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:05:59.032] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:05:59.032] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:59.032] Browser WARN    GSAP target  not found. https://gsap.com
-[00:05:59.032] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:05:59.032] Browser WARN    GSAP target  not found. https://gsap.com
-[00:06:00.101] Browser WARN    GSAP target  not found. https://gsap.com
-[00:06:00.637] Server  LOG     ✓ Compiled in 412ms
-[00:06:01.235] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:06:01.235] Browser WARN    GSAP target  not found. https://gsap.com
-[00:06:01.235] Browser WARN    GSAP target  not found. https://gsap.com
-[00:06:01.235] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:06:01.235] Browser WARN    GSAP target  not found. https://gsap.com
-[00:06:02.111] Browser WARN    GSAP target  not found. https://gsap.com
-[00:06:03.086] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:06:03.086] Browser WARN    GSAP target  not found. https://gsap.com
-[00:06:03.086] Browser WARN    GSAP target  not found. https://gsap.com
-[00:06:03.086] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:06:03.086] Browser WARN    GSAP target  not found. https://gsap.com
-[00:06:04.593] Browser WARN    GSAP target  not found. https://gsap.com
-[00:07:40.218] Server  LOG     ✓ Compiled in 463ms
-[00:07:49.450] Server  LOG     ✓ Compiled in 132ms
-[00:08:05.381] Server  LOG     ✓ Compiled in 92ms
-[00:08:21.383] Server  LOG     ✓ Compiled in 100ms
-[00:08:32.085] Server  LOG     ✓ Compiled in 93ms
-[00:08:44.796] Server  LOG     ✓ Compiled in 159ms
-[00:10:00.218] Server  LOG     ✓ Compiled in 416ms
-[00:10:01.302] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:10:01.302] Browser WARN    GSAP target  not found. https://gsap.com
-[00:10:02.808] Browser WARN    GSAP target  not found. https://gsap.com
-[00:10:08.014] Server  LOG     ✓ Compiled in 819ms
-[00:10:22.752] Server  LOG     ✓ Compiled in 319ms
-[00:11:09.388] Server  LOG     ✓ Compiled in 181ms
-[00:11:44.294] Server  LOG     ✓ Compiled in 223ms
-[00:12:10.369] Server  LOG     ✓ Compiled in 190ms
-[00:12:29.136] Server  LOG     ✓ Compiled in 301ms
-[00:12:44.017] Server  LOG     ✓ Compiled in 230ms
-[00:14:50.801] Server  LOG     ✓ Compiled in 288ms
-[00:14:51.454] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:14:51.454] Browser WARN    GSAP target  not found. https://gsap.com
-[00:14:52.955] Browser WARN    GSAP target  not found. https://gsap.com
-[00:16:10.150] Server  LOG     ✓ Compiled in 1449ms
-[00:16:10.946] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:16:12.160] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:16:12.160] Browser WARN    GSAP target  not found. https://gsap.com
-[00:16:12.160] Browser WARN    GSAP target  not found. https://gsap.com
-[00:16:12.160] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:16:12.160] Browser WARN    GSAP target  not found. https://gsap.com
-[00:16:13.656] Browser WARN    GSAP target  not found. https://gsap.com
-[00:16:23.376] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:16:23.376] Browser WARN    GSAP target  not found. https://gsap.com
-[00:16:23.376] Browser WARN    GSAP target  not found. https://gsap.com
-[00:16:23.376] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:16:23.376] Browser WARN    GSAP target  not found. https://gsap.com
-[00:16:24.819] Browser WARN    GSAP target  not found. https://gsap.com
-[00:17:04.758] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:17:04.758] Browser WARN    GSAP target  not found. https://gsap.com
-[00:17:04.758] Browser WARN    GSAP target  not found. https://gsap.com
-[00:17:04.758] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:17:04.758] Browser WARN    GSAP target  not found. https://gsap.com
-[00:17:06.238] Browser WARN    GSAP target  not found. https://gsap.com
-[00:18:55.048] Server  LOG     ✓ Compiled in 1808ms
-[00:19:08.477] Server  LOG     ✓ Compiled in 2.1s
-[00:21:34.299] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:21:34.299] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:34.299] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:34.299] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:21:34.299] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:35.802] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:36.888] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:21:36.888] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:36.888] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:36.888] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:21:36.888] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:37.970] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:38.871] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:21:38.871] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:38.871] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:38.871] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:21:38.871] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:39.691] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:40.372] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:21:40.372] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:40.372] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:40.372] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:21:40.372] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:41.871] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:45.300] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:21:45.300] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:45.300] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:45.300] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:21:45.300] Browser WARN    GSAP target  not found. https://gsap.com
-[00:21:46.804] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:35.007] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:23:35.007] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:35.007] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:35.007] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:23:35.008] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:35.900] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:41.284] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:23:41.284] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:41.284] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:41.284] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:23:41.284] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:42.225] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:44.168] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:23:44.168] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:44.168] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:44.168] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:23:44.168] Browser WARN    GSAP target  not found. https://gsap.com
-[00:23:45.670] Browser WARN    GSAP target  not found. https://gsap.com
-[00:31:23.652] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:31:23.652] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
-[00:31:23.652] Browser WARN    GSAP target  not found. https://gsap.com
-[00:31:25.249] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:04.256] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:00:04.256] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:05.735] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:08.117] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:00:09.223] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:00:09.223] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:09.223] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:09.223] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:00:09.223] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:10.719] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:42.215] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:00:42.215] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:42.215] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:42.215] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:00:42.215] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:43.719] Browser WARN    GSAP target  not found. https://gsap.com
+[00:00:56.602] Browser WARN    GSAP target null not found. https://gsap.com
+[00:00:56.602] Browser WARN    GSAP target null not found. https://gsap.com
+[00:01:00.019] Browser WARN    GSAP target null not found. https://gsap.com
+[00:01:00.019] Browser WARN    GSAP target null not found. https://gsap.com
+[00:01:02.034] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:01:02.034] Browser WARN    GSAP target  not found. https://gsap.com
+[00:01:02.034] Browser WARN    GSAP target  not found. https://gsap.com
+[00:01:02.034] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:01:02.034] Browser WARN    GSAP target  not found. https://gsap.com
+[00:01:03.188] Browser WARN    GSAP target  not found. https://gsap.com
+[00:01:03.188] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:02:08.001] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:02:08.001] Browser WARN    GSAP target  not found. https://gsap.com
+[00:02:08.001] Browser WARN    GSAP target  not found. https://gsap.com
+[00:02:08.001] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:02:08.001] Browser WARN    GSAP target  not found. https://gsap.com
+[00:02:08.989] Browser WARN    GSAP target  not found. https://gsap.com
+[00:06:14.064] Server  LOG     ✓ Compiled in 1469ms
+[00:07:01.861] Server  LOG     ✓ Compiled in 913ms
+[00:07:08.826] Server  LOG     ✓ Compiled in 235ms
+[00:07:10.314] Browser WARN    GSAP target null not found. https://gsap.com
+[00:07:10.314] Browser WARN    GSAP target null not found. https://gsap.com
+[00:08:13.546] Server  LOG     ✓ Compiled in 77ms
+[00:08:26.429] Server  LOG     ✓ Compiled in 68ms
+[00:09:27.363] Server  LOG     ✓ Compiled in 116ms
+[00:14:00.360] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:14:00.360] Browser WARN    GSAP target  not found. https://gsap.com
+[00:14:00.360] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:14:00.360] Browser WARN    GSAP target  not found. https://gsap.com
+[00:14:00.360] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:14:00.360] Browser WARN    GSAP target  not found. https://gsap.com
+[00:14:01.912] Browser WARN    GSAP target  not found. https://gsap.com
+[00:14:04.431] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:14:04.431] Browser WARN    GSAP target  not found. https://gsap.com
+[00:14:04.431] Browser WARN    GSAP target  not found. https://gsap.com
+[00:14:04.432] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:14:04.432] Browser WARN    GSAP target  not found. https://gsap.com
+[00:14:05.649] Browser WARN    GSAP target  not found. https://gsap.com
+[00:15:35.174] Server  LOG     ✓ Compiled in 197ms
+[00:15:35.280] Browser ERROR   ./app/about/page.tsx:28:10
+Parsing ecmascript source code failed
+  26 |   }, [setPageLoaded]);
+  27 |
+> 28 |   useGSAP'use client';
+     |          ^^^^^^^^^^^^
+  29 |
+  30 | import { useEffect, useRef } from 'react';
+  31 | import Li  
+
+Expected ';', '}' or <eof>
+[00:15:48.471] Server  LOG     ✓ Compiled in 109ms
+[00:15:49.247] Browser WARN    GSAP target null not found. https://gsap.com
+[00:15:49.247] Browser WARN    GSAP target null not found. https://gsap.com
+[00:16:05.992] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:16:05.992] Browser WARN    GSAP target  not found. https://gsap.com
+[00:16:05.992] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:16:05.992] Browser WARN    GSAP target  not found. https://gsap.com
+[00:16:05.992] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:16:05.992] Browser WARN    GSAP target  not found. https://gsap.com
+[00:16:07.103] Browser WARN    GSAP target  not found. https://gsap.com
+[00:16:43.353] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:16:43.353] Browser WARN    GSAP target  not found. https://gsap.com
+[00:16:43.353] Browser WARN    GSAP target  not found. https://gsap.com
+[00:16:43.353] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:16:43.353] Browser WARN    GSAP target  not found. https://gsap.com
+[00:16:44.409] Browser WARN    GSAP target  not found. https://gsap.com
+[00:16:53.842] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:16:53.842] Browser WARN    GSAP target  not found. https://gsap.com
+[00:16:53.842] Browser WARN    GSAP target  not found. https://gsap.com
+[00:16:53.842] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:16:53.842] Browser WARN    GSAP target  not found. https://gsap.com
+[00:16:55.346] Browser WARN    GSAP target  not found. https://gsap.com
+[00:21:44.993] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:21:44.993] Browser WARN    GSAP target  not found. https://gsap.com
+[00:21:44.993] Browser WARN    GSAP target  not found. https://gsap.com
+[00:21:44.993] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:21:44.993] Browser WARN    GSAP target  not found. https://gsap.com
+[00:21:46.141] Browser WARN    GSAP target  not found. https://gsap.com
+[00:22:08.110] Browser WARN    GSAP target null not found. https://gsap.com
+[00:22:08.110] Browser WARN    GSAP target null not found. https://gsap.com
+[00:22:15.261] Browser WARN    GSAP target null not found. https://gsap.com
+[00:22:15.261] Browser WARN    GSAP target null not found. https://gsap.com
+[00:22:24.128] Browser WARN    GSAP target null not found. https://gsap.com
+[00:22:24.128] Browser WARN    GSAP target null not found. https://gsap.com
+[00:22:29.095] Browser WARN    GSAP target null not found. https://gsap.com
+[00:22:29.095] Browser WARN    GSAP target null not found. https://gsap.com
+[00:22:36.272] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:22:36.272] Browser WARN    GSAP target  not found. https://gsap.com
+[00:22:36.272] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:22:36.272] Browser WARN    GSAP target  not found. https://gsap.com
+[00:22:36.272] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:22:36.272] Browser WARN    GSAP target  not found. https://gsap.com
+[00:22:37.506] Browser WARN    GSAP target  not found. https://gsap.com
+[00:22:43.026] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:22:43.026] Browser WARN    GSAP target  not found. https://gsap.com
+[00:22:43.026] Browser WARN    GSAP target  not found. https://gsap.com
+[00:22:43.026] Browser WARN    GSAP target .hero-desc-line not found. https://gsap.com
+[00:22:43.026] Browser WARN    GSAP target  not found. https://gsap.com
+[00:22:44.527] Browser WARN    GSAP target  not found. https://gsap.com
