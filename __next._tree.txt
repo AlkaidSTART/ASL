@@ -1,0 +1,2 @@
+:HL["/ASL/_next/static/chunks/5274d8f1305a59a2.css","style"]
+0:{"buildId":"BuNyMPW5HRqcaZnLYNn43","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
