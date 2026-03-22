@@ -70,7 +70,7 @@ li {
   word-break: break-word;
 }
 
-html:not([data-lang]) .lang-zh {
+html:not([data-lang]) .lang-en {
   display: none;
 }
 
